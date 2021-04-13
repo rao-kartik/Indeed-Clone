@@ -1,11 +1,11 @@
 import { Route, Switch } from "react-router"
-import { CompanySearch } from "../Components/CompanySearch"
+import { Company } from "../Components/Company"
 
 export const Routes=()=>{
     return(
         <Switch>
             <Route path='/'>
-                <CompanySearch/>
+                <Company/>
             </Route>
         </Switch>
     )

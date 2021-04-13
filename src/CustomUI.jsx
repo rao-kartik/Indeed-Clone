@@ -10,6 +10,7 @@ export const Button=styled.button`
     text-align:center;
     padding:8px 24px;
     font-size:14px;
+    font-weight: bold;
     `;
     export const Input=styled.input`
     background-color:#FFFFFF;
@@ -23,6 +24,10 @@ export const Button=styled.button`
     margin:0;
     line-height:44px;
     outline:none;
+    margin-top:2%;
+    &:focus {
+        border-color:#085FF7;
+    }
 `;
 export const H1=styled.h1`
     color:black;
@@ -31,4 +36,10 @@ export const H1=styled.h1`
 export const P=styled.p`
     color:black;
     font-size:20px;
+`;
+
+export const Label=styled.label`
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
 `;

@@ -30,10 +30,14 @@ export const CompanyList=()=>{
       getData();
   },[])
     return(
-        <div>
-            <h1>Companies Hiring Now</h1>
+      <div style={{width:'70%',margin:'auto',marginTop:'10px'}}>
+        <h3>Companies Hiring Now</h3>
+        <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
+            
             {companies.map(item=>
               <CompaniesListItem item={item}/>)}
+              
+      </div>
         </div>
     )
 }

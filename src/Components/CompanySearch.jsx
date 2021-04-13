@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Button,Input,H1,P,Label} from '../CustomUI'
-import style from './CompanySearch.module.css'
+import {Button,Input,H1,P,Label} from '../CustomUI';
+import style from './CompanySearch.module.css';
+
 export const CompanySearch=()=>{
     useEffect(()=>{
-        document.title = 'Find the Best Companies Hiring Now | Indeed.com'
+        document.title = 'Find the Best Companies Hiring Now | Indeed.com';
     },[]);
-
     return(
         <div className={style.container}>
             <P>Get access to millions of company reviews</P>
@@ -28,10 +28,7 @@ export const CompanySearch=()=>{
                     <Button>Find Companies</Button><br/>
                     <Link style={{ textDecoration: 'none',color:'#085ff7',fontSize:'13px' }}>Do you want to search for salaries?</Link>
                 </div>
-                
-                
-            </div>
-            
+            </div>           
         </div>
     )
 }

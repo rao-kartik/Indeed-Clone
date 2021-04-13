@@ -19,9 +19,10 @@ const EndLine = styled.div`
 `;
 
 const Seaparation = styled.div`
-    width: 5px;
-    height: 100%;
-    background: red;
+    width: 1.5px;
+    height: 25px;
+    margin-top: 3px;
+    background: #e4e2e0;
 `;
 
 const NavContents = styled.div`

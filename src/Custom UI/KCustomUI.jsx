@@ -37,6 +37,7 @@ export const PopSearchBtn = styled.button`
     padding: 0 1rem 0 .75rem;
     display: flex;
     align-items: center;
+    outline-color: #2557a7;
 
     &:hover {
         background: #d4d2d0;

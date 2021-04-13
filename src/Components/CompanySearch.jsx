@@ -4,9 +4,10 @@ import {Button,Input,H1,P,Label} from '../CustomUI';
 import style from './CompanySearch.module.css';
 
 export const CompanySearch=()=>{
+    console.log('aaa');
     useEffect(()=>{
         document.title = 'Find the Best Companies Hiring Now | Indeed.com';
-    },[]);
+    });
     return(
         <div className={style.container}>
             <P>Get access to millions of company reviews</P>

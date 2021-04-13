@@ -105,7 +105,7 @@ export const Navbar = () => {
 
                 </div>
             </Container>
-            
+
             <EndLine></EndLine>
         </>
     )

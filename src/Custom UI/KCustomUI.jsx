@@ -52,7 +52,6 @@ export const RoundBtn = styled.button`
     border: 2px solid #909090;
     outline: none;
     background: none;
-    margin: -4px 0;
     cursor: pointer;
     font-weight: 600;
     font-size: 15px;

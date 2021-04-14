@@ -45,6 +45,18 @@ export const PopSearchBtn = styled.button`
     }
 `;
 
+export const SearchResult = styled.div`
+    width: 430px;
+    border: 1px solid #d4d2d0;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
 /* divs */
 
 export const InputDiv = styled.div`

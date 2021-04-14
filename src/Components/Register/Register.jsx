@@ -76,20 +76,11 @@ const Lines = styled.div`
     background: #ececec;
 `;
 
-const H5 =styled.h5`
-    color: #085ff7;
-    font-weight: 700;
-    text-align: center;
-    display: block;
-    font-size: 14px;
-    height: 24px;
-    padding: 10px;
-    cursor: pointer;
-    margin-bottom: 30px;
-
-    &:hover {
-        text-decoration: underline;
-    }
+const DividingLine = styled.div`
+    width: 100%;
+    height: 1.5px;
+    background: #ececec;
+    margin: 0 0 25px 0;
 `;
 
 const Lost =styled.p`
@@ -108,9 +99,8 @@ const Lost =styled.p`
 `;
 
 const Conditions = styled.p`
-    text-align: center;
     margin: 10px 10px 20px;
-    font-size: .875rem;
+    font-size: .75rem;
     color: #4b4b4b;
     padding: 10px;
     line-height: 1.43;
@@ -120,7 +110,24 @@ const Span = styled.span`
     color: #085ff7;
     cursor: pointer;
 `;
-export const SignIn = () => {
+
+const RgstrBtn = styled.button`
+    width: 46.5%;
+    min-height: 2.76rem;
+    border-radius: 1.38rem;
+    border: 2px solid #ccc;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+
+    &:hover {
+        background: rgb(239, 239, 239);
+    }
+`;
+
+export const Register = () => {
     
     return (
         <>
@@ -132,7 +139,31 @@ export const SignIn = () => {
                 </Container>
                 <Container>
                     <FormContainer>
-                        <H2>Sign In</H2>
+                        <H2>Create an Account (it's free)</H2>
+
+                        <RgstrBtn style={{margin:'0 15px 20px 0'}}>Job Seeker</RgstrBtn>
+
+                        <RgstrBtn style={{margin:'0 0 20px 15px'}}>Employer</RgstrBtn>
+
+                        <DividingLine></DividingLine>
+
+                        <RoundBtn style={{margin:'-4px 0'}} >Sign in with Google</RoundBtn><br/>
+                       
+                        <Logo style={{top:'-28px'}} ><svg class="pass-SocialButton-icon pass-SocialButton-icon--google" width="18" height="18" viewBox="0 0 18 18" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.258h2.908c1.702-1.566 2.684-3.874 2.684-6.614z" fill="#4285F4"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"></path></svg></Logo>
+                        
+                        <RoundBtn style={{border:'2px solid #000', margin:'-4px 0'}} >Sign In with Apple</RoundBtn><br/>
+                       
+                        <Logo><svg class="pass-SocialButton-icon pass-SocialButton-icon--apple" width="16pt" height="16pt" viewBox="0 0 16 16"><path d="M14.152 12.258a8.293 8.293 0 0 1-.82 1.476c-.43.614-.785 1.04-1.055 1.274-.422.39-.875.586-1.359.597-.348 0-.766-.097-1.254-.296-.488-.2-.937-.301-1.348-.301-.43 0-.894.101-1.386.3-.496.2-.895.305-1.2.313-.464.02-.925-.184-1.39-.613-.293-.254-.66-.695-1.102-1.32-.476-.668-.863-1.438-1.168-2.32-.328-.954-.492-1.872-.492-2.766 0-1.02.223-1.903.664-2.641A3.892 3.892 0 0 1 3.63 4.555a3.744 3.744 0 0 1 1.879-.528c.367 0 .851.114 1.453.336.598.227.98.34 1.152.34.125 0 .551-.133 1.278-.398.683-.246 1.261-.348 1.734-.309 1.281.102 2.246.61 2.887 1.52-1.149.695-1.715 1.668-1.703 2.918.011.972.363 1.78 1.058 2.425.313.297.664.528 1.055.692-.086.246-.176.48-.27.707zM11.211.68c0 .765-.277 1.476-.836 2.136-.668.782-1.48 1.235-2.36 1.164A2.306 2.306 0 0 1 8 3.691c0-.734.316-1.515.883-2.156A3.459 3.459 0 0 1 9.96.727c.434-.215.848-.332 1.234-.352.012.102.016.207.016.305zm0 0"></path></svg></Logo>
+                        
+                        <RoundBtn style={{border:'2px solid #1877f2', color:'#166fe2', margin:'-4px 0'}} >Sign In with Facebook</RoundBtn><br/>
+                       
+                        <Logo><span style={{color:'#166fe2'}} class="material-icons">facebook</span></Logo>
+
+                        <LineCont>
+                            <Lines></Lines>
+                            <Or>or</Or>
+                            <Lines></Lines>
+                        </LineCont>
                         
                         <form>
                             
@@ -146,36 +177,18 @@ export const SignIn = () => {
                                 <Input type="passowrd"/>
                            
                             </Label><br/>
-                            <RoundBtn style={{border:'none', margin:'10px 0', background:'#085ff7', color:'#fff'}} >Sign In</RoundBtn>
+                            <RoundBtn style={{ margin:'10px 0', border:'2px solid #085ff7', color:'#085ff7'}} >Create Account</RoundBtn>
                         </form>
-                        
-                        <LineCont>
-                            <Lines></Lines>
-                            <Or>or</Or>
-                            <Lines></Lines>
-                        </LineCont>
-
-                        <RoundBtn style={{margin:'-4px 0'}} >Sign in with Google</RoundBtn><br/>
-                       
-                        <Logo style={{top:'-28px'}} ><svg class="pass-SocialButton-icon pass-SocialButton-icon--google" width="18" height="18" viewBox="0 0 18 18" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.258h2.908c1.702-1.566 2.684-3.874 2.684-6.614z" fill="#4285F4"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"></path></svg></Logo>
-                        
-                        <RoundBtn style={{border:'2px solid #000', margin:'-4px 0'}} >Sign In with Apple</RoundBtn><br/>
-                       
-                        <Logo><svg class="pass-SocialButton-icon pass-SocialButton-icon--apple" width="16pt" height="16pt" viewBox="0 0 16 16"><path d="M14.152 12.258a8.293 8.293 0 0 1-.82 1.476c-.43.614-.785 1.04-1.055 1.274-.422.39-.875.586-1.359.597-.348 0-.766-.097-1.254-.296-.488-.2-.937-.301-1.348-.301-.43 0-.894.101-1.386.3-.496.2-.895.305-1.2.313-.464.02-.925-.184-1.39-.613-.293-.254-.66-.695-1.102-1.32-.476-.668-.863-1.438-1.168-2.32-.328-.954-.492-1.872-.492-2.766 0-1.02.223-1.903.664-2.641A3.892 3.892 0 0 1 3.63 4.555a3.744 3.744 0 0 1 1.879-.528c.367 0 .851.114 1.453.336.598.227.98.34 1.152.34.125 0 .551-.133 1.278-.398.683-.246 1.261-.348 1.734-.309 1.281.102 2.246.61 2.887 1.52-1.149.695-1.715 1.668-1.703 2.918.011.972.363 1.78 1.058 2.425.313.297.664.528 1.055.692-.086.246-.176.48-.27.707zM11.211.68c0 .765-.277 1.476-.836 2.136-.668.782-1.48 1.235-2.36 1.164A2.306 2.306 0 0 1 8 3.691c0-.734.316-1.515.883-2.156A3.459 3.459 0 0 1 9.96.727c.434-.215.848-.332 1.234-.352.012.102.016.207.016.305zm0 0"></path></svg></Logo>
-                        
-                        <RoundBtn style={{border:'2px solid #1877f2', color:'#166fe2', margin:'-4px 0'}} >Sign In with Facebook</RoundBtn><br/>
-                       
-                        <Logo><span style={{color:'#166fe2'}} class="material-icons">facebook</span></Logo>
-                        
-                        <Link style={{textDecoration:'none'}} to='/account/register' ><H5>New to Indeed? Create an account</H5></Link>
 
                     </FormContainer>
                     <hr/>
                     
-                    <Conditions>By signing in to your account, you agree to Indeed's <Span>Terms of Service</Span> and consent to our <Span>Cookie Policy</Span> and <Span>Privacy Policy</Span></Conditions>
+                    <Conditions>By signing in to your account, you agree to Indeed's <Span>Terms of Service</Span>, <Span>Cookie Policy</Span> and <Span>Privacy Policy</Span>. You consent to receiving marketing messages from Indeed and may opt out from receiving such messages by following the unsubscribe link in our messages, or as detailed in our terms.</Conditions>
                 </Container>
                 
                 <Container style={{background:'none', marginTop:'20px'}} >
+
+                    <Link to='/account/login' style={{textDecoration:'none'}} ><Lost>Have an account? Sign in</Lost></Link>
                    
                     <Lost>Forgot Your Password</Lost>
                    

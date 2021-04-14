@@ -6,6 +6,7 @@ import { FindSalariesPage } from './FindSalariesPage'
 import { HiringPage } from './HiringPage'
 import { Navbar } from './Navbar'
 import { PostResumePage } from './PostResumePage'
+import { RegisterPage } from './RegisterPage'
 import { SignInPage } from './SignInPage'
 
 export const Routes = () => {
@@ -16,20 +17,26 @@ export const Routes = () => {
                 <Route path='/' exact>
                     <FindJobsPage />
                 </Route>
-                <Route path='/companies'>
+                <Route path='/companies' exact>
                     <CompanyReviewsPage />
                 </Route>
-                <Route path='/career/salaries'>
+                <Route path='/career/salaries' exact>
                     <FindSalariesPage />
                 </Route>
-                <Route path='/p/hh78545'>
+                <Route path='/p/hh78545' exact>
                     <PostResumePage />
                 </Route>
-                <Route path='/account/login'>
+                <Route path='/account/login' exact>
                     <SignInPage />
                 </Route>
-                <Route path='/hire'>
+                <Route path='/hire' exact>
                     <HiringPage />
+                </Route>
+                <Route path='/account/register' exact>
+                    <RegisterPage />
+                </Route>
+                <Route>
+                    Error 404: Page Not Found!
                 </Route>
             </Switch>
         </div>

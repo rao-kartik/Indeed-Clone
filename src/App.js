@@ -1,9 +1,10 @@
 import './App.css';
+import { FindSalaries } from './Components/Find Salaries/FindSalaries';
 
 function App() {
   return (
     <div >
-      INDEED - CLONE
+      <FindSalaries/>
     </div>
   );
 }

@@ -1,0 +1,52 @@
+.jobsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap:wrap;
+}
+
+.searchBox {
+    margin: 4rem 2rem;
+    line-height: 35px;
+    word-spacing: 4px;
+}
+
+.searchBox button {
+    color: white;
+    outline:none;
+    border:none;
+    font-size:1.2rem;
+    font-weight:bold;
+    background: #085ff7;
+}
+
+.tpJobs h1, .tpComp h1 {
+    margin: auto;
+    padding: 1.4vw;
+}
+
+.tpJobs select, .tpComp select {
+    margin: 1.4vw;
+    width:22vw;
+    padding: 0.5vw;
+    font-size:1em;
+    height:6vh;
+    border-radius: 20px;
+}
+
+.jobCard h3, .jobCard div, .jobCard p {
+    margin-bottom:2vh;
+}
+
+.compCard {
+    border: 5px solid yellow;
+    display: flex;
+    gap:2vw;
+    margin-top: 20px;
+
+}
+
+.compCard img {
+    width:80px;
+    border: 1px solid #ececec;
+}
+

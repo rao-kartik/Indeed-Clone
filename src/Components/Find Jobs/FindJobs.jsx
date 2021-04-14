@@ -26,7 +26,7 @@ export const FindJobs = () => {
 
             <Results>
                 {
-                    data.map(item=> <SearchResults {...item} />)
+                    data.map(item=> <SearchResults key={item.id} {...item} />)
                 }
             </Results>
 

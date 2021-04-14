@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styles from "./Salaries.module.css";
 import { getTopPayingJobs } from "../../Redux/TopPayingJobs/action";
 import { useDispatch, useSelector } from "react-redux";
-import { JobContainer } from "../Custom UI/RCustomUI.jsx";
+import { JobContainer } from "../../Custom UI/RCustomUI"
 
 function TPJobs() {
   const tpJobs = useSelector((state) => state.topPayingJobs.jobs);
@@ -26,10 +26,10 @@ function TPJobs() {
           tpJobs.map((item) => {
             return (
               <JobContainer className={styles.jobCard}>
-                <h3>{item.title}</h3>
+                <h4>{item.title}</h4>
                 <div>
-                  Average Salary -
-                  <span style={{ fontWeight: "bold" }}>{item.Avg_salary}</span>
+                  Average Salary
+                  <span style={{ fontWeight: "bold" , marginLeft:'1.4vw' }}>{item.Avg_salary}</span>
                 </div>
                     <p style={{ width: '100%', background:'#ECECEC',height:'1px', marginTop:'3vh'}}></p>
                 <div>Job Openings</div>

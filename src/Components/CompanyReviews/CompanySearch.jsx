@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Button,Input,H1,P,Label} from '../CustomUI';
+import {Button,Input,H1,P,Label} from '../../Custom UI/ACustomUI';
 import style from './CompanySearch.module.css';
 
 export const CompanySearch=()=>{

@@ -4,9 +4,10 @@ import { CompanySearch } from './CompanySearch';
 
 export const Company=()=>{
     return(
-        <div>
+        <div style={{backgroundColor:'#f5f5f5'}}>
             <CompanySearch/>
-            <CompanyList/>
+            <CompanyList type={'hiringnow'}/>
+            <CompanyList type={'popular'}/>
         </div>
     )
 }

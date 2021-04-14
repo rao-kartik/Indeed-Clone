@@ -1,11 +1,16 @@
 import { Route, Switch } from "react-router"
-import { Company } from "../Components/Company"
+import { Company } from "../Components/CompanyReviews/Company"
 
 export const Routes=()=>{
     return(
         <Switch>
-            <Route path='/'>
+            <Route exact path='/'>
                 <Company/>
+                {/* <h1>Ajmal</h1> */}
+
+            </Route>
+            <Route path='/companies/:id'>
+
             </Route>
         </Switch>
     )

@@ -4,8 +4,7 @@ import { Routes } from './Routes/Routes';
 function App() {
   return (
     <div >
-      {/* INDEED - CLONE */}
-      <Routes/>
+      <Routes />
     </div>
   );
 }

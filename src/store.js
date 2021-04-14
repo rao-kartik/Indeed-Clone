@@ -2,11 +2,13 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { findJobsReducer } from "./Redux/FindJobs/findJobsReducer";
 import { topPayingCompReducer } from "./Redux/TopPayingCompanies/reducer";
 import { topPayingJobsReducer } from "./Redux/TopPayingJobs/reducer";
+import { companyReducer } from "./Redux/company/reducer";
 
 const rootReducer = combineReducers({
     topPayingJobs:topPayingJobsReducer,
     topPayingComp:topPayingCompReducer,
-    findReducer : findJobsReducer
+    findReducer : findJobsReducer,
+    company: companyReducer
 });
 
 const customMiddleware = (store) => (next) => (action) => {

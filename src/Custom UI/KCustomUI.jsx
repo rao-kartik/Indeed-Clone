@@ -45,16 +45,8 @@ export const PopSearchBtn = styled.button`
     }
 `;
 
-export const SearchResult = styled.div`
-    width: 430px;
-    border: 1px solid #d4d2d0;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 20px;
-
-    &:hover {
-        cursor: pointer;
-    }
+const Roundbtn = styled.button`
+    
 `;
 
 /* divs */
@@ -73,6 +65,18 @@ export const InputDiv = styled.div`
     align-items: center;
     padding: 0 10px;
     margin: 10px;
+`;
+
+export const SearchResult = styled.div`
+    width: 430px;
+    border: 1px solid #d4d2d0;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 /* inputs */

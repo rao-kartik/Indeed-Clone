@@ -1,9 +1,10 @@
 import React from 'react'
+import { FindSalaries } from '../Components/Find Salaries/FindSalaries'
 
 export const FindSalariesPage = () => {
     return (
         <div>
-            Find Salaries
+            <FindSalaries />
         </div>
     )
 }

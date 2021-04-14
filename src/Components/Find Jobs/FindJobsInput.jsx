@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { InputDiv, Input, Button } from '../../Custom UI/KCustomUI';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchData } from '../../State/FindJobs/action';
-import Axios from 'axios';
+import { getSearchData } from '../../Redux/FindJobs/action';
 
 const Container = styled.div`
     display:flex;

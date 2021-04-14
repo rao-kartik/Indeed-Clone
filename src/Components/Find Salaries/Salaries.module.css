@@ -5,10 +5,13 @@
 }
 
 .searchBox {
-    margin: 4rem 2rem;
-    line-height: 35px;
-    word-spacing: 4px;
+    margin: 2rem 3rem;
+    line-height: 2rem;
 }
+
+/* .searchBox h3 {
+    margin-left: -40%;
+} */
 
 .searchBox button {
     color: white;
@@ -33,10 +36,13 @@
     border-radius: 20px;
 }
 
-.jobCard h3, .jobCard div, .jobCard p {
-    margin-bottom:2vh;
+.jobCard h4, .jobCard div, .jobCard p {
+    margin-bottom:2.2vh;
 }
 
+.jobCard div {
+    font-size: 0.9rem;
+}
 .compCard {
     border: 5px solid yellow;
     display: flex;

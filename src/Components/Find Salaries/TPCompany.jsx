@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./Salaries.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { CompContainer } from "../Custom UI/RCustomUI.jsx";
+import { CompContainer } from "../../Custom UI/RCustomUI";
 import { getTopPayingComp } from "../../Redux/TopPayingCompanies/action";
 function TPCompany() {
     const isLoading = useSelector((state) => state.topPayingComp.isLoading)

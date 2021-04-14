@@ -54,9 +54,24 @@ export const FindJobsInput = () => {
         setFindInp(updated);
     }
 
+    let params;
+    if(findInp.category === ''){
+        params = {
+            location: findInp.location
+        };
+    }
+    else if(findInp.location === ''){
+        params = {
+            category: findInp.category
+        };
+    }
+    else {
+        params = findInp;
+    }
+
     const handleSearch = (e, input)=>{
         e.preventDefault();
-        dispatch(getSearchData(input));
+        dispatch(getSearchData(params));
     }
     
     return (
@@ -65,7 +80,7 @@ export const FindJobsInput = () => {
                     <InputDiv>
                         <p style={{display:'inline-block', fontWeight:'600'}} >What</p>
 
-                        <Input placeholder='Job title, keywords or company' name="category" onChange={handleChange} required />
+                        <Input placeholder='Job title, keywords or company' name="category" onChange={handleChange} />
 
                         <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons-round">search</span></div>
                     </InputDiv>
@@ -73,7 +88,7 @@ export const FindJobsInput = () => {
                     <InputDiv>
                         <p style={{display:'inline-block', fontWeight:'600'}} >Where</p>
 
-                        <Input placeholder='City, state or pin Code' name="location" onChange={handleChange} required />
+                        <Input placeholder='City, state or pin Code' name="location" onChange={handleChange} />
 
                         <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons">place</span></div>
                     </InputDiv>

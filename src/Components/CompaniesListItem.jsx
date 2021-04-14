@@ -7,9 +7,9 @@ export const CompaniesListItem=({item})=>{
         <div style={{}}>
             <img src={company_logo} style={{width:'80px'}}/>
             <h4>{company_name}</h4>
-            <Link>Salaries</Link>
-            <Link>Q&A</Link>
-            <Link>Open Jobs</Link>
+            <Link to={`companies/${item.id}/salaries`}>Salaries</Link>
+            <Link to={`companies/${item.id}/faq`}>Q&A</Link>
+            <Link to={`companies/${item.id}/jobs`}>Open Jobs</Link>
         </div>
     )
 }

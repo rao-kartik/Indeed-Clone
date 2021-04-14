@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Company } from '../Components/CompanyReviews/Company'
 
 export const CompanyReviewsPage = () => {
     return (
         <div>
-            Company Reviews
+            <Company />
         </div>
     )
 }

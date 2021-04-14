@@ -1,5 +1,6 @@
 import React from 'react';
 import { CompanyList } from './CompaniesList';
+import { CompanyRating } from './CompaniesRating';
 import { CompanySearch } from './CompanySearch';
 
 export const Company=()=>{
@@ -8,6 +9,7 @@ export const Company=()=>{
             <CompanySearch/>
             <CompanyList type={'hiringnow'}/>
             <CompanyList type={'popular'}/>
+            <CompanyRating/>
         </div>
     )
 }

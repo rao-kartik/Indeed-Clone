@@ -1,10 +1,9 @@
 import './App.css';
-import { FindSalaries } from './Components/Find Salaries/FindSalaries';
-
+import { Routes } from './Routes/Routes';
 function App() {
   return (
     <div >
-      <FindSalaries/>
+      <Routes />
     </div>
   );
 }

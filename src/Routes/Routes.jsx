@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
+import { CompanyInfo } from '../Components/Find Salaries/CompanyInfo'
 import { CompanyReviewsPage } from './CompanyReviewsPage'
 import { FindJobsPage } from './FindJobsPage'
 import { FindSalariesPage } from './FindSalariesPage'

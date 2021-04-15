@@ -17,28 +17,31 @@ export const Image = styled.img`
 export const SearchBar = styled.div`
   width:58vw;
   height: 22vh;
+  margin-top:3vh;
   z-index:100;
-  margin-top:10px;
-  border-radius: 15px;
-  border-top: 15px solid #7eacfb;
+  border-radius: 10px;
+  border-top: 10px solid #7eacfb;
   background: white;
-  padding: 20px;
+  padding: 1rem;
   position: absolute;
 `;
 
 export const Input = styled.input`
-  width:20vw;
-  margin:10px;
-  padding:15px;
+  width:21vw;
+  height:7vh;
+  margin:0.5rem;
   outline:none;
+  padding:1.2rem;
   font-size:1.2rem;
   border-radius: 10px;
+  border:1px solid #afafaf;
+  margin:none;
 `;
 
 export const SearchButton = styled.button`
-  height: 55px;
-  margin: 10px;
-  width: 200px;
+  height:7vh;
+  margin:0.5rem;
+  width: 10vw;
   border-radius: 10px;
 `;
 
@@ -46,8 +49,8 @@ export const JobContainer = styled.div`
   height: 20vh;
   border-radius: 10px;
   padding:1.3vw;
-  flex-basis: 390px;
-  margin:0.4vw;
+  flex-basis: 23.5vw;
+  margin:0.5vw;
   border: 1px solid #ECECEC;
 `;
 
@@ -56,7 +59,24 @@ export const CompContainer = styled.div`
   height: 16vh;
   border-radius: 10px;
   padding: 1vw;
-  flex-basis: 520px;
+  flex-basis: 31.5vw;
   margin: 0.4vw;
   border: 1px solid #ececec;
+`;
+
+export const Follow = styled.button`
+  width:12vw;
+  height:5vh;
+  outline:none;
+  border:none;
+  margin:2vh;
+  background:#085ff7;
+  transition:0.3s ease-in-out;
+  color:white;
+  border-radius:30px;
+  &:hover {
+    cursor:pointer;
+    background:#4488ff;
+    transition:0.3s ease-in-out
+  }
 `;

@@ -7,7 +7,7 @@ import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
 import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
-import Rating from 'react-rating'
+// import Rating from 'react-rating'
 
 const H1 = styled.h1`
     font-size:19.95px;

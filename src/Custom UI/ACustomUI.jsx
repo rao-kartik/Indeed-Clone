@@ -92,3 +92,22 @@ export const OptionButtonRight=styled.button`
         border-color:#085FF7;
     }
 `;
+
+export const SelectButton = styled.button`
+    width:150px;
+    height:44px;
+    border-radius:25px;
+    color:#085ff7;
+    border: 2px solid #f2f2f2;
+    background-color:white;
+    outline:none;
+    margin:3px;
+    font-size: 15px;
+    font-weight: bold;
+    &:focus{
+        outline:#085ff7;
+        border-color:#fff;
+        background-color:#085ff7;
+        color:white;
+    }
+`;

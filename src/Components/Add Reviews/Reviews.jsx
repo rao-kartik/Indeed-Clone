@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
-import { OptionButtonLeft,OptionButtonRight } from '../../Custom UI/ACustomUI';
+import { OptionButtonLeft,OptionButtonRight, SelectButton } from '../../Custom UI/ACustomUI';
 
 const H1 = styled.h1`
     font-size:19.95px;
@@ -79,9 +79,16 @@ export const Reviews=()=>{
                 <OptionButtonLeft>Yes</OptionButtonLeft>
                 <OptionButtonRight>No</OptionButtonRight>
             </div>
-            <div>
+            <div style={{height:'200px'}}>
                 <H1>How would you describe the work culture at {compname.id}?</H1>
                 <p>Choose all that are applicable:</p>
+                <SelectButton>Relaxed</SelectButton>
+                <SelectButton>Fast-paced</SelectButton>
+                <SelectButton>Stressful</SelectButton>
+                <SelectButton>Collaborative</SelectButton>
+                <SelectButton>Competitive</SelectButton>
+                <SelectButton>Slow-paced</SelectButton>
+                <SelectButton>Not sure</SelectButton>
             </div>
             <div>
                 <H1>Please rate your overall interview experience at {compname.id}.</H1>

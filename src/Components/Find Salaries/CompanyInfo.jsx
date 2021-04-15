@@ -2,26 +2,31 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getCompanyData } from "../../Redux/CompanyInfo/action";
-import {JobByCategory} from '../Find Salaries/JobByCategory'
-import { Follow, Logo, SearchButton } from "../../Custom UI/RCustomUI"
+import { Follow, Logo, SearchButton } from "../../Custom UI/RCustomUI";
 import styles from "./Salaries.module.css";
+import { JobByCategory } from "../../Components/Find Salaries/JobByCategory";
 import { useState } from "react";
 
 function CompanyInfo() {
-  const [category,setCategory] = useState('Popular Jobs')
-  const [follow,setFollow] = useState(false)
-    const data = useSelector((state) => state.companyInfo.data)
-    const dispatch = useDispatch()
-    const {id} = useParams();
+  const [category, setCategory] = useState("popularjobs");
+
+  const jobs_data = useSelector((state) => state.categoryJobs.jobs_data);
+  const [follow, setFollow] = useState(false);
+
+  const data = useSelector((state) => state.companyInfo.data);
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const handleChange = (e) => {
-    const {value} = e.target;
-    setCategory(value)
-  }
-    console.log(id);
-    useEffect(() => {
-        dispatch(getCompanyData(id))
-    },[])
-    const {name, logo, poster, reviews} = data;
+    const { value } = e.target;
+    var latestValue = value.replaceAll(" ", "").toLowerCase();
+    console.log(latestValue);
+    setCategory(latestValue);
+  };
+  useEffect(() => {
+    dispatch(getCompanyData(id));
+  }, []);
+
+  const { name, logo, poster, reviews } = data;
   const categories = [
     "Popular Jobs",
     "Accounting",
@@ -44,27 +49,24 @@ function CompanyInfo() {
     "Scientific Research & Development",
     "Software Development",
   ];
+  console.log("data", jobs_data);
   return (
     <div className={styles.poster}>
-      <img
-        src={poster}
-        alt="poster"
-      />
+      <img src={poster} alt="poster" />
       <div className={styles.companyInfo}>
         <div className={styles.logo}>
-          <img
-            src={logo}
-            alt="logo"
-          />
+          <img src={logo} alt="logo" />
         </div>
         <div>
           <h4>{name}</h4>
-          <br/>
+          <br />
           <p>{reviews}</p>
         </div>
         <div>
           {" "}
-          <Follow onClick={()=> setFollow(!follow)}>{follow? "Following" : "Follow"}</Follow>
+          <Follow onClick={() => setFollow(!follow)}>
+            {follow ? "Following" : "Follow"}
+          </Follow>
           <p>Get weekly updates, new jobs, and reviews</p>
         </div>
       </div>
@@ -98,24 +100,22 @@ function CompanyInfo() {
             </p>
           </div>
           <div></div>
-          {/* <div className={styles.claimedProfile}>Claimed Profile</div> */}
         </div>
 
         <div>
           <div>
-            <select>
+            <select onChange={handleChange}>
               {categories.map((opt) => {
-                return <option value={opt} onChange={handleChange}>{opt}</option>;
+                return <option value={opt}>{opt}</option>;
               })}
             </select>
-            <select disabled={true} value='India'>
+            <select disabled={true} value="India">
               <option value="India">India</option>
             </select>
           </div>
-          <div>{/* <button>Add a Salary</button> */}</div>
         </div>
       </div>
-        <JobByCategory category={category} />
+      <JobByCategory category={category} />
     </div>
   );
 }

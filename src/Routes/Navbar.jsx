@@ -45,7 +45,7 @@ const leftLinks = [
         title: 'Company reviews'
     },
     {
-        to: 'career/salaries',
+        to: '/career/salaries',
         title: 'Find Salaries'
     }
 ]
@@ -100,7 +100,7 @@ export const Navbar = () => {
                                     rightLinksBeforeSignin.map(link=> <NavContents><Link style={{textDecoration:'none', color:'#2d2d2d'}} to={link.to} >{link.title}</Link></NavContents>)
                                     }
                 
-                                    <NavContents><Link style={{textDecoration:'none', color:'#2557a7', fontWeight:'600'}} to='account/login' >Sign in</Link></NavContents>
+                                    <NavContents><Link style={{textDecoration:'none', color:'#2557a7', fontWeight:'600'}} to='/account/login' >Sign in</Link></NavContents>
                                 </>
                             ) : (
                                 <>

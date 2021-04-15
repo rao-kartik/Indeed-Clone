@@ -33,54 +33,147 @@ const Span = styled.span`
     }
 `;
 
-const initInp = {
-    category: '',
-    location: ''
-}
+const AutoSuggestions = styled.div`
+    position: absolute;
+    width: 20rem;
+    padding: 1rem;
+    line-height: 30px;
+    top: 150px;
+    border: 0.0625rem solid #949494;
+    border-radius: .5rem;
+    background: #fff;
+    z-index: 5;
+    font-size: 14px;
+    box-shadow: 0 0 0 1px #949494;
+`;
+
+const Opt = styled.div`
+    witdh: 100%;
+    border-radius: 5px;
+    padding: 0 10px;
+
+    &:hover {
+        background: #949494;
+        cursor: pointer;
+    }
+`;
+
+const category = [
+    { category:'DevOps / Sysadmin' },
+    { category:'Finance / Legal' },
+    { category:'Software Development' },
+    { category:'Writing' },
+    { category:'QA' },
+    { category:'Human Resources' },
+    { category:'Data' },
+    { category:'Business' },
+    { category:'Product' },
+    { category:'Sales' },
+    { category:'Marketing' },
+    { category:'Design' },
+    { category:'Customer Service' },
+    { category:'All others' }
+]
+
+const city = [
+    { city:'Delhi' },
+    { city:'Mumbai' },
+    { city:'Bengaluru' },
+    { city:'Pune' },
+    { city:'Gurugram' },
+    { city:'Noida' },
+    { city:'Chennai' },
+    { city:'Hydrabad' },
+    { city:'Chandigarh' },
+    { city:'Kolkata' },
+    { city:'Bhopal' },
+    { city:'Jaipur' }
+]
 
 export const FindJobsInput = () => {
 
     const data = useSelector(state=> state.findReducer.data)
-    console.log(data)
-    const [ findInp, setFindInp ] = useState(initInp);
+    
+    const [ catInp, setCatInp ] = useState('');
+    const [ catDisp, setCatDisp ] = useState(false);
+
+    const [ cityInp, setCityInp ] = useState('');
+    const [ cityDisp, setCityDisp ] = useState(false)
+
     const dispatch = useDispatch();
 
-    const handleChange = (e)=>{
-        const { name, value } = e.target;
-        const updated = {
-            ...findInp,
-            [name] : value
-        }
-        setFindInp(updated);
+    const handleCatChange = (e)=>{
+        const { value } = e.target;
+        setCatInp(value);
     }
 
+    const handleCityChange = (e)=>{
+        const { value } = e.target;
+        setCityInp(value);
+    }
+
+    const inpParams = {
+        category: catInp,
+        location: cityInp
+    };
+
     let params;
-    if(findInp.category === ''){
+    if(inpParams.category === ''){
         params = {
-            location: findInp.location
+            location: cityInp
         };
     }
-    else if(findInp.location === ''){
+    else if(inpParams.location === ''){
         params = {
-            category: findInp.category
+            category: catInp
         };
     }
     else {
-        params = findInp;
+        params = inpParams;
     }
 
     const handleSearch = (e, input)=>{
         e.preventDefault();
-        dispatch(getSearchData(params));
+        dispatch(getSearchData(input));
+    }
+
+    const setCategory = value => {
+        setCatInp(value);
+        setCatDisp(false);
+    }
+
+    const setCity = value => {
+        setCityInp(value);
+        setCityDisp(false);
+    }
+
+    const clickCat = ()=>{
+        setCatDisp(true);
+        setCityDisp(false);
+    }
+
+    const clickCity = ()=>{
+        setCatDisp(false);
+        setCityDisp(true);
     }
     
     return (
         <Container>
-                <Search onSubmit={(e)=>handleSearch(e, findInp)}>
+                <Search onSubmit={(e)=>handleSearch(e, params)}>
                     <InputDiv>
                         <p style={{display:'inline-block', fontWeight:'600'}} >What</p>
 
-                        <Input placeholder='Job title, keywords or company' name="category" onChange={handleChange} />
+                        <Input value={catInp} onClick={clickCat} placeholder='Job title, keywords or company' name="category" onChange={handleCatChange} />
+
+                        {
+                            catDisp && (
+                                <AutoSuggestions onClick={()=>setCatDisp(false)} >
+                                    {
+                                        category.filter(( {category} )=>category.indexOf(catInp) > -1 ).map(cat => <Opt onClick={()=> setCategory(cat.category)} >{cat.category}</Opt>)
+                                    }
+                                </AutoSuggestions>
+                            )
+                        }
 
                         <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons-round">search</span></div>
                     </InputDiv>
@@ -88,7 +181,17 @@ export const FindJobsInput = () => {
                     <InputDiv>
                         <p style={{display:'inline-block', fontWeight:'600'}} >Where</p>
 
-                        <Input placeholder='City, state or pin Code' name="location" onChange={handleChange} />
+                        <Input value={cityInp} onClick={clickCity} placeholder='City, state or pin Code' name="location" onChange={handleCityChange} />
+
+                        {
+                            cityDisp && (
+                                <AutoSuggestions onClick={()=>setCityDisp(false)} >
+                                    {
+                                        city.filter(( {city} )=>city.indexOf(cityInp) > -1 ).map(loc => <Opt onClick={()=> setCity(loc.city)} >{loc.city}</Opt>)
+                                    }
+                                </AutoSuggestions>
+                            )
+                        }
 
                         <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons">place</span></div>
                     </InputDiv>

@@ -154,9 +154,10 @@ export const Register = () => {
     const handleRegister = (e,input)=>{
         e.preventDefault();
         dispatch(registerUser(input));
-        history.push('./');
         setReginp(initData);
     };
+
+    
     
     return (
         <>

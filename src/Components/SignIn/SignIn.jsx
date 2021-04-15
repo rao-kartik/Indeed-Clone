@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { RoundBtn } from '../../Custom UI/KCustomUI';
 import { BottomPart } from './BottomPart';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { signInWithEmail } from '../../Redux/Auth/action';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MainBox = styled.div`
     width: 100%;
@@ -136,6 +136,8 @@ export const SignIn = () => {
 
     const history = useHistory();
 
+    const isAuth = useSelector(state=> state.authReducer.isAuth);
+
     const handleInput = (e)=>{
         const { name, value } = e.target;
         const updated = {
@@ -148,9 +150,12 @@ export const SignIn = () => {
     const handleSignIn = (e, input)=>{
         e.preventDefault();
         dispatch(signInWithEmail(input));
-        history.push('./');
         setSignInp(initInp);
     };
+    
+    if( isAuth ){
+        history.push('/')
+    }
 
     return (
         <>

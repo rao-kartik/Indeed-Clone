@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { RoundBtn } from '../../Custom UI/KCustomUI';
 import { BottomPart } from './BottomPart';
 import { Link } from 'react-router-dom';
+import { fire } from '../../Config/fire';
+import { signInWithEmail } from '../../Redux/SignIn/action';
+import { useDispatch } from 'react-redux';
 
 const MainBox = styled.div`
     width: 100%;
@@ -120,8 +123,31 @@ const Span = styled.span`
     color: #085ff7;
     cursor: pointer;
 `;
+
+const initInp = {
+    email: '',
+    password: ''
+}
+
 export const SignIn = () => {
-    
+
+    const [ signInp, setSignInp ] = useState(initInp);
+    const dispatch = useDispatch();
+
+    const handleInput = (e)=>{
+        const { name, value } = e.target;
+        const updated = {
+            ...signInp,
+            [ name ] : value
+        }
+        setSignInp(updated)
+    }
+
+    const handleSignIn = (e, input)=>{
+        e.preventDefault();
+        dispatch(signInWithEmail(input))
+    }
+
     return (
         <>
             <MainBox>
@@ -134,19 +160,24 @@ export const SignIn = () => {
                     <FormContainer>
                         <H2>Sign In</H2>
                         
-                        <form>
+                        <form onSubmit={(e)=>handleSignIn(e, signInp)}>
                             
                             <Label>
                                 Email Address {<br/>}
-                                <Input type="text"/>
+
+                                <Input type="text" name="email" value={signInp.email} onChange={handleInput} />
+
                             </Label><br/>
                            
                             <Label>
                                 Password {<br/>}
-                                <Input type="passowrd"/>
-                           
+
+                                <Input type="passowrd" name="password" value={signInp.password} onChange={handleInput} />
+
                             </Label><br/>
+
                             <RoundBtn style={{border:'none', margin:'10px 0', background:'#085ff7', color:'#fff'}} >Sign In</RoundBtn>
+
                         </form>
                         
                         <LineCont>

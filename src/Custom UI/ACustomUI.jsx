@@ -48,6 +48,47 @@ export const Label=styled.label`
     color: #000;
 `;
 
-export const Container=styled.div`
-
+export const OptionButtonLeft=styled.button`
+    width:144px;
+    height:44px;
+    padding:2px 10px 0px;
+    background-color: #fff;
+    border: 2px solid #f2f2f2;
+    color: #085ff7;
+    font-size: 15px;
+    font-weight: bold;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    z-index: 1;
+    outline:none;
+    &:focus {
+        border-color:#085FF7;
+        background-color:#085FF7;
+        color:white;
+    }
+    &:hover {
+        border-color:#085FF7;
+    }
+`;
+export const OptionButtonRight=styled.button`
+    width:144px;
+    height:44px;
+    padding:2px 10px 0px;
+    background-color: #fff;
+    border: 2px solid #f2f2f2;
+    color: #085ff7;
+    font-size: 15px;
+    font-weight: bold;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    z-index: 1;
+    outline:none;
+    &:focus {
+        border-color:#085FF7;
+        background-color:#085FF7;
+        color:white;
+    }
+    &:hover {
+        border-color:#085FF7;
+    }
 `;

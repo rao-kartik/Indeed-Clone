@@ -26,7 +26,7 @@ export const CompanySearch=()=>{
     const requestAction = companiesRequest();
     dispatch(requestAction);
     axios
-      .get("http://localhost:3004/companies")
+      .get("https://compdetails-indeed.herokuapp.com/companies")
       .then((res) => {
         const successAction = companiesSuccess(res.data);
         dispatch(successAction);

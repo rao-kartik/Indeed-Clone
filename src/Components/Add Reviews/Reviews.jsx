@@ -27,7 +27,7 @@ export const Reviews=()=>{
     const requestAction = companiesRequest();
     dispatch(requestAction);
     axios
-      .get("http://localhost:3004/companies",{
+      .get("https://compdetails-indeed.herokuapp.com/companies",{
           params:{
             company_name:compname.id
           }

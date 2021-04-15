@@ -166,7 +166,6 @@
   border: 2px solid #085ff7;
 }
 
-
 .jobSalary {
   width: 70%;
   margin-top: 5vh;
@@ -225,4 +224,34 @@
 }
 .compInfo select:hover {
   outline: 1px solid #196dff;
+}
+.estimatedPay {
+  width: 98%;
+  margin: auto;
+  display: flex;
+  padding: 30px;
+  border-radius: 10px;
+  height: auto;
+  margin-top: 10vh;
+  border: 1px solid #ececec;
+}
+.estimatedPay div {
+  flex-basis: 48%;
+  justify-content: space-between;
+}
+
+.estimatedPay > div:nth-child(2) {
+  position: absolute;
+  right: 50px;
+}
+.estimatedPay button {
+  background: #196dff;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 250px;
+  height: 40px;
+  color: white;
+  border-radius: 10px;
 }

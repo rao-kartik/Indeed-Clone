@@ -1,17 +1,27 @@
-.jobsContainer {
+
+ .jobsContainer {
     display: flex;
     justify-content: space-evenly;
     flex-wrap:wrap;
 }
 
 .searchBox {
-    margin: 2rem 3rem;
-    line-height: 2rem;
+    margin: 4rem 2rem;
+    line-height: 35px;
+    word-spacing: 4px;
 }
 
-/* .searchBox h3 {
-    margin-left: -40%;
-} */
+
+.companyRoute {
+    margin-top: 2vh;
+    width:31.5vw;
+    color:black
+}
+
+.companyRoute:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
 
 .searchBox button {
     color: white;
@@ -36,19 +46,25 @@
     border-radius: 20px;
 }
 
-.jobCard h4, .jobCard div, .jobCard p {
-    margin-bottom:2.2vh;
+.jobCard h3, .jobCard div, .jobCard p {
+    margin-bottom:2vh;
 }
 
-.jobCard div {
-    font-size: 0.9rem;
-}
 .compCard {
-    border: 5px solid yellow;
     display: flex;
     gap:2vw;
     margin-top: 20px;
+        transition: 0.3s ease-in-out;
+}
 
+
+.compCard:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 1px 0px rgb(182, 182, 182);
+    transition: 0.5s ease-in-out;
+}
+.compCard h3+p {
+    margin-top: 2vh;
 }
 
 .compCard img {
@@ -56,3 +72,155 @@
     border: 1px solid #ececec;
 }
 
+.findEarning {
+    width:96vw;
+    padding:2.5vw;
+    font-size:1.2rem;
+    border-radius: 10px;
+    display: flex;
+    border: 1px solid rgb(224, 224, 224);
+    margin:10vh 1vw;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height:auto;
+}
+.findEarning div {
+    flex-basis: 50%;
+    flex-wrap: wrap;
+}
+
+.findEarning img {
+    width:3vw;
+    margin-right: 2.5vw;
+}
+
+.findEarning img:hover {
+    cursor: pointer;
+}
+
+.feedback {
+    margin-top: 5vh;
+    padding: 0;
+    width:100%;
+    height:25vh;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid rgb(224, 224, 224);
+}
+
+.feedbackSubmit {
+    background: #085FF7;
+    color:white;
+    outline:none;
+    font-size: 1.4rem;
+    margin-top: 20px;
+    border: none;
+    width:18vw;
+    height:8vh;
+    border-radius: 50px;
+}
+
+.companyInfo {
+    width:80%;
+    margin: auto;
+    margin-top: 10%;
+    height:17vh;
+    background: white;
+}
+.companyInfo h4 {
+    position: absolute;
+    left:23%;
+}
+
+.companyInfo p {
+    margin-top: 1vh;
+    font-size: 0.8rem;
+    color: rgb(112, 112, 112);
+}
+
+.logo {
+    width: 10%;
+    height: 15%;
+}
+.compInfo div {
+    gap: 10%;
+    display: flex;
+    text-align: left;
+}
+
+.compInfo  div > div {
+    flex-basis: 10vw;
+}
+.compInfo div div:nth-child(1) {
+    flex-grow: 1;
+}
+.compInfo button {
+    width: 17vw;
+    height:7vh;
+    font-size:1rem;
+    font-weight: bold;
+    background: white;
+    border-radius: 30px;
+    color:#085ff7;
+    border: 2px solid #085ff7;
+}
+
+.jobsContainer {
+    width:70%;
+    margin-top:5vh;
+    justify-content: space-between;
+    text-align: left;
+    
+}
+
+.category {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+.logo img {
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 1px rgb(0, 0, 0);
+    margin-top: -30%;
+    width:100%
+}
+
+.companyInfo {
+    display: flex;
+    width:70vw;
+    margin-top: -3px;
+}
+.companyInfo div {
+    flex-basis:10%;
+}
+.companyInfo div:nth-child(3) {
+    flex-grow: 1;
+    text-align: right;
+}
+.companyInfo div:nth-child(2) {
+    flex-grow: 2;
+    margin: 1vw;
+}
+.poster {
+    width:70vw;
+    height:20vh;
+    text-align: center;
+    margin: auto;
+}
+.poster > img {
+    width:100%;
+    background-size: cover;
+}
+
+.compInfo select {
+    margin-top: 3vh;
+    width:400px;
+    padding: 0.7vw 1.2vw;
+    font-size: 1rem;
+}
+.compInfo select:nth-child(2) {
+    margin-left: -50px;
+}
+.compInfo select:hover {
+    outline: 1px solid #196dff; ;
+}

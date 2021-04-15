@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { RoundBtn } from '../../Custom UI/KCustomUI';
 import { BottomPart } from './BottomPart';
-import { Link } from 'react-router-dom';
-import { fire } from '../../Config/fire';
-import { signInWithEmail } from '../../Redux/SignIn/action';
+import { Link, useHistory } from 'react-router-dom';
+import { signInWithEmail } from '../../Redux/Auth/action';
 import { useDispatch } from 'react-redux';
 
 const MainBox = styled.div`
@@ -127,26 +126,31 @@ const Span = styled.span`
 const initInp = {
     email: '',
     password: ''
-}
+};
 
 export const SignIn = () => {
 
     const [ signInp, setSignInp ] = useState(initInp);
+
     const dispatch = useDispatch();
+
+    const history = useHistory();
 
     const handleInput = (e)=>{
         const { name, value } = e.target;
         const updated = {
             ...signInp,
             [ name ] : value
-        }
-        setSignInp(updated)
-    }
+        };
+        setSignInp(updated);
+    };
 
     const handleSignIn = (e, input)=>{
         e.preventDefault();
-        dispatch(signInWithEmail(input))
-    }
+        dispatch(signInWithEmail(input));
+        history.push('./');
+        setSignInp(initInp);
+    };
 
     return (
         <>

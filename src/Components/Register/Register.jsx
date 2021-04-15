@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { RoundBtn } from '../../Custom UI/KCustomUI';
 import { BottomPart } from './BottomPart';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../Redux/Auth/action';
 
 const MainBox = styled.div`
     width: 100%;
@@ -127,7 +129,34 @@ const RgstrBtn = styled.button`
     }
 `;
 
+const initData = {
+    email: '',
+    password: ''
+}
+
 export const Register = () => {
+
+    const [ regInp, setReginp ] = useState(initData);
+
+    const dispatch = useDispatch();
+
+    const history = useHistory();
+
+    const handleRegInp = (e)=>{
+        const { name, value } = e.target;
+        const updated = {
+            ...regInp,
+            [ name ] : value
+        };
+        setReginp(updated);
+    };
+
+    const handleRegister = (e,input)=>{
+        e.preventDefault();
+        dispatch(registerUser(input));
+        history.push('./');
+        setReginp(initData);
+    };
     
     return (
         <>
@@ -165,16 +194,16 @@ export const Register = () => {
                             <Lines></Lines>
                         </LineCont>
                         
-                        <form>
+                        <form onSubmit={(e)=>handleRegister(e, regInp)}>
                             
                             <Label>
                                 Email Address {<br/>}
-                                <Input type="text"/>
+                                <Input type="text" name="email" onChange={handleRegInp} />
                             </Label><br/>
                            
                             <Label>
                                 Password {<br/>}
-                                <Input type="passowrd"/>
+                                <Input type="passowrd" name="password" onChange={handleRegInp} />
                            
                             </Label><br/>
                             <RoundBtn style={{ margin:'10px 0', border:'2px solid #085ff7', color:'#085ff7'}} >Create Account</RoundBtn>

@@ -4,7 +4,7 @@ import { Input,Button } from '../../Custom UI/ACustomUI';
 import {Popup} from './popup';
 import styled from 'styled-components';
 import styles from './popup.module.css';
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 
 const H1 = styled.h1`
     font-size:20px;
@@ -29,8 +29,10 @@ export const CompanyRating=()=>{
     }
     const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
+  const [companyName,setCompanyName] = useState("");
+  const history = useHistory();
   const handleNext=()=>{
-    <Redirect/>
+    history.push(`/companies/review${companyName}`)
   }
     return(
         <div style={{width:'70%',margin:'auto',borderTop:'6px solid #ff5a1f',backgroundColor:'white'}}>
@@ -58,8 +60,8 @@ export const CompanyRating=()=>{
             <div style={{clear:'both',marginBottom:'20px'}}></div>
             {isOpen && <Popup content={<>
             <b>Rate a company you've worked for in the past 3 years</b><br/>
-            <Input placeholder='Enter a Company Name'/><br/>
-            <Button style={{width:'172px',marginTop:'10px'}} onClick={handleNext}>Next</Button>
+            <Input placeholder='Enter a Company Name' style={{width:'400px'}}/><br/>
+            <Button style={{width:'172px',marginTop:'10px'}} onClick={handleNext} onChange={(e)=>setCompanyName(e.target.value)}>Next</Button>
             </>} handleClose={togglePopup}/>}
         </div>
     )

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -73,6 +74,9 @@ const rightLinksAfterSignin = [
 
 
 export const Navbar = () => {
+
+    const isAuth = useSelector(state=>state.authReducer.isAuth);
+    
     return (
         <>
             <Container>
@@ -89,16 +93,23 @@ export const Navbar = () => {
                 </div>
 
                 <div style={{display:'flex'}} >
-
-                    {
-                        rightLinksBeforeSignin.map(link=> <NavContents><Link style={{textDecoration:'none', color:'#2d2d2d'}} to={link.to} >{link.title}</Link></NavContents>)
-                    }
-
-                    <NavContents><Link style={{textDecoration:'none', color:'#2557a7', fontWeight:'600'}} to='account/login' >Sign in</Link></NavContents>
-
-                    {/* {
-                        rightLinksAfterSignin.map(link=> <Link to={link.to} >{link.title}</Link>)
-                    } */}
+                        {
+                            !isAuth ? (
+                                <>
+                                    {
+                                    rightLinksBeforeSignin.map(link=> <NavContents><Link style={{textDecoration:'none', color:'#2d2d2d'}} to={link.to} >{link.title}</Link></NavContents>)
+                                    }
+                
+                                    <NavContents><Link style={{textDecoration:'none', color:'#2557a7', fontWeight:'600'}} to='account/login' >Sign in</Link></NavContents>
+                                </>
+                            ) : (
+                                <>
+                                    {
+                                        rightLinksAfterSignin.map(link=> <Link to={link.to} >{link.title}</Link>)
+                                    }
+                                </>
+                            )
+                        }
                     
                     <Seaparation></Seaparation>
                     

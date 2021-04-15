@@ -21,7 +21,7 @@ export const Routes = () => {
                 <Route path='/companies' exact>
                     <CompanyReviewsPage />
                 </Route>
-                <Route path='/companies/review/:compname' exact>
+                <Route path='/companies/review/:id' exact>
                     <AddReview/>
                 </Route>
                 <Route path='/career/salaries' exact>

@@ -32,7 +32,8 @@ export const CompanyRating=()=>{
   const [companyName,setCompanyName] = useState("");
   const history = useHistory();
   const handleNext=()=>{
-    history.push(`/companies/review${companyName}`)
+    console.log(companyName);
+    history.push(`/companies/review/${companyName}`)
   }
     return(
         <div style={{width:'70%',margin:'auto',borderTop:'6px solid #ff5a1f',backgroundColor:'white'}}>
@@ -60,8 +61,8 @@ export const CompanyRating=()=>{
             <div style={{clear:'both',marginBottom:'20px'}}></div>
             {isOpen && <Popup content={<>
             <b>Rate a company you've worked for in the past 3 years</b><br/>
-            <Input placeholder='Enter a Company Name' style={{width:'400px'}}/><br/>
-            <Button style={{width:'172px',marginTop:'10px'}} onClick={handleNext} onChange={(e)=>setCompanyName(e.target.value)}>Next</Button>
+            <Input placeholder='Enter a Company Name' style={{width:'400px'}} onChange={(e)=>setCompanyName(e.target.value)}/><br/>
+            <Button style={{width:'172px',marginTop:'10px'}} onClick={handleNext}>Next</Button>
             </>} handleClose={togglePopup}/>}
         </div>
     )

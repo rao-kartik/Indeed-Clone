@@ -8,6 +8,7 @@ import { Navbar } from './Navbar'
 import { PostResumePage } from './PostResumePage'
 import { RegisterPage } from './RegisterPage'
 import { SignInPage } from './SignInPage'
+import {AddReview} from './AddReview'
 
 export const Routes = () => {
     return (
@@ -19,6 +20,9 @@ export const Routes = () => {
                 </Route>
                 <Route path='/companies' exact>
                     <CompanyReviewsPage />
+                </Route>
+                <Route path='/companies/review/:id' exact>
+                    <AddReview/>
                 </Route>
                 <Route path='/career/salaries' exact>
                     <FindSalariesPage />

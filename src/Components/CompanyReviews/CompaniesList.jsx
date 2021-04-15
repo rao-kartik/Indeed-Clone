@@ -17,7 +17,7 @@ export const CompanyList=({type})=>{
     const requestAction = companiesRequest();
     dispatch(requestAction);
     axios
-      .get("http://localhost:3004/companies")
+      .get("https://json-server-mocker-ajmal.herokuapp.com/companies")
       .then((res) => {
         const successAction = companiesSuccess(res.data);
         dispatch(successAction);

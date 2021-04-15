@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
-import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton } from '../../Custom UI/ACustomUI';
+import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
 import Rating from 'react-rating'
 
 const H1 = styled.h1`
@@ -107,7 +107,7 @@ export const Reviews=()=>{
                 <RatingButton>4</RatingButton>
                 <RatingButton>5</RatingButton>
             </div>
-            <div>
+            {/* <div>
                 <H1>How long did it take from the beginning of the interview process at {compname.id} until you received your job offer?</H1>
             </div>
             <div>
@@ -117,6 +117,10 @@ export const Reviews=()=>{
             <div>
                 <H1>What kinds of interview activities did you have at {compname.id} ?</H1>
                 <p>Choose all that are applicable:</p>
+            </div> */}
+            <div style={{textAlign:'center'}}>
+            <Button style={{width:'300px'}}>Continue</Button>
+
             </div>
             </div>
         </div>

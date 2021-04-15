@@ -23,6 +23,9 @@ export const Routes = () => {
                 <Route path='/career/salaries' exact>
                     <FindSalariesPage />
                 </Route>
+                <Route path='/career/salaries/:id' >
+                    <CompanyInfo />
+                </Route>
                 <Route path='/p/hh78545' exact>
                     <PostResumePage />
                 </Route>

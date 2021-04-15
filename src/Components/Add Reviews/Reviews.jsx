@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
-import { OptionButtonLeft,OptionButtonRight, SelectButton } from '../../Custom UI/ACustomUI';
+import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton } from '../../Custom UI/ACustomUI';
+import Rating from 'react-rating'
 
 const H1 = styled.h1`
     font-size:19.95px;
@@ -92,9 +93,19 @@ export const Reviews=()=>{
             </div>
             <div>
                 <H1>Please rate your overall interview experience at {compname.id}.</H1>
+                <RatingButton>1</RatingButton>
+                <RatingButton>2</RatingButton>
+                <RatingButton>3</RatingButton>
+                <RatingButton>4</RatingButton>
+                <RatingButton>5</RatingButton>
             </div>
             <div>
                 <H1>Please rate the level of difficulty of your interview at {compname.id}.</H1>
+                <RatingButton>1</RatingButton>
+                <RatingButton>2</RatingButton>
+                <RatingButton>3</RatingButton>
+                <RatingButton>4</RatingButton>
+                <RatingButton>5</RatingButton>
             </div>
             <div>
                 <H1>How long did it take from the beginning of the interview process at {compname.id} until you received your job offer?</H1>

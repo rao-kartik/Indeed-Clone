@@ -111,3 +111,21 @@ export const SelectButton = styled.button`
         color:white;
     }
 `;
+
+export const RatingButton = styled.button`
+    width:65px;
+    height:44px;
+    color:#085ff7;
+    border: 2px solid #f2f2f2;
+    background-color:white;
+    outline:none;
+    margin:0px;
+    font-size: 15px;
+    font-weight: bold;
+    &:focus{
+        outline:#085ff7;
+        border-color:#fff;
+        background-color:#085ff7;
+        color:white;
+    }
+`;

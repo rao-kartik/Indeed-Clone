@@ -27,7 +27,7 @@ export const Reviews=()=>{
     const requestAction = companiesRequest();
     dispatch(requestAction);
     axios
-      .get("https://compdetails-indeed.herokuapp.com/companies",{
+      .get("https://json-server-mocker-ajmal.herokuapp.com/companies",{
           params:{
             company_name:compname.id
           }

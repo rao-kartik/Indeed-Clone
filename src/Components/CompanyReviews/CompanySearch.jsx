@@ -26,7 +26,7 @@ export const CompanySearch=()=>{
     const requestAction = companiesRequest();
     dispatch(requestAction);
     axios
-      .get("https://compdetails-indeed.herokuapp.com/companies")
+      .get("https://json-server-mocker-ajmal.herokuapp.com/companies")
       .then((res) => {
         const successAction = companiesSuccess(res.data);
         dispatch(successAction);

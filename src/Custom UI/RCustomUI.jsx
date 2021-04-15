@@ -59,7 +59,7 @@ export const CompContainer = styled.div`
   height: 16vh;
   border-radius: 10px;
   padding: 1vw;
-  flex-basis: 31.5vw;
+  /* flex-basis: 31.5vw; */
   margin: 0.4vw;
   border: 1px solid #ececec;
 `;

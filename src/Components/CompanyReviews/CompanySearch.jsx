@@ -43,25 +43,26 @@ export const CompanySearch=()=>{
   },[])
     return(
         <div className={style.container}>
-            <P>Get access to millions of company reviews</P>
             <H1>Find great places to work</H1>
+            <P>Discover millions of company reviews</P>
             <div style={{marginTop:'3%'}}>
                 <div>
-                <Label>
-                    Company name or job title
-                    <Input className={style.inputCompany}/>
-                </Label>
+                {/* <Label>
+                    Company name or job title */}
+                    <Input className={style.inputCompany} placeholder='Enter a company name'/><br/>
+                    <Link style={{ textDecoration: 'none',color:'#085ff7',fontSize:'13px' }}>Do you want to search for salaries?</Link>
+                {/* </Label> */}
                 </div>
                 <div>
-                <Label>
+                {/* <Label>
                     City, state, or zip (optional)
                     <Input className={style.inputLocation}/>
                     {/* <Select options={options} placeholder='Enter a company name' components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }} style={{width:'150px'}}/> */}
-                </Label>
+                {/* </Label> */}
                 </div>
-                <div style={{marginTop:'2%',textAlign:'center'}}>
-                    <Button>Find Companies</Button><br/>
-                    <Link style={{ textDecoration: 'none',color:'#085ff7',fontSize:'13px' }}>Do you want to search for salaries?</Link>
+                <div style={{marginTop:'1%',textAlign:'center'}}>
+                    <Button>Find Companies</Button>
+                    
                 </div>
             </div>           
         </div>

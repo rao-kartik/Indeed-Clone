@@ -13,7 +13,7 @@ function JobByCategory({ category}) {
     console.log(category)
     return data && data.map(job => {
         return (
-            <div className={styles.jobsContainer}>
+            <div className={styles.jobSalary}>
                 <div>
                     <h3>{job.name}</h3>
                 </div>

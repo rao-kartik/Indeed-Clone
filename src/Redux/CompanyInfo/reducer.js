@@ -6,7 +6,7 @@ const initState = {
   data: [],
 };
 
-export const comapanyInfoReducer = (state = initState, { type, payload }) => {
+export const companyInfoReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case COMPANY_INFO_REQUEST: {
       return {

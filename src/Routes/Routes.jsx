@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
+import { CompanyInfo } from '../Components/Find Salaries/CompanyInfo'
 import { CompanyReviewsPage } from './CompanyReviewsPage'
 import { FindJobsPage } from './FindJobsPage'
 import { FindSalariesPage } from './FindSalariesPage'
@@ -8,6 +9,7 @@ import { Navbar } from './Navbar'
 import { PostResumePage } from './PostResumePage'
 import { RegisterPage } from './RegisterPage'
 import { SignInPage } from './SignInPage'
+import {AddReview} from './AddReview'
 
 export const Routes = () => {
     return (
@@ -19,6 +21,9 @@ export const Routes = () => {
                 </Route>
                 <Route path='/companies' exact>
                     <CompanyReviewsPage />
+                </Route>
+                <Route path='/companies/review/:id' exact>
+                    <AddReview/>
                 </Route>
                 <Route path='/career/salaries' exact>
                     <FindSalariesPage />

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputDiv, Input, Button } from '../../Custom UI/KCustomUI';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchData } from '../../Redux/FindJobs/action';
+import { category, city } from './Data';
 
 const Container = styled.div`
     display:flex;
@@ -58,39 +59,39 @@ const Opt = styled.div`
     }
 `;
 
-const category = [
-    { category:'DevOps / Sysadmin' },
-    { category:'Finance / Legal' },
-    { category:'Software Development' },
-    { category:'Writing' },
-    { category:'QA' },
-    { category:'Human Resources' },
-    { category:'Data' },
-    { category:'Business' },
-    { category:'Product' },
-    { category:'Sales' },
-    { category:'Marketing' },
-    { category:'Design' },
-    { category:'Customer Service' },
-    { category:'All others' }
-]
+const Cont = styled.div`
+    display: flex;
+    margin-left: -400px;
+    margin-top: 20px;
+`;
 
-const city = [
-    { city:'Delhi' },
-    { city:'Mumbai' },
-    { city:'Bengaluru' },
-    { city:'Pune' },
-    { city:'Gurugram' },
-    { city:'Noida' },
-    { city:'Chennai' },
-    { city:'Hydrabad' },
-    { city:'Chandigarh' },
-    { city:'Kolkata' },
-    { city:'Bhopal' },
-    { city:'Jaipur' }
-]
+const SelOpt = styled.option`
+    background: #fff;
+    border: none;
+    font-size: 14px;
+`;
 
-export const FindJobsInput = () => {
+const Select = styled.select`
+    min-width: auto;
+    border: none;
+    width: auto;
+    height: 2.55rem;
+    background: #e4e2e0;
+    color: #2d2d2d;
+    margin: 0 8px 12px 0;
+    border-radius: 5px;
+    padding: 0 1rem 0 .75rem;
+    display: flex;
+    align-items: center;
+    outline-color: #2557a7;
+
+    &:hover {
+        background: #d4d2d0;
+        cursor: pointer
+    }
+`;
+
+export const FindJobsInput = ({ page, handleFilterChange }) => {
 
     const data = useSelector(state=> state.findReducer.data)
     
@@ -98,7 +99,7 @@ export const FindJobsInput = () => {
     const [ catDisp, setCatDisp ] = useState(false);
 
     const [ cityInp, setCityInp ] = useState('');
-    const [ cityDisp, setCityDisp ] = useState(false)
+    const [ cityDisp, setCityDisp ] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -114,23 +115,27 @@ export const FindJobsInput = () => {
 
     const inpParams = {
         category: catInp,
-        location: cityInp
+        location: cityInp,
+        page
     };
 
     let params;
     if(inpParams.category === ''){
         params = {
-            location: cityInp
+            location: cityInp,
+            page
         };
     }
     else if(inpParams.location === ''){
         params = {
-            category: catInp
+            category: catInp,
+            page
         };
     }
     else {
         params = inpParams;
     }
+    console.log(params)
 
     const handleSearch = (e, input)=>{
         e.preventDefault();
@@ -156,53 +161,89 @@ export const FindJobsInput = () => {
         setCatDisp(false);
         setCityDisp(true);
     }
+
+    useEffect(()=>{
+        if (inpParams.location !== '' && inpParams.category !== ''){
+            dispatch(getSearchData(params))
+        }
+    },[page])
     
     return (
         <Container>
-                <Search onSubmit={(e)=>handleSearch(e, params)}>
-                    <InputDiv>
-                        <p style={{display:'inline-block', fontWeight:'600'}} >What</p>
+            <Search onSubmit={(e)=>handleSearch(e, params)}>
+                <InputDiv>
+                    <p style={{display:'inline-block', fontWeight:'600'}} >What</p>
 
-                        <Input value={catInp} onClick={clickCat} placeholder='Job title, keywords or company' name="category" onChange={handleCatChange} />
+                    <Input value={catInp} onClick={clickCat} placeholder='Job title, keywords or company' name="category" onChange={handleCatChange} />
 
+                    {
+                        catDisp && (
+                            <AutoSuggestions onClick={()=>setCatDisp(false)} >
+                                {
+                                    category.filter(( {category} )=>category.indexOf(catInp) > -1 ).map(cat => <Opt onClick={()=> setCategory(cat.category)} >{cat.category}</Opt>)
+                                }
+                            </AutoSuggestions>
+                        )
+                    }
+
+                    <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons-round">search</span></div>
+                </InputDiv>
+
+                <InputDiv>
+                    <p style={{display:'inline-block', fontWeight:'600'}} >Where</p>
+
+                    <Input value={cityInp} onClick={clickCity} placeholder='City, state or pin Code' name="location" onChange={handleCityChange} />
+
+                    {
+                        cityDisp && (
+                            <AutoSuggestions onClick={()=>setCityDisp(false)} >
+                                {
+                                    city.filter(( {city} )=>city.indexOf(cityInp) > -1 ).map(loc => <Opt onClick={()=> setCity(loc.city)} >{loc.city}</Opt>)
+                                }
+                            </AutoSuggestions>
+                        )
+                    }
+
+                    <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons">place</span></div>
+                </InputDiv>
+
+                <Button>Find Jobs</Button>
+            </Search>
+
+            {
+                data.length > 0 &&
+                <Cont>
+                    <Select name="datePosted" onChange={handleFilterChange} >
+                        <SelOpt value="">Date Posted</SelOpt>
+                        <SelOpt value="5">Last 5 days</SelOpt>
+                        <SelOpt value="10">Last 10 days</SelOpt>
+                        <SelOpt value="15">Last 15 days</SelOpt>
+                        <SelOpt value="20">Last 20 days</SelOpt>
+                    </Select>
+                    <Select name="jobType" onChange={handleFilterChange} >
+                        <SelOpt value="">Job Type</SelOpt>
+                        <SelOpt value="full_time">Full-time</SelOpt>
+                        <SelOpt value="fresher">Fresher</SelOpt>
+                        <SelOpt value="contract">Contract</SelOpt>
+                        <SelOpt value="part_time">Part-time</SelOpt>
+                    </Select>
+                    <Select name="location" onChange={handleFilterChange} >
+                        <SelOpt value="">Location</SelOpt>
                         {
-                            catDisp && (
-                                <AutoSuggestions onClick={()=>setCatDisp(false)} >
-                                    {
-                                        category.filter(( {category} )=>category.indexOf(catInp) > -1 ).map(cat => <Opt onClick={()=> setCategory(cat.category)} >{cat.category}</Opt>)
-                                    }
-                                </AutoSuggestions>
-                            )
+                            city.map(loc=> <SelOpt value={loc.city}>{loc.city}</SelOpt>)
                         }
+                    </Select>
+                </Cont>
+            }
 
-                        <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons-round">search</span></div>
-                    </InputDiv>
-
-                    <InputDiv>
-                        <p style={{display:'inline-block', fontWeight:'600'}} >Where</p>
-
-                        <Input value={cityInp} onClick={clickCity} placeholder='City, state or pin Code' name="location" onChange={handleCityChange} />
-
-                        {
-                            cityDisp && (
-                                <AutoSuggestions onClick={()=>setCityDisp(false)} >
-                                    {
-                                        city.filter(( {city} )=>city.indexOf(cityInp) > -1 ).map(loc => <Opt onClick={()=> setCity(loc.city)} >{loc.city}</Opt>)
-                                    }
-                                </AutoSuggestions>
-                            )
-                        }
-
-                        <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons">place</span></div>
-                    </InputDiv>
-
-                    <Button>Find Jobs</Button>
-                </Search>
-            <Others>
-                <p style={{margin: '20px'}} ><Span>Post Your Resume </Span> - It only takes few seconds</p>
-                
-                <p style={{margin: '20px'}} ><Span>Employers: Post a Job </Span> - Your next hire is here</p>
-            </Others>
+            {
+                data.length < 1 && 
+                <Others>
+                    <p style={{margin: '20px'}} ><Span>Post Your Resume </Span> - It only takes few seconds</p>
+                    
+                    <p style={{margin: '20px'}} ><Span>Employers: Post a Job </Span> - Your next hire is here</p>
+                </Others>
+            }
         </Container>
     )
 }

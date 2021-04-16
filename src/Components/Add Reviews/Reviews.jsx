@@ -9,6 +9,7 @@ import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redu
 import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
 import { ReviewsRateTop } from './ReviewsRateTop';
 import { ReviewsRateBottom } from './ReviewsRateBottom';
+import { Footer } from './Footer';
 
 const H1 = styled.h1`
     font-size:19.95px;
@@ -98,10 +99,11 @@ export const Reviews=()=>{
             </div>
             <ReviewsRateTop compname={compname.id}/>
             <ReviewsRateBottom compname={compname.id}/>           
-            <div style={{textAlign:'center'}}>
-            <Button style={{width:'300px'}} onClick={handleContinue}>Continue</Button>
+            <div style={{textAlign:'center',height:'100px'}}>
+            <Button style={{width:'300px',marginTop:'20px'}} onClick={handleContinue}>Continue</Button>
             </div>
             </div>
+            <Footer/>
         </div>
     )
 }

@@ -30,7 +30,8 @@ const Time=styled.p`
     margin: 0 20px 0 0;
 `;
 
-export const SearchResults = ({title, location,  company_name, salary, category, publication_date}) => {
+export const AdminJobsResult = ({title, location,  company_name, salary, category, publication_date}) => {
+console.log(publication_date)
 
     const month = publication_date[5] + publication_date[6]
 
@@ -59,6 +60,7 @@ export const SearchResults = ({title, location,  company_name, salary, category,
                 <TimeCont>
                     <Time>{totalTime} days ago</Time>
                     <Time style={{color:'blue', cursor:'pointer'}}>Save Job</Time>
+                    <Time>Delete</Time>
                 </TimeCont>
             </SearchResult>
     )

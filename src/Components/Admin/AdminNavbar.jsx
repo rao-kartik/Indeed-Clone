@@ -1,6 +1,9 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { showAdminDetails } from '../../Redux/Admin/action';
+import { AuthNavDropdown } from './AuthNavDropdown';
 
 const Container = styled.div`
     width: 100%;
@@ -20,6 +23,7 @@ const NavContents = styled.div`
     display: flex;
     align-items: center;
     margin: 0 10px;
+    cursor: pointer;
 
     &:hover {
         color: yellow;
@@ -59,6 +63,15 @@ const links = [
 ]
 
 export const AdminNavbar = () => {
+
+    const dispAdmDetails = useSelector(state=> state.adminReducer.dispAdmDetails);
+
+    const dispatch = useDispatch();
+
+    const handleAdmDisp = ()=>{
+        dispatch(showAdminDetails())
+    }
+    
     return (
         <Container>
             <Left>
@@ -69,7 +82,10 @@ export const AdminNavbar = () => {
             <Right>
                 <NavContents><span class="material-icons">forum</span></NavContents>
                 <NavContents><span class="material-icons">notifications</span></NavContents>
-                <NavContents><span class="material-icons">person</span></NavContents>
+                <NavContents onClick={handleAdmDisp} ><span class="material-icons">person</span></NavContents>
+                {
+                    dispAdmDetails && <AuthNavDropdown />
+                }
             </Right>
         </Container>
     )

@@ -3,7 +3,7 @@ import { InputDiv, Input, Button } from '../../Custom UI/KCustomUI';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchData } from '../../Redux/FindJobs/action';
-import { category, city } from './Data';
+import { category, city, jobType } from './Data';
 
 const Container = styled.div`
     display:flex;
@@ -224,10 +224,9 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
                     </Select>
                     <Select name="jobType" onChange={handleFilterChange} >
                         <SelOpt value="">Job Type</SelOpt>
-                        <SelOpt value="full_time">Full-time</SelOpt>
-                        <SelOpt value="fresher">Fresher</SelOpt>
-                        <SelOpt value="contract">Contract</SelOpt>
-                        <SelOpt value="part_time">Part-time</SelOpt>
+                        {
+                            jobType.map(type=> <SelOpt value={type.value}>{type.title}</SelOpt>)
+                        }
                     </Select>
                     <Select name="location" onChange={handleFilterChange} >
                         <SelOpt value="">Location</SelOpt>

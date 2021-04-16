@@ -2,8 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getJobs } from '../../Redux/Admin/action';
-import { Container } from './Admin';
-import { AdminNavbar } from './AdminNavbar';
+import { SearchResult } from '../../Custom UI/KCustomUI';
+import { AdminJobsResult } from './AdminJobsResult';
+
+const Container = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`;
 
 export const AdminJobs = () => {
 
@@ -17,7 +23,9 @@ export const AdminJobs = () => {
     
     return (
         <Container>
-            Jobs
+            {
+                jobsData.reverse().map(jobs=> <AdminJobsResult {...jobs} /> )
+            }
         </Container>
     )
 }

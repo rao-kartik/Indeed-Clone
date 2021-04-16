@@ -1,5 +1,5 @@
 import { fire } from "../../Config/fire";
-import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from "./actionType";
+import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, ADMIN_SIGN_IN_REQUEST, ADMIN_SIGN_IN_SUCCESS, ADMIN_SIGN_IN_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from "./actionType";
 
 const signInRequest = ()=>{
     return {
@@ -17,6 +17,25 @@ const signInSuccess = (token)=>{
 const signInFailure = ()=>{
     return {
         type: SIGN_IN_FAILURE
+    }
+}
+
+const adminSignInRequest = ()=>{
+    return {
+        type: ADMIN_SIGN_IN_REQUEST
+    }
+}
+
+const adminSignInSuccess = (token)=>{
+    return {
+        type: ADMIN_SIGN_IN_SUCCESS,
+        payload: token
+    }
+}
+
+const adminSignInFailure = ()=>{
+    return {
+        type: ADMIN_SIGN_IN_FAILURE
     }
 }
 
@@ -53,6 +72,22 @@ const signInWithEmail = (input)=>dispatch=>{
     .catch(err=>{
         dispatch(signInFailure(err))
     })
+
+}
+const adminSignInWithEmail = (input)=>dispatch=>{
+
+    dispatch(adminSignInRequest());
+    
+    const { email, password } = input;
+    fire.auth().signInWithEmailAndPassword(email, password)
+    .then(userCredential=>{
+        var user = userCredential.user
+        // console.log(user)
+        dispatch(adminSignInSuccess(user))
+    })
+    .catch(err=>{
+        dispatch(adminSignInFailure(err))
+    })
 }
 
 const registerUser = (input)=>dispatch=>{
@@ -70,4 +105,4 @@ const registerUser = (input)=>dispatch=>{
     })
 }
 
-export { signInWithEmail, registerUser }
+export { signInWithEmail, registerUser, adminSignInWithEmail }

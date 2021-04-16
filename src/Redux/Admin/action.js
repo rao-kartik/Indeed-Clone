@@ -1,4 +1,5 @@
-import { GET_JOBS_FAILURE, GET_JOBS_REQUEST, GET_JOBS_SUCCESS, GET_RECRUITERS_REQUEST, GET_RECRUITERS_SUCCESS, GET_RECRUITERS_FAILURE } from "./actionType";
+import { GET_JOBS_FAILURE, GET_JOBS_REQUEST, GET_JOBS_SUCCESS, GET_RECRUITERS_REQUEST, GET_RECRUITERS_SUCCESS, GET_RECRUITERS_FAILURE,
+    POST_JOBS_REQUEST, POST_JOBS_SUCCESS, POST_JOBS_FAILURE, POST_RECRUITERS_REQUEST, POST_RECRUITERS_SUCCESS, POST_RECRUITERS_FAILURE } from "./actionType";
 import Axios from 'axios';
 
 const jobAxios = Axios.create({
@@ -28,6 +29,25 @@ const getJobsFailure = ()=>{
     }
 };
 
+const postJobsRequest = ()=>{
+    return {
+        type: POST_JOBS_REQUEST
+    }
+};
+
+const postJobsSuccess = (payload)=>{
+    return {
+        type: POST_JOBS_SUCCESS,
+        payload
+    }
+};
+
+const postJobsFailure = ()=>{
+    return {
+        type: POST_JOBS_FAILURE
+    }
+};
+
 const getRecruitersRequest = ()=>{
     return {
         type: GET_RECRUITERS_REQUEST
@@ -44,6 +64,25 @@ const getRecruitersSuccess = (payload)=>{
 const getRecruitersFailure = ()=>{
     return {
         type: GET_RECRUITERS_FAILURE
+    }
+};
+
+const postRecruitersRequest = ()=>{
+    return {
+        type: POST_RECRUITERS_REQUEST
+    }
+};
+
+const postRecruitersSuccess = (payload)=>{
+    return {
+        type: POST_RECRUITERS_SUCCESS,
+        payload
+    }
+};
+
+const postRecruitersFailure = ()=>{
+    return {
+        type: POST_RECRUITERS_FAILURE
     }
 };
 
@@ -81,4 +120,21 @@ const getRecruiters = ()=>dispatch=>{
     })
 };
 
-export { getJobs, getRecruiters };
+const addRecruiters = (payload)=>dispatch=>{
+    dispatch(postRecruitersRequest())
+
+    const config = {
+        url: '/companies',
+        method: 'post',
+        data: payload
+    };
+    recruitersAxios(config)
+    .then(res=>{
+        dispatch(postRecruitersSuccess(res.data))
+    })
+    .catch(err=>{
+        dispatch(postRecruitersFailure(err))
+    })
+}
+
+export { getJobs, getRecruiters, addRecruiters };

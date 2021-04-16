@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { AdminNavbar } from './AdminNavbar';
 import { getRecruiters } from '../../Redux/Admin/action';
 import { useDispatch, useSelector } from 'react-redux';
+import { Container } from './Admin';
 
 export const AdminRecruiters = () => {
 
@@ -14,8 +15,8 @@ export const AdminRecruiters = () => {
     },[])
     
     return (
-        <div>
-            <AdminNavbar />
-        </div>
+        <Container>
+            recruiter
+        </Container>
     )
 }

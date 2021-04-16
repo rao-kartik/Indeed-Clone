@@ -140,6 +140,8 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
     const handleSearch = (e, input)=>{
         e.preventDefault();
         dispatch(getSearchData(input));
+        setCatDisp(false);
+        setCityDisp(false);
     }
 
     const setCategory = value => {

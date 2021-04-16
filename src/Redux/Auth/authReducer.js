@@ -1,10 +1,11 @@
-import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from "./actionType";
+import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, ADMIN_SIGN_IN_REQUEST, ADMIN_SIGN_IN_SUCCESS, ADMIN_SIGN_IN_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from "./actionType";
 
 const initState = {
     isAuth: false,
     isLoading: false,
     isError: false,
-    token: ''
+    token: '',
+    isAdminAuth: false
 }
 
 export const AuthReducer = (state=initState, action)=>{
@@ -27,6 +28,29 @@ export const AuthReducer = (state=initState, action)=>{
             }
         };
         case SIGN_IN_FAILURE: {
+            return {
+                ...state,
+                isLoading: false,
+                isError: true
+            }
+        };
+        case ADMIN_SIGN_IN_REQUEST: {
+            return {
+                ...state,
+                isLoading: true,
+                isError: false
+            }
+        };
+        case ADMIN_SIGN_IN_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+                isError: false,
+                isAdminAuth: true,
+                token: payload
+            }
+        };
+        case ADMIN_SIGN_IN_FAILURE: {
             return {
                 ...state,
                 isLoading: false,

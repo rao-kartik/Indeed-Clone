@@ -3,6 +3,7 @@ import { Link, Redirect, useHistory } from 'react-router-dom';
 import {Button,Input,H1,P,Label} from '../../Custom UI/ACustomUI';
 import style from './CompanySearch.module.css';
 import Select from 'react-select'
+import styled from 'styled-components'
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
@@ -41,14 +42,65 @@ export const CompanySearch=()=>{
   useEffect(()=>{
       getData();
     //   setOptions()
-    setOptions(companies.map((element)=>({value:element.company_name, label: element.company_name})));
-      
+    // setOptions(companies.map((element)=>({options:element.company_name})));
+      // console.log(options);
   },[])
   const [searchText,setSearchText] = useState('');
   const history = useHistory();
   const handleSearch=()=>{
       history.push(`/companies/search/${searchText}`);
   }
+  const [ catDisp, setCatDisp ] = useState(false);
+  const [ catInp, setCatInp ] = useState('');
+  const [ cityInp, setCityInp ] = useState('');
+  const [ cityDisp, setCityDisp ] = useState(false)
+  const setCategory = value => {
+    setCatInp(value);
+    setCatDisp(false);
+}
+const clickCat = ()=>{
+  setCatDisp(true);
+  setCityDisp(false);
+}
+  const Opt = styled.div`
+  width: 100%;
+  border-radius: 5px;
+  padding: 0 10px;
+
+  &:hover {
+      background: #949494;
+      cursor: pointer;
+  }
+`;
+const AutoSuggestions = styled.div`
+    position: absolute;
+    width: 20rem;
+    padding: 1rem;
+    line-height: 30px;
+    top: 150px;
+    border: 0.0625rem solid #949494;
+    border-radius: .5rem;
+    background: #fff;
+    z-index: 5;
+    font-size: 14px;
+    box-shadow: 0 0 0 1px #949494;
+`;
+const category = [
+  { category:'DevOps / Sysadmin' },
+  { category:'Finance / Legal' },
+  { category:'Software Development' },
+  { category:'Writing' },
+  { category:'QA' },
+  { category:'Human Resources' },
+  { category:'Data' },
+  { category:'Business' },
+  { category:'Product' },
+  { category:'Sales' },
+  { category:'Marketing' },
+  { category:'Design' },
+  { category:'Customer Service' },
+  { category:'All others' }
+]
     return(
         <div className={style.container}>
             <H1>Find great places to work</H1>
@@ -57,7 +109,16 @@ export const CompanySearch=()=>{
                 <div>
                 {/* <Label>
                     Company name or job title */}
-                    <Input className={style.inputCompany} onChange={(e)=>setSearchText(e.target.value)} placeholder='Enter a company name'/><br/>
+                    <Input className={style.inputCompany} onChange={(e)=>setSearchText(e.target.value)} placeholder='Enter a company name' onClick={clickCat}/><br/>
+                    {/* {
+                            catDisp && (
+                                <AutoSuggestions onClick={()=>setCatDisp(false)} >
+                                    {
+                                        options.filter(( {category} )=>options.indexOf(catInp) > -1 ).map(cat => <Opt onClick={()=> setCategory(cat.options)} >{cat.options}</Opt>)
+                                    }
+                                </AutoSuggestions>
+                            )
+                        } */}
                     <Link to='/career/salaries' style={{ textDecoration: 'none',color:'#085ff7',fontSize:'13px' }}>Do you want to search for salaries?</Link>
                     {/* <Select options={options} placeholder='Enter a company name' components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }} style={{width:'150px'}}/> */}
                 {/* </Label> */}

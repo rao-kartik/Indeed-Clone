@@ -24,7 +24,7 @@ export const AdminJobs = () => {
     return (
         <Container>
             {
-                jobsData.reverse().map(jobs=> <AdminJobsResult {...jobs} /> )
+                jobsData.map(jobs=> <AdminJobsResult {...jobs} /> )
             }
         </Container>
     )

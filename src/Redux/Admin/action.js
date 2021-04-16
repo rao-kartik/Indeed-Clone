@@ -1,6 +1,7 @@
 import { GET_JOBS_FAILURE, GET_JOBS_REQUEST, GET_JOBS_SUCCESS, GET_RECRUITERS_REQUEST, GET_RECRUITERS_SUCCESS, GET_RECRUITERS_FAILURE,
     POST_JOBS_REQUEST, POST_JOBS_SUCCESS, POST_JOBS_FAILURE, POST_RECRUITERS_REQUEST, POST_RECRUITERS_SUCCESS, POST_RECRUITERS_FAILURE, 
-    SHOW_ADMIN_DETAILS, HIDE_ADMIN_DETAILS } from "./actionType";
+    SHOW_ADMIN_DETAILS, HIDE_ADMIN_DETAILS,
+    DELETE_JOBS_REQUEST, DELETE_JOBS_SUCCESS, DELETE_JOBS_FAILURE, DELETE_RECRUITERS_REQUEST, DELETE_RECRUITERS_SUCCESS, DELETE_RECRUITERS_FAILURE } from "./actionType";
 import Axios from 'axios';
 
 const jobAxios = Axios.create({
@@ -49,6 +50,24 @@ const postJobsFailure = ()=>{
     }
 };
 
+const deleteJobsRequest = ()=>{
+    return {
+        type: DELETE_JOBS_REQUEST
+    }
+};
+
+const deleteJobsSuccess = ()=>{
+    return {
+        type: DELETE_JOBS_SUCCESS
+    }
+};
+
+const deleteJobsFailure = ()=>{
+    return {
+        type: DELETE_JOBS_FAILURE
+    }
+};
+
 const getRecruitersRequest = ()=>{
     return {
         type: GET_RECRUITERS_REQUEST
@@ -84,6 +103,25 @@ const postRecruitersSuccess = (payload)=>{
 const postRecruitersFailure = ()=>{
     return {
         type: POST_RECRUITERS_FAILURE
+    }
+};
+
+const deleteRecruitersRequest = ()=>{
+    return {
+        type: DELETE_RECRUITERS_REQUEST
+    }
+};
+
+const deleteRecruitersSuccess = (payload)=>{
+    return {
+        type: DELETE_RECRUITERS_SUCCESS,
+        payload
+    }
+};
+
+const deleteRecruitersFailure = ()=>{
+    return {
+        type: DELETE_RECRUITERS_FAILURE
     }
 };
 
@@ -135,6 +173,23 @@ const addJobs = (payload)=>dispatch=>{
     })
 };
 
+const deleteJobs = (id)=>dispatch=>{
+
+    dispatch(deleteJobsRequest())
+
+    const config = {
+        url: `/jobs/${id}`,
+        method: 'delete'
+    };
+    jobAxios(config)
+    .then(res=>{
+        dispatch(deleteJobsSuccess(res.data));
+    })
+    .catch(err=>{
+        dispatch(deleteJobsFailure(err));
+    })
+};
+
 const getRecruiters = ()=>dispatch=>{
 
     dispatch(getRecruitersRequest())
@@ -169,4 +224,20 @@ const addRecruiters = (payload)=>dispatch=>{
     })
 }
 
-export { getJobs, getRecruiters, addJobs, addRecruiters, showAdminDetails };
+const deleteRecruiters = (id)=>dispatch=>{
+    dispatch(deleteRecruitersRequest())
+
+    const config = {
+        url: `/companies/${id}`,
+        method: 'delete',
+    };
+    recruitersAxios(config)
+    .then(res=>{
+        dispatch(deleteRecruitersSuccess(res.data))
+    })
+    .catch(err=>{
+        dispatch(deleteRecruitersFailure(err))
+    })
+}
+
+export { getJobs, getRecruiters, addJobs, addRecruiters, showAdminDetails, deleteRecruiters, deleteJobs };

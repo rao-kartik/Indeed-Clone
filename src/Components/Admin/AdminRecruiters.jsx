@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
-import { AdminNavbar } from './AdminNavbar';
 import { getRecruiters } from '../../Redux/Admin/action';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container } from './Admin';
+import { AdminRecruiterResults } from './AdminRecruiterResults';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`;
 
 export const AdminRecruiters = () => {
-
     const recruiterData = useSelector(state=>state.adminReducer.recruiterData);
 
     const dispatch = useDispatch();
@@ -16,7 +21,9 @@ export const AdminRecruiters = () => {
     
     return (
         <Container>
-            recruiter
+            {
+                recruiterData.map(data=> <AdminRecruiterResults key={data.id} {...data} />)
+            }
         </Container>
     )
 }

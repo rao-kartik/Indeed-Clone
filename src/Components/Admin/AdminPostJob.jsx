@@ -1,11 +1,73 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { RoundBtn } from '../../Custom UI/KCustomUI';
 import { addJobs } from '../../Redux/Admin/action';
 import { category, city, jobType } from '../Find Jobs/Data';
 
-const container = styled.div`
+const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    padding-bottom: 50px;
+`;
 
+const FormData = styled.div`
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    margin: 70px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 1.5rem 0.25rem rgb(0 0 0 / 13%);
+    position: relative;
+`;
+
+const Input = styled.input`
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid #949494;
+    margin-top: 10px;
+
+    &:hover {
+        border: 1px solid #1497ff;
+        border-bottom: 4px solid #1497ff;
+    }
+`;
+
+const Select = styled.select`
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid #949494;
+    margin-top: 10px;
+
+    &:hover {
+        border: 1px solid #1497ff;
+        border-bottom: 4px solid #1497ff;
+    }
+`;
+
+const H1 = styled.h1`
+    margin-bottom: 20px;
+`;
+
+const SuccessPopUp = styled.div`
+    width: 400px;
+    padding: 50px;
+    text-align: center;
+    font-size: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 1.5rem 0.25rem rgb(0 0 0 / 13%);
+    position: absolute;
+    z-index: 5;
+    left: 16%;
 `;
 
 const initData = {
@@ -23,6 +85,8 @@ export const AdminPostJob = () => {
 
     const [ jobInp, setjobInp ] = useState(initData);
     const dispatch = useDispatch();
+
+    const [ dispPopUp, setDispPopup ] = useState(false);
 
     const handleChange = (e)=>{
         const { name, value } = e.target;
@@ -62,52 +126,62 @@ export const AdminPostJob = () => {
         }
         dispatch(addJobs(updated))
     }
+
+    const handelExitPopUp = ()=>{
+        setDispPopup(false);
+    }
     
     return (
-        <div>
+        <Container>
             <form onSubmit={(e)=>handleSubmit(e)}>
-                <label>
-                    Title:
-                    <input type="text" onChange={handleChange} name="title" value={jobInp.title} />
-                </label>
-                <label>
-                    Company Name:
-                    <input type="text" onChange={handleChange} name="company_name" value={jobInp.company_name} />
-                </label>
-                <label>
-                    Category:
-                    <select onChange={handleChange} name="category">
-                        {
-                            category.map(cat=> <option value={cat.category} >{cat.category}</option>)
-                        }
-                    </select>
-                </label>
-                <label>
-                    Job Type:
-                    <select onChange={handleChange} name="job_type">
-                        {
-                            jobType.map(type=> <option value={type.value} >{type.title}</option>)
-                        }
-                    </select>
-                </label>
-                <label>
-                    Location:
-                    <select onChange={handleChange} name="location" value={jobInp.location} >
-                        {
-                            city.map(loc=> <option value={loc.city} >{loc.city}</option>)
-                        }
-                    </select>
-                </label>
-                <label>
-                    Salary:
-                    <input type="text" onChange={handleChange} name="salary" value={jobInp.salary} />
-                </label>
-                <label>
-                    Description:
-                    <input type="text" onChange={handleChange} name="description" value={jobInp.description} />
-                </label>
-                <button>Add job</button>
+                <FormData>
+                    <H1>Post a New Job</H1>
+                    <label>
+                        Title: {<br/>}
+                        <Input type="text" onChange={handleChange} name="title" value={jobInp.title} />
+                    </label><br/>
+                    <label>
+                        Company Name: {<br/>}
+                        <Input type="text" onChange={handleChange} name="company_name" value={jobInp.company_name} />
+                    </label><br/>
+                    <label>
+                        Category: {<br/>}
+                        <Select onChange={handleChange} name="category">
+                            {
+                                category.map(cat=> <option value={cat.category} >{cat.category}</option>)
+                            }
+                        </Select>
+                    </label><br/>
+                    <label>
+                        Job Type: {<br/>}
+                        <Select onChange={handleChange} name="job_type">
+                            {
+                                jobType.map(type=> <option value={type.value} >{type.title}</option>)
+                            }
+                        </Select>
+                    </label><br/>
+                    <label>
+                        Location: {<br/>}
+                        <Select onChange={handleChange} name="location" value={jobInp.location} >
+                            {
+                                city.map(loc=> <option value={loc.city} >{loc.city}</option>)
+                            }
+                        </Select>
+                    </label><br/>
+                    <label>
+                        Salary: {<br/>}
+                        <Input type="text" onChange={handleChange} name="salary" value={jobInp.salary} />
+                    </label><br/>
+                    <label>
+                        Description: {<br/>}
+                        <Input type="text" onChange={handleChange} name="description" value={jobInp.description} />
+                    </label><br/>
+                    <RoundBtn style={{background:'#2557a7', color:'white', border:'none', marginTop:'10px'}}>Add job</RoundBtn>
+                    {
+                        dispPopUp && <SuccessPopUp>Job Added Successfully<span onClick={handelExitPopUp} style={{fontSize:'18px', position:'absolute', top:'10px', right:'10px', cursor:'pointer'}} class="material-icons-outlined">close</span></SuccessPopUp>
+                    }
+                </FormData>
             </form>
-        </div>
+        </Container>
     )
 }

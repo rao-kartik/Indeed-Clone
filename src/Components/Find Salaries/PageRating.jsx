@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { EmojisRating } from "./EmojisRating";
 import styles from "./Salaries.module.css";
 
 function PageRating() {
@@ -27,7 +29,7 @@ function PageRating() {
                 marginTop: "2vh",
               }}
             >
-              See more details
+              See more details{" "}
             </p>
           </div>
         </div>
@@ -38,6 +40,7 @@ function PageRating() {
           />
         </div>
       </div>
+      <EmojisRating />
     </>
   );
 }

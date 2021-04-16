@@ -6,7 +6,6 @@ import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redu
 import { CompaniesListItem } from "./CompaniesListItem";
 
 export const CompanyList=({type})=>{
-  console.log(type);
     const dispatch = useDispatch();
   const { isLoading, isError,companies } = useSelector(
     (state) => state.company,
@@ -38,7 +37,6 @@ export const CompanyList=({type})=>{
         {type==='popular'&&<h3 style={{fontSize:'23px'}}>Popular Companies</h3>}    
         </div>
         <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
-            {console.log(companies)}
             {companies.map(item=>
               <CompaniesListItem item={item}/>)}
               

@@ -1,5 +1,6 @@
 import { GET_JOBS_FAILURE, GET_JOBS_REQUEST, GET_JOBS_SUCCESS, GET_RECRUITERS_REQUEST, GET_RECRUITERS_SUCCESS, GET_RECRUITERS_FAILURE,
-    POST_JOBS_REQUEST, POST_JOBS_SUCCESS, POST_JOBS_FAILURE, POST_RECRUITERS_REQUEST, POST_RECRUITERS_SUCCESS, POST_RECRUITERS_FAILURE } from "./actionType";
+    POST_JOBS_REQUEST, POST_JOBS_SUCCESS, POST_JOBS_FAILURE, POST_RECRUITERS_REQUEST, POST_RECRUITERS_SUCCESS, POST_RECRUITERS_FAILURE, 
+    SHOW_ADMIN_DETAILS, HIDE_ADMIN_DETAILS } from "./actionType";
 import Axios from 'axios';
 
 const jobAxios = Axios.create({
@@ -86,6 +87,19 @@ const postRecruitersFailure = ()=>{
     }
 };
 
+const showAdminDetails = ()=>{
+    return {
+        type: SHOW_ADMIN_DETAILS
+    }
+}
+
+const hideAdminDetails = ()=>{
+    return {
+        type: HIDE_ADMIN_DETAILS
+    }
+}
+
+
 const getJobs = ()=>dispatch=>{
 
     dispatch(getJobsRequest())
@@ -100,6 +114,24 @@ const getJobs = ()=>dispatch=>{
     })
     .catch(err=>{
         dispatch(getJobsFailure(err));
+    })
+};
+
+const addJobs = (payload)=>dispatch=>{
+
+    dispatch(postJobsRequest())
+
+    const config = {
+        url: '/jobs',
+        method: 'post',
+        data: payload
+    };
+    jobAxios(config)
+    .then(res=>{
+        dispatch(postJobsSuccess(res.data));
+    })
+    .catch(err=>{
+        dispatch(postJobsFailure(err));
     })
 };
 
@@ -137,4 +169,4 @@ const addRecruiters = (payload)=>dispatch=>{
     })
 }
 
-export { getJobs, getRecruiters, addRecruiters };
+export { getJobs, getRecruiters, addJobs, addRecruiters, showAdminDetails };

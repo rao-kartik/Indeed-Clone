@@ -1,5 +1,8 @@
 import { fire } from "../../Config/fire";
-import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, ADMIN_SIGN_IN_REQUEST, ADMIN_SIGN_IN_SUCCESS, ADMIN_SIGN_IN_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from "./actionType";
+import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, 
+    ADMIN_SIGN_IN_REQUEST, ADMIN_SIGN_IN_SUCCESS, ADMIN_SIGN_IN_FAILURE, 
+    REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE,
+    ADMIN_LOGOUT_SUCCESS, LOGOUT_SUCCESS } from "./actionType";
 
 const signInRequest = ()=>{
     return {
@@ -58,6 +61,18 @@ const registerFailure = ()=>{
     }
 }
 
+const logoutSuccess = ()=>{
+    return {
+        type: LOGOUT_SUCCESS
+    }
+}
+
+const adminlogoutSuccess = ()=>{
+    return {
+        type: ADMIN_LOGOUT_SUCCESS
+    }
+}
+
 const signInWithEmail = (input)=>dispatch=>{
 
     dispatch(signInRequest());
@@ -105,4 +120,4 @@ const registerUser = (input)=>dispatch=>{
     })
 }
 
-export { signInWithEmail, registerUser, adminSignInWithEmail }
+export { signInWithEmail, registerUser, adminSignInWithEmail, adminlogoutSuccess, logoutSuccess }

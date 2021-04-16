@@ -1,11 +1,19 @@
-import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, ADMIN_SIGN_IN_REQUEST, ADMIN_SIGN_IN_SUCCESS, ADMIN_SIGN_IN_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from "./actionType";
+import { loadData, saveData } from "../../Utils/localStorage";
+import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, 
+    ADMIN_SIGN_IN_REQUEST, ADMIN_SIGN_IN_SUCCESS, ADMIN_SIGN_IN_FAILURE, 
+    REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE,
+    ADMIN_LOGOUT_SUCCESS, LOGOUT_SUCCESS } from "./actionType";
+
+    const isAdminAuth = loadData("adminAuth") || false;
+
+    const isAuth = loadData("auth") || false;
 
 const initState = {
-    isAuth: false,
+    isAuth: isAuth,
     isLoading: false,
     isError: false,
     token: '',
-    isAdminAuth: false
+    isAdminAuth: isAdminAuth
 }
 
 export const AuthReducer = (state=initState, action)=>{
@@ -19,6 +27,7 @@ export const AuthReducer = (state=initState, action)=>{
             }
         };
         case SIGN_IN_SUCCESS: {
+            saveData("auth", true)
             return {
                 ...state,
                 isLoading: false,
@@ -42,6 +51,7 @@ export const AuthReducer = (state=initState, action)=>{
             }
         };
         case ADMIN_SIGN_IN_SUCCESS: {
+            saveData("adminAuth", true)
             return {
                 ...state,
                 isLoading: false,
@@ -79,7 +89,21 @@ export const AuthReducer = (state=initState, action)=>{
                 isLoading: false,
                 isError: true
             }
-        }      
+        }
+        case LOGOUT_SUCCESS: {
+            saveData("auth", false)
+            return {
+                ...state,
+                isAuth: false
+            }
+        }
+        case ADMIN_LOGOUT_SUCCESS: {
+            saveData("adminAuth", false)
+            return {
+                ...state,
+                isAdminAuth: false
+            }
+        }
         default:
             return state;
     }

@@ -30,3 +30,10 @@ export const category = [
     { category:'Customer Service' },
     { category:'All others' }
 ]
+
+export const jobType = [
+    {title:'Full-Time', value:'full_time'},
+    {title:'Fresher', value:'fresher'},
+    {title:'Contract', value:'contract'},
+    {title:'Part-Time', value:'part_time'}
+]

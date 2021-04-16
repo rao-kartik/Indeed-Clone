@@ -12,6 +12,11 @@ import { SignInPage } from './SignInPage'
 import {AddReview} from './AddReview'
 import { AddSurvey } from './AddSurvey'
 import { CompanySearch } from './CompanySearch'
+import { AdminPage } from './AdminPage'
+import { AdminLogin } from '../Components/Admin/AdminLogin'
+import { Admin } from '../Components/Admin/Admin'
+import { AdminJobs } from '../Components/Admin/AdminJobs'
+import { AdminRecruiters } from '../Components/Admin/AdminRecruiters'
 
 export const Routes = () => {
     return (
@@ -50,6 +55,15 @@ export const Routes = () => {
                 </Route>
                 <Route path='/account/register' exact>
                     <RegisterPage />
+                </Route>
+                <Route path='/account/admin/login' exact>
+                    <AdminLogin />
+                </Route>
+                <Route path='/account/admin' exact>
+                    <AdminJobs />
+                </Route>
+                <Route path=''>
+                    <AdminRecruiters />
                 </Route>
                 <Route>
                     Error 404: Page Not Found!

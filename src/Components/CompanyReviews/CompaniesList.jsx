@@ -38,7 +38,7 @@ export const CompanyList=({type})=>{
         {type==='popular'&&<h3 style={{fontSize:'23px'}}>Popular Companies</h3>}    
         </div>
         <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
-            
+            {console.log(companies)}
             {companies.map(item=>
               <CompaniesListItem item={item}/>)}
               

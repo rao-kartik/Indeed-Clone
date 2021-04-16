@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { Popup } from '../CompanyReviews/popup';
 import style from './Reviews.module.css'
 import styled from 'styled-components';
@@ -7,7 +7,8 @@ import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
 import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
-// import Rating from 'react-rating'
+import { ReviewsRateTop } from './ReviewsRateTop';
+import { ReviewsRateBottom } from './ReviewsRateBottom';
 
 const H1 = styled.h1`
     font-size:19.95px;
@@ -22,6 +23,10 @@ export const Reviews=()=>{
     (state) => state.company,
     shallowEqual
   );
+  const history = useHistory();
+  const handleContinue=()=>{
+    history.push(`/companies/review/survey/${compname.id}`)
+  }
 
   const getData = () => {
     const requestAction = companiesRequest();
@@ -67,7 +72,7 @@ export const Reviews=()=>{
             </div>
             <div>
                 <H1>Would you recommend working at {compname.id} to a friend?</H1>
-                <OptionButtonLeft>Yes</OptionButtonLeft>
+                <OptionButtonLeft autoFocus>Yes</OptionButtonLeft>
                 <OptionButtonRight>No</OptionButtonRight>
             </div>
             <div>
@@ -91,36 +96,10 @@ export const Reviews=()=>{
                 <SelectButton>Slow-paced</SelectButton>
                 <SelectButton>Not sure</SelectButton>
             </div>
-            <div>
-                <H1>Please rate your overall interview experience at {compname.id}.</H1>
-                <RatingButton>1</RatingButton>
-                <RatingButton>2</RatingButton>
-                <RatingButton>3</RatingButton>
-                <RatingButton>4</RatingButton>
-                <RatingButton>5</RatingButton>
-            </div>
-            <div>
-                <H1>Please rate the level of difficulty of your interview at {compname.id}.</H1>
-                <RatingButton>1</RatingButton>
-                <RatingButton>2</RatingButton>
-                <RatingButton>3</RatingButton>
-                <RatingButton>4</RatingButton>
-                <RatingButton>5</RatingButton>
-            </div>
-            {/* <div>
-                <H1>How long did it take from the beginning of the interview process at {compname.id} until you received your job offer?</H1>
-            </div>
-            <div>
-                <H1>How would you recommend dressing for an interview at {compname.id}?</H1>
-                <p>Choose all that are applicable:</p>
-            </div>
-            <div>
-                <H1>What kinds of interview activities did you have at {compname.id} ?</H1>
-                <p>Choose all that are applicable:</p>
-            </div> */}
+            <ReviewsRateTop compname={compname.id}/>
+            <ReviewsRateBottom compname={compname.id}/>           
             <div style={{textAlign:'center'}}>
-            <Button style={{width:'300px'}}>Continue</Button>
-
+            <Button style={{width:'300px'}} onClick={handleContinue}>Continue</Button>
             </div>
             </div>
         </div>

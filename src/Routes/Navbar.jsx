@@ -105,7 +105,7 @@ export const Navbar = () => {
                             ) : (
                                 <>
                                     {
-                                        rightLinksAfterSignin.map(link=> <Link to={link.to} >{link.title}</Link>)
+                                        rightLinksAfterSignin.map(link=> <Link style={{margin:'0 10px'}} to={link.to} >{link.title}</Link>)
                                     }
                                 </>
                             )

@@ -72,13 +72,15 @@
   width: 80px;
   border: 1px solid #ececec;
 }
+
 .companyInfo {
-  width: 80%;
-  margin: auto;
   margin-top: 10%;
   height: 17vh;
-  background: white;
+  display: flex;
+  width: 70vw;
+  margin-top: -3px;
 }
+
 .companyInfo h4 {
   position: absolute;
   left: 23%;
@@ -94,7 +96,7 @@
   width: 10%;
   height: 15%;
 }
-.compInfo div {
+.compInfo > div {
   gap: 10%;
   display: flex;
   text-align: left;
@@ -124,6 +126,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+.allJobs {
+  margin-top: -30vh;
+}
 
 .category {
   display: flex;
@@ -137,14 +142,7 @@
   width: 100%;
 }
 
-.companyInfo {
-  display: flex;
-  width: 70vw;
-  margin-top: -3px;
-}
-.companyInfo div {
-  flex-basis: 10%;
-}
+
 .companyInfo div:nth-child(3) {
   flex-grow: 1;
   text-align: right;
@@ -166,13 +164,14 @@
 
 .compInfo select {
   margin-top: 3vh;
-  width: 400px;
+  width: 300px;
   padding: 0.7vw 1.2vw;
   font-size: 1rem;
 }
 .compInfo select:nth-child(2) {
-  margin-left: -50px;
+  margin-left: 40px;
 }
+
 .compInfo select:hover {
   outline: 1px solid #196dff;
 }
@@ -253,4 +252,12 @@
 
 .findEarning img:hover {
   cursor: pointer;
+}
+
+.faq div {
+  color: black;
+  margin-bottom: 1vh;
+}
+.faq p {
+  margin-bottom: 3vh;
 }

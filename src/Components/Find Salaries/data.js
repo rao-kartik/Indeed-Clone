@@ -13,3 +13,26 @@ export const inactive = [
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNCIgaGVpZ2h0PSIzNCI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIGN4PSIxNyIgY3k9IjE3IiByPSIxNiIgc3Ryb2tlPSIjMjU1N0E3IiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxMSIgY3k9IjE0IiByPSIzIiBmaWxsPSIjMjU1N0E3Ii8+PGNpcmNsZSBjeD0iMjQiIGN5PSIxNCIgcj0iMyIgZmlsbD0iIzI1NTdBNyIvPjxwYXRoIHN0cm9rZT0iIzI1NTdBNyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMTEgMjIuMTE3YzEuMjA3IDIuMTA1IDMuNTIgMy41ODUgNi4xMiAzLjU4NUE2Ljk5OSA2Ljk5OSAwIDAwMjMuMjk2IDIyIi8+PC9nPjwvc3ZnPg==",
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNCIgaGVpZ2h0PSIzNCI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBmaWxsPSIjMjU1N0E3IiBkPSJNMTAgMjBjMCAzLjMxNCAzLjEzNCA2IDcgNnM3LTIuNjg2IDctNkgxMHoiLz48Y2lyY2xlIGN4PSIxNyIgY3k9IjE3IiByPSIxNiIgc3Ryb2tlPSIjMjU1N0E3IiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxMSIgY3k9IjE0IiByPSIzIiBmaWxsPSIjMjU1N0E3Ii8+PGNpcmNsZSBjeD0iMjQiIGN5PSIxNCIgcj0iMyIgZmlsbD0iIzI1NTdBNyIvPjwvZz48L3N2Zz4=",
 ];
+
+export const categories = [
+  "Popular Jobs",
+  "Accounting",
+  "Administrative Assistance",
+  "Customer Service",
+  "Driving",
+  "Education & Instruction",
+  "Human Resources",
+  "IT Operations & Helpdesk",
+  "Industrial Engineering",
+  "Information Design & Documentation",
+  "Installation & Maintenance",
+  "Loading and Stocking",
+  "Management",
+  "Mathematics",
+  "Mechanical Engineering",
+  "Medical Information",
+  "Project Management",
+  "Sales",
+  "Scientific Research & Development",
+  "Software Development",
+];

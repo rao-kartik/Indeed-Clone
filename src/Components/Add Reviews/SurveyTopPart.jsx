@@ -23,7 +23,7 @@ export const SurveyTopPart =()=>{
         const requestAction = companiesRequest();
         dispatch(requestAction);
         axios
-          .get("http://localhost:3004/companies",{
+          .get("https://json-server-mocker-ajmal.herokuapp.com/companies",{
               params:{
                 company_name:compname.id
               }

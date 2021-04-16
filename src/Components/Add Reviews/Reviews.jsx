@@ -9,6 +9,7 @@ import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redu
 import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
 import { ReviewsRateTop } from './ReviewsRateTop';
 import { ReviewsRateBottom } from './ReviewsRateBottom';
+import { Footer } from './Footer';
 
 const H1 = styled.h1`
     font-size:19.95px;
@@ -54,6 +55,33 @@ export const Reviews=()=>{
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
+    const [recoColor,setRecoColor] = React.useState();
+    const onChangeReco = (e) => {
+        const{value}=e.target;
+        setRecoColor(value);
+     }
+     const [fair,setFair] = React.useState();
+    const onChangeFair = (e) => {
+        const{value}=e.target;
+        setFair(value);
+     }
+     const [salary,setSalary] = React.useState();
+    const onChangeSalary = (e) => {
+        const{value}=e.target;
+        setSalary(value);
+     }
+     const [cult,setCult] = React.useState([]);
+    const onChangeCult = (e) => {
+        const{value}=e.target;
+        // cult = cult.filter(item => item !== value)
+        if(cult.includes(Number(value))){
+            setCult(cult.filter(item => item !== Number(value)))
+        }
+        else{
+            setCult([...cult,Number(value)]);
+        }
+        console.log(cult);
+     }
     return(
         <div style={{backgroundColor:'#f5f5f5'}}>
             <div className={style.container}>
@@ -72,36 +100,37 @@ export const Reviews=()=>{
             </div>
             <div>
                 <H1>Would you recommend working at {compname.id} to a friend?</H1>
-                <OptionButtonLeft autoFocus>Yes</OptionButtonLeft>
-                <OptionButtonRight>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={recoColor==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={recoColor==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>No</OptionButtonRight>
             </div>
             <div>
                 <H1>Do you think you are paid fairly at {compname.id}?</H1>
-                <OptionButtonLeft>Yes</OptionButtonLeft>
-                <OptionButtonRight>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={fair==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={fair==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>No</OptionButtonRight>
             </div>
             <div>
                 <H1>Do you feel like your salary at {compname.id} is enough for the cost of living in your area?</H1>
-                <OptionButtonLeft>Yes</OptionButtonLeft>
-                <OptionButtonRight>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={salary==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={salary==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>No</OptionButtonRight>
             </div>
             <div style={{height:'200px'}}>
                 <H1>How would you describe the work culture at {compname.id}?</H1>
                 <p>Choose all that are applicable:</p>
-                <SelectButton>Relaxed</SelectButton>
-                <SelectButton>Fast-paced</SelectButton>
-                <SelectButton>Stressful</SelectButton>
-                <SelectButton>Collaborative</SelectButton>
-                <SelectButton>Competitive</SelectButton>
-                <SelectButton>Slow-paced</SelectButton>
-                <SelectButton>Not sure</SelectButton>
+                <SelectButton value={1} style={cult.includes(1)?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeCult}>Relaxed</SelectButton>
+                <SelectButton value={2} style={cult.includes(2)?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeCult}>Fast-paced</SelectButton>
+                <SelectButton value={3} style={cult.includes(3)?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeCult}>Stressful</SelectButton>
+                <SelectButton value={4} style={cult.includes(4)?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeCult}>Collaborative</SelectButton>
+                <SelectButton value={5} style={cult.includes(5)?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeCult}>Competitive</SelectButton>
+                <SelectButton value={6} style={cult.includes(6)?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeCult}>Slow-paced</SelectButton>
+                <SelectButton value={7} style={cult.includes(7)?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeCult}>Not sure</SelectButton>
             </div>
             <ReviewsRateTop compname={compname.id}/>
             <ReviewsRateBottom compname={compname.id}/>           
-            <div style={{textAlign:'center'}}>
-            <Button style={{width:'300px'}} onClick={handleContinue}>Continue</Button>
+            <div style={{textAlign:'center',height:'100px'}}>
+            <Button style={{width:'300px',marginTop:'20px'}} onClick={handleContinue}>Continue</Button>
             </div>
             </div>
+            <Footer/>
         </div>
     )
 }

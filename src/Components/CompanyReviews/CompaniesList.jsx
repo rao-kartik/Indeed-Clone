@@ -2,13 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
 import { CompaniesListItem } from "./CompaniesListItem";
 
 export const CompanyList=({type})=>{
-  console.log(type);
     const dispatch = useDispatch();
-  const { isLoading, isError,companies } = useSelector(
+  const { companies } = useSelector(
     (state) => state.company,
     shallowEqual
   );
@@ -38,9 +38,9 @@ export const CompanyList=({type})=>{
         {type==='popular'&&<h3 style={{fontSize:'23px'}}>Popular Companies</h3>}    
         </div>
         <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
-            {console.log(companies)}
-            {companies.map(item=>
-              <CompaniesListItem item={item}/>)}
+          
+            {Array.isArray(companies)? companies.map(item=>
+              <CompaniesListItem key={item.id} item={item}/>):<Redirect to='/companies'/>}
               
       </div>
         </div>

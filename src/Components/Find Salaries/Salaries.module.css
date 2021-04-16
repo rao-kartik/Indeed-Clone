@@ -72,55 +72,6 @@
   width: 80px;
   border: 1px solid #ececec;
 }
-
-.findEarning {
-  width: 96vw;
-  padding: 2.5vw;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  display: flex;
-  border: 1px solid rgb(224, 224, 224);
-  margin: 10vh 1vw;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  height: auto;
-}
-.findEarning div {
-  flex-basis: 50%;
-  flex-wrap: wrap;
-}
-
-.findEarning img {
-  width: 3vw;
-  margin-right: 2.5vw;
-}
-
-.findEarning img:hover {
-  cursor: pointer;
-}
-
-.feedback {
-  margin-top: 5vh;
-  padding: 0;
-  width: 100%;
-  height: 25vh;
-  border-radius: 10px;
-  outline: none;
-  border: 1px solid rgb(224, 224, 224);
-}
-
-.feedbackSubmit {
-  background: #085ff7;
-  color: white;
-  outline: none;
-  font-size: 1.4rem;
-  margin-top: 20px;
-  border: none;
-  width: 18vw;
-  height: 8vh;
-  border-radius: 50px;
-}
-
 .companyInfo {
   width: 80%;
   margin: auto;
@@ -229,10 +180,11 @@
   width: 98%;
   margin: auto;
   display: flex;
-  padding: 30px;
+  padding: 40px 30px;
   border-radius: 10px;
   height: auto;
   margin-top: 10vh;
+  margin-bottom: 10vh;
   border: 1px solid #ececec;
 }
 .estimatedPay div {
@@ -254,4 +206,51 @@
   height: 40px;
   color: white;
   border-radius: 10px;
+}
+
+.feedback {
+  margin-top: 5vh;
+  padding: 20px;
+  width: 100%;
+  font-size: 1rem;
+  height: 25vh;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid rgb(224, 224, 224);
+}
+
+.feedbackSubmit {
+  background: #085ff7;
+  color: white;
+  outline: none;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  border: none;
+  width: 16vw;
+  height: 6vh;
+  border-radius: 50px;
+}
+.findEarning {
+  width: 96vw;
+  padding: 2.5vw;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  display: flex;
+  border: 1px solid rgb(224, 224, 224);
+  margin: 10vh 1vw;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: auto;
+}
+.findEarning div {
+  flex-wrap: wrap;
+}
+
+.findEarning img {
+  width: 2.7vw;
+  margin-right: 2.5vw;
+}
+
+.findEarning img:hover {
+  cursor: pointer;
 }

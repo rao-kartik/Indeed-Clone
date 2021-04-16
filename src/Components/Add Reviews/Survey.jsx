@@ -9,7 +9,7 @@ import { postReviewRequest,postReviewSuccess,postReviewFailure } from "../../Red
 import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
 import ReactStars from "react-rating-stars-component";
 import { SurveyTopPart } from './SurveyTopPart';
-
+import { Footer } from './Footer'
 const H1 = styled.h1`
     font-size:19.95px;
     margin:0px 0px 15px;
@@ -68,9 +68,9 @@ export const Survey =()=>{
                 setIsSubmited(true)
               })
               .catch((err) => {
-                const failureAction = postReviewFailure(err.message);
-                dispatch(failureAction);
-                console.log(err);
+                // const failureAction = postReviewFailure(err.message);
+                // dispatch(failureAction);
+                // console.log(err);
               });
         }
         
@@ -142,10 +142,11 @@ export const Survey =()=>{
                 <Input type="text" value={location} name='location' onChange={handleChange}/>
                 
             </div>
-            <div style={{textAlign:'center'}}>
-            <Button style={{width:'300px'}} onClick={handleFinish}>Finish</Button>
+            <div style={{textAlign:'center',height:'100px'}}>
+            <Button style={{width:'300px',marginTop:'20px'}} onClick={handleFinish}>Finish</Button>
             </div>
             </div>
+            <Footer/>
         </div>
     ):<Redirect to='/companies'/>
 }

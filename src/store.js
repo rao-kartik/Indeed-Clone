@@ -7,6 +7,7 @@ import { AuthReducer } from "./Redux/Auth/authReducer";
 import { companyInfoReducer } from "./Redux/CompanyInfo/reducer";
 import { jobsByCategoryReducer } from "./Redux/JobsByCategory/reducer";
 import { reviewsReducer } from "./Redux/Reviews/reviewsReducer";
+import { AdminReducer } from './Redux/Admin/adminReducer';
 
 const rootReducer = combineReducers({
   topPayingJobs: topPayingJobsReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   authReducer: AuthReducer,
   categoryJobs: jobsByCategoryReducer,
   companyInfo: companyInfoReducer,
-  reviewsReducer: reviewsReducer
+  reviewsReducer: reviewsReducer,
+  adminReducer: AdminReducer
 });
 
 const customMiddleware = (store) => (next) => (action) => {

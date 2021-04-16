@@ -80,3 +80,13 @@ export const Follow = styled.button`
     transition:0.3s ease-in-out
   }
 `;
+
+export const Faq = styled.div`
+  width:230px;
+  height:auto;
+  padding:20px;
+  font-size:0.8rem;
+  color:#6f6f6f;
+  margin-left:-50px;
+  border:1px solid #afafaf;
+`;

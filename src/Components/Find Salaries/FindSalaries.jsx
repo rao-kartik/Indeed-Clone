@@ -1,7 +1,7 @@
 import React from "react";
-import { getTopPayingJobs } from "../../Redux/TopPayingJobs/action";
 import { Container, Image, SearchBar, Input, SearchButton } from "../../Custom UI/RCustomUI";
 import { TPCompany } from "./TPCompany";
+import { PageRating } from "./PageRating";
 import { TPJobs } from "./TPJobs";
 import styles from "./Salaries.module.css";
 function FindSalaries() {
@@ -33,6 +33,7 @@ function FindSalaries() {
       </Container>
       <TPJobs />
       <TPCompany />
+      <PageRating/>
     </>
   );
 }

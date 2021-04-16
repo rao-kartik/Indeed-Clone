@@ -11,6 +11,7 @@ import { RegisterPage } from './RegisterPage'
 import { SignInPage } from './SignInPage'
 import {AddReview} from './AddReview'
 import { AddSurvey } from './AddSurvey'
+import { CompanySearch } from './CompanySearch'
 import { AdminPage } from './AdminPage'
 import { AdminLogin } from '../Components/Admin/AdminLogin'
 import { Admin } from '../Components/Admin/Admin'
@@ -33,6 +34,9 @@ export const Routes = () => {
                 </Route>
                 <Route path='/companies/review/survey/:id' exact>
                     <AddSurvey/>
+                </Route>
+                <Route path='/companies/search/:id' exact>
+                    <CompanySearch/>
                 </Route>
                 <Route path='/career/salaries' exact>
                     <FindSalariesPage />

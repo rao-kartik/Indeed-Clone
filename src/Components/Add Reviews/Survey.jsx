@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from 'react';
+import React from 'react';
 import { useHistory, useParams,Redirect } from 'react-router';
-import { Popup } from '../CompanyReviews/popup';
+// import { Popup } from '../CompanyReviews/popup';
 import style from './Reviews.module.css'
 import styled from 'styled-components';
 import axios from "axios";
@@ -9,7 +9,7 @@ import { postReviewRequest,postReviewSuccess,postReviewFailure } from "../../Red
 import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
 import ReactStars from "react-rating-stars-component";
 import { SurveyTopPart } from './SurveyTopPart';
-
+import { Footer } from './Footer'
 const H1 = styled.h1`
     font-size:19.95px;
     margin:0px 0px 15px;
@@ -51,16 +51,17 @@ export const Survey =()=>{
     (state) => state.reviewsReducer,
     shallowEqual
   );
-
+    const [isFalse,setIsFalse] = React.useState(true);
     const handleFinish=()=>{
         if(title.length==0 || text.length ==0 || reviewer.length == 0 || location.length==0){
-
+            setIsFalse(false);
         }
         else{
+            setIsFalse(true);
             const requestAction = postReviewRequest();
             dispatch(requestAction);
             axios
-              .post("http://localhost:3004/reviews", reviewData)
+              .post("https://json-server-mocker-ajmal.herokuapp.com/reviews", reviewData)
               .then((res) => {
                 const successAction = postReviewSuccess(res.message);
                 dispatch(successAction);
@@ -68,9 +69,9 @@ export const Survey =()=>{
                 setIsSubmited(true)
               })
               .catch((err) => {
-                const failureAction = postReviewFailure(err.message);
-                dispatch(failureAction);
-                console.log(err);
+                // const failureAction = postReviewFailure(err.message);
+                // dispatch(failureAction);
+                // console.log(err);
               });
         }
         
@@ -142,10 +143,12 @@ export const Survey =()=>{
                 <Input type="text" value={location} name='location' onChange={handleChange}/>
                 
             </div>
-            <div style={{textAlign:'center'}}>
-            <Button style={{width:'300px'}} onClick={handleFinish}>Finish</Button>
+            <div style={{textAlign:'center',height:'100px'}}>
+            <Button style={{width:'300px',marginTop:'20px'}} onClick={handleFinish}>Finish</Button>
+            {isFalse&&<p style={{color:'red'}}>Please Fill Required Fields</p>}
             </div>
             </div>
+            <Footer/>
         </div>
     ):<Redirect to='/companies'/>
 }

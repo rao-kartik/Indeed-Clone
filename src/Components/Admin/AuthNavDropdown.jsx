@@ -31,6 +31,10 @@ const Content = styled.div`
     }
 `;
 
+const H5 = styled.h5`
+    padding: 0 20px;
+`;
+
 const Logout = styled.div`
     cursor: pointer;
     padding: 0 20px;
@@ -50,6 +54,7 @@ export const AuthNavDropdown = () => {
     const dispatch = useDispatch();
 
     const isAdminAuth = useSelector(state=> state.authReducer.isAdminAuth);
+    const token = useSelector(state=> state.authReducer.token);
 
     const history = useHistory();
 
@@ -68,6 +73,7 @@ export const AuthNavDropdown = () => {
     return (
         <Container onMouseLeave={handleAdmDisp}>
             <div>
+                <H5>{token.email}</H5>
                 <Content>Profile <span style={{marginTop:'12px'}} class="material-icons-outlined">description</span></Content>
                 <Content>Account <span style={{marginTop:'10px'}} class="material-icons-outlined"><span class="material-icons-outlined">settings_input_component</span></span></Content>
             </div>

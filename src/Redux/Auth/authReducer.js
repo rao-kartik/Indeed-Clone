@@ -8,11 +8,13 @@ import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS,
 
     const isAuth = loadData("auth") || false;
 
+    const token = loadData("token") || {};
+
 const initState = {
     isAuth: isAuth,
     isLoading: false,
     isError: false,
-    token: '',
+    token: token,
     isAdminAuth: isAdminAuth
 }
 
@@ -28,6 +30,7 @@ export const AuthReducer = (state=initState, action)=>{
         };
         case SIGN_IN_SUCCESS: {
             saveData("auth", true)
+            saveData("token", payload)
             return {
                 ...state,
                 isLoading: false,
@@ -52,6 +55,7 @@ export const AuthReducer = (state=initState, action)=>{
         };
         case ADMIN_SIGN_IN_SUCCESS: {
             saveData("adminAuth", true)
+            saveData("token", payload)
             return {
                 ...state,
                 isLoading: false,
@@ -92,6 +96,7 @@ export const AuthReducer = (state=initState, action)=>{
         }
         case LOGOUT_SUCCESS: {
             saveData("auth", false)
+            saveData("token",{})
             return {
                 ...state,
                 isAuth: false
@@ -99,6 +104,7 @@ export const AuthReducer = (state=initState, action)=>{
         }
         case ADMIN_LOGOUT_SUCCESS: {
             saveData("adminAuth", false)
+            saveData("token",{})
             return {
                 ...state,
                 isAdminAuth: false

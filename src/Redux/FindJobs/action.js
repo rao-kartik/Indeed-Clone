@@ -26,14 +26,16 @@ const getSearchFailure = (err)=>{
 const getSearchData = (payload)=>dispatch=>{
     dispatch(getSearchRequest());
 
-    const { category, location } = payload;
+    const { category, location, page } = payload;
 
     const config = {
         url: '/jobs',
         method: 'get',
         params: {
             category,
-            location
+            location,
+            _page: page,
+            _limit: 10
         }
     }
     axios(config)

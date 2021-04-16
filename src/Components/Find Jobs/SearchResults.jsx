@@ -33,7 +33,7 @@ const Time=styled.p`
 export const SearchResults = ({title, location,  company_name, salary, category, publication_date}) => {
 
     const data = useSelector(state=> state.findReducer.data)
-    console.log(data)
+    // console.log(data)
 
     const month = publication_date[5] + publication_date[6]
 

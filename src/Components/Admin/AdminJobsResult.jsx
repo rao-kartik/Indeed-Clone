@@ -1,10 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { SearchResult } from '../../Custom UI/KCustomUI';
+import { deleteJobs, getJobs } from '../../Redux/Admin/action';
 
 const Container = styled.div`
+    width: 430px;
+    border: 1px solid #d4d2d0;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    position: relative;
 
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const P = styled.p`
@@ -30,7 +40,16 @@ const Time=styled.p`
     margin: 0 20px 0 0;
 `;
 
-export const SearchResults = ({title, location,  company_name, salary, category, publication_date}) => {
+const Delete = styled.div`
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+`;
+
+export const AdminJobsResult = ({id, title, location,  company_name, salary, category, publication_date}) => {
+
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const month = publication_date[5] + publication_date[6]
 
@@ -43,9 +62,15 @@ export const SearchResults = ({title, location,  company_name, salary, category,
     days = 30
 
     const totalTime = +date + days
+
+    const handleDelete = (id)=>{
+        dispatch(deleteJobs(id));
+        dispatch(getJobs())
+        history.push('/account/admin/jobs')
+    }
     
     return (
-            <SearchResult>
+            <Container>
                 <H2>{title}</H2>
                 <P>{company_name}</P>
                 <P>{location}</P>
@@ -60,6 +85,7 @@ export const SearchResults = ({title, location,  company_name, salary, category,
                     <Time>{totalTime} days ago</Time>
                     <Time style={{color:'blue', cursor:'pointer'}}>Save Job</Time>
                 </TimeCont>
-            </SearchResult>
+                <Delete onClick={()=>handleDelete(id)}><span class="material-icons-outlined">delete</span></Delete>
+            </Container>
     )
 }

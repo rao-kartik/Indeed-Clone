@@ -30,7 +30,7 @@ export const CompanySearchPage=()=>{
           })
           .then((res) => {
             const successAction = companiesSuccess(res.data[0]);
-            console.log(res.data[0].company_logo);
+            console.log(res.data);
             dispatch(successAction);
           })
           .catch((err) => {

@@ -29,7 +29,7 @@ const getSearchData = (payload)=>dispatch=>{
     const { category, location, page } = payload;
 
     const config = {
-        url: '/jobs',
+        url: '/newJobs',
         method: 'get',
         params: {
             category,

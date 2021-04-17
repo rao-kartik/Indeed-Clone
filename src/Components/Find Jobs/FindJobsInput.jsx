@@ -96,7 +96,7 @@ export const FindJobsInput = ({ page }) => {
 
     const data = useSelector(state=> state.findReducer.data);
 
-    const { handleFilterChange} = useContext(SortContext);
+    const { handleFilterChange } = useContext(SortContext);
     
     const [ catInp, setCatInp ] = useState('');
     const [ catDisp, setCatDisp ] = useState(false);

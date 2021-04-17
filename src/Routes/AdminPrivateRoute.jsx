@@ -12,7 +12,7 @@ export const AdminPrivateRoute = ({children, redirectPath='/account/admin/login'
                 {children}
             </Route>
         ) : (
-            <Redirect path={redirectPath} push />
+            <Redirect to={redirectPath} push />
         )
     )
 }

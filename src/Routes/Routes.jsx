@@ -22,6 +22,7 @@ import { AdminPostRecruiter } from '../Components/Admin/AdminPostRecruiter'
 import { AdminPrivateRoute } from './AdminPrivateRoute'
 import { useSelector } from 'react-redux'
 import { AdminNavbar } from '../Components/Admin/AdminNavbar'
+import { ApplyJobForm } from './ApplyJobForm'
 
 export const Routes = () => {
 
@@ -36,7 +37,9 @@ export const Routes = () => {
                 <Route path='/' exact>
                     <FindJobsPage />
                 </Route>
-
+                <Route path='/form/questions/1' exact>
+                    <ApplyJobForm/>
+                </Route>
                 <Route path='/companies' exact>
                     <CompanyReviewsPage />
                 </Route>

@@ -8,17 +8,16 @@ const Container = styled.div`
     height: 100%;
     padding: 30px 60px;
     background: #ececec;
-    margin-top: 30px;
     min-height 520px;
 `;
 
 const Content = styled.div`
     padding: 20px;
-    width: 55%;
+    width: 50%;
     line-height: 30px;
     border-radius: 5px;
     background: #fff;
-    margin-left: 6.5%;
+    margin-left: 45px;
     line-height: 30px;
     color: #6f6f6f; 
     position: relative;

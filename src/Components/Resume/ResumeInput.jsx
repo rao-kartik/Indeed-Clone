@@ -1,13 +1,29 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sendResume } from "../../Redux/Resume/action";
+import styled from "styled-components";
+import { showPopUp, exitPopUp, getResume, sendResume } from "../../Redux/Resume/action";
 import styles from "./Resume.module.css";
+
+const PopUp = styled.div`
+    width: 400px;
+    padding: 50px;
+    text-align: center;
+    font-size: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 1.5rem 0.25rem rgb(0 0 0 / 13%);
+    position: fixed;
+    z-index: 5;
+    left: 16%;
+`;
 
 function ResumeInput() {
     const dispatch  = useDispatch();
 
     const token = useSelector(state=> state.authReducer.token);
+
+    const showPop = useSelector(state=> state.resume.showPop);
 
     const email = token.email;
     console.log(email)
@@ -21,7 +37,7 @@ function ResumeInput() {
     linkedin: "",
     objective: "",
     education: "",
-    gender: "",
+    gender: "male",
     year: "",
     dob: "",
     nation: "",
@@ -38,13 +54,23 @@ function ResumeInput() {
   }
     const handleSubmit = () => {
         console.log(data)
-        console.log('submit')
-        dispatch(sendResume(data))
+        console.log('submit');
+        dispatch(sendResume(data));
+        dispatch(getResume());
+        dispatch(showPopUp())
     }
+
+    const handleExitPopUp = ()=>{
+      dispatch(exitPopUp())
+      dispatch(getResume());
+    }
+    
   return (
     <>
       <div className={styles.resumeContainer}>
-        <h1>Resume Building</h1>
+        {
+            showPop && <PopUp>Congratulaions, You have successfully created resume <span onClick={handleExitPopUp} style={{fontSize:'18px', position:'absolute', top:'10px', right:'10px', cursor:'pointer'}} class="material-icons-outlined">close</span></PopUp>
+        }
         <h3>Personal Details</h3>
         <div>
           <input

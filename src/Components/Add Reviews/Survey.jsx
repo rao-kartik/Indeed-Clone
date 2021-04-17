@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, useParams,Redirect } from 'react-router';
 // import { Popup } from '../CompanyReviews/popup';
 import style from './Reviews.module.css'
@@ -35,6 +35,9 @@ export const Survey =()=>{
         job_culture_rating: "",
         company:compname.id
     }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     const [reviewData, setReviewData] = React.useState(reviewsData);
     const {title,text,rating,reviewer,location,datetime,job_work_and_life_balance_rating,compensation_and_benefits_rating,job_security_and_advancement_rating,management_rating,job_culture_rating} = reviewData;
     const[isSubmited,setIsSubmited] = React.useState(false);

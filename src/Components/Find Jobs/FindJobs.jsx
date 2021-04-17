@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { SortContext } from '../../Context/SortContextProvider';
 import { SearchResultById } from '../../Custom UI/KCustomUI';
 import { getSearchData } from '../../Redux/FindJobs/action';
 import { ApplyJobs } from './ApplyJobs';
@@ -28,44 +29,11 @@ export const FindJobs = () => {
 
     var data = useSelector(state=> state.findReducer.data)
     // console.log(data)
-
-    const [ filterCond, setFilterCond ] = useState(initCond)
+    const { filterCondition } = useContext(SortContext);
 
     const [ page, setPage ] = useState(1);
     console.log(page);
 
-    const handleFilterChange = (e)=>{
-        const { name, value } = e.target;
-        const updated = {
-            ...filterCond,
-            [ name ]: value
-        };
-        setFilterCond(updated);
-    }
-
-    const filterCondtion = ({location, job_type, publication_date})=>{
-        if(filterCond.datePosted){
-            console.log(filterCond);
-            data = data.filter(item=> {
-                const month = publication_date[5] + publication_date[6]
-
-                const date = publication_date[8] + publication_date[9]
-
-                let days;
-
-                month == '02' ? days = 28 : 
-                month == '01' || month == '03' || month == '05' || month == '07' || month == '08' || month == '10' || month == '12' ? days= 31 : 
-                days = 30;
-
-                const totalTime = +date + days;
-
-                if(totalTime < filterCondtion.datePosted){
-                    return item;
-                }
-            })
-        }
-        return location === filterCond.location && job_type === filterCond.jobType
-    }
     const [jobId,setJobId] = useState('');
     const [isJobView,setIsJobView] = useState(false);
     const handleChangeById=(id)=>{
@@ -74,13 +42,13 @@ export const FindJobs = () => {
     }
     return (
         <Container>
-            <FindJobsInput page={page} handleFilterChange={handleFilterChange} />
+            <FindJobsInput page={page} />
 
             <Results>
                 <div style={{float:'left'}}>
-                {
-                    data.map(item=> <SearchResults key={item.id} {...item} handleChangeById={handleChangeById}/>)
-                }
+                    {
+                        data.filter(item=>filterCondition(item)).map(item=> <SearchResults key={item.id} {...item} handleChangeById={handleChangeById}/>)
+                    }
                 </div>
                 {
                     isJobView&&<div style={{float:'right'}}>

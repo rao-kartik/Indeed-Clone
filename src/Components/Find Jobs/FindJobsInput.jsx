@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { InputDiv, Input, Button } from '../../Custom UI/KCustomUI';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchData } from '../../Redux/FindJobs/action';
 import { category, city, jobType } from './Data';
+import { SortContext } from '../../Context/SortContextProvider';
 
 const Container = styled.div`
     display:flex;
@@ -91,9 +92,11 @@ const Select = styled.select`
     }
 `;
 
-export const FindJobsInput = ({ page, handleFilterChange }) => {
+export const FindJobsInput = ({ page }) => {
 
-    const data = useSelector(state=> state.findReducer.data)
+    const data = useSelector(state=> state.findReducer.data);
+
+    const { handleFilterChange} = useContext(SortContext);
     
     const [ catInp, setCatInp ] = useState('');
     const [ catDisp, setCatDisp ] = useState(false);
@@ -165,7 +168,7 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
     }
 
     useEffect(()=>{
-        if (inpParams.location !== '' && inpParams.category !== ''){
+        if (inpParams.location !== '' || inpParams.category !== ''){
             dispatch(getSearchData(params))
         }
     },[page])
@@ -216,7 +219,7 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
                 data.length > 0 &&
                 <Cont>
                     <Select name="datePosted" onChange={handleFilterChange} >
-                        <SelOpt value="">Date Posted</SelOpt>
+                        <SelOpt value="null">Date Posted</SelOpt>
                         <SelOpt value="5">Last 5 days</SelOpt>
                         <SelOpt value="10">Last 10 days</SelOpt>
                         <SelOpt value="15">Last 15 days</SelOpt>

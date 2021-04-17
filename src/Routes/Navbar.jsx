@@ -1,7 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { NavDropdown } from '../Components/SignIn/NavDropDown';
+import { showUserDropdownDisp } from '../Redux/App/action';
 
 const Container = styled.div`
     width: 100%;
@@ -33,6 +35,7 @@ const NavContents = styled.div`
     display: flex;
     align-items: center;
     margin: 0 10px;
+    cursor: pointer;
 
     &:hover {
         border-bottom: 2px solid blue;
@@ -65,10 +68,6 @@ const rightLinksAfterSignin = [
     {
         to: '/notifications',
         title: <span class="material-icons">notifications</span>
-    },
-    {
-        to: 'account/login',
-        title: <span class="material-icons">person</span>
     }
 ]
 
@@ -76,6 +75,14 @@ const rightLinksAfterSignin = [
 export const Navbar = () => {
 
     const isAuth = useSelector(state=>state.authReducer.isAuth);
+    
+    const userDropDownDisp = useSelector(state=> state.appReducer.userDropDownDisp);
+
+    const dispatch = useDispatch();
+
+    const handleUserDisp = ()=>{
+        dispatch(showUserDropdownDisp())
+    }
     
     return (
         <>
@@ -105,7 +112,11 @@ export const Navbar = () => {
                             ) : (
                                 <>
                                     {
-                                        rightLinksAfterSignin.map(link=> <Link style={{margin:'0 10px'}} to={link.to} >{link.title}</Link>)
+                                        rightLinksAfterSignin.map(link=> <NavContents><Link to={link.to} >{link.title}</Link></NavContents>)
+                                    }
+                                    <NavContents onClick={handleUserDisp} ><span class="material-icons">person</span></NavContents>
+                                    {
+                                        userDropDownDisp && <NavDropdown />
                                     }
                                 </>
                             )

@@ -1,16 +1,22 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sendResume } from "../../Redux/Resume/action";
 import styles from "./Resume.module.css";
 
 function ResumeInput() {
     const dispatch  = useDispatch();
+
+    const token = useSelector(state=> state.authReducer.token);
+
+    const email = token.email;
+    console.log(email)
+
   let initState = {
     fname: "",
     lname: "",
     city: "",
-    email: "",
+    email: email,
     phone: "",
     linkedin: "",
     objective: "",

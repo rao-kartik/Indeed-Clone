@@ -97,7 +97,7 @@ export const AdminLogin = () => {
     };
     
     if( isAdminAuth ){
-        history.push('/account/admin')
+        history.push('/account/admin/jobs')
     }
 
     return (

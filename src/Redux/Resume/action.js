@@ -1,5 +1,8 @@
 import Axios from "axios";
-import { SEND_RESUME_REQUEST, SEND_RESUME_SUCCESS , SEND_RESUME_FAILURE, GET_RESUME_REQUEST, GET_RESUME_SUCCESS, GET_RESUME_FAILURE, DELETE_RESUME_REQUEST, DELETE_RESUME_SUCCESS, DELETE_RESUME_FAILURE } from "./actionTypes";
+import { SEND_RESUME_REQUEST, SEND_RESUME_SUCCESS , SEND_RESUME_FAILURE, 
+        GET_RESUME_REQUEST, GET_RESUME_SUCCESS, GET_RESUME_FAILURE, 
+        DELETE_RESUME_REQUEST, DELETE_RESUME_SUCCESS, DELETE_RESUME_FAILURE,
+        SHOW_POPUP, EXIT_POPUP } from "./actionTypes";
 
 const axios = Axios.create({
   baseURL: "https://json-server-mocker-robin.herokuapp.com"
@@ -59,6 +62,17 @@ const deleteResumeFailure = (err) => {
     payload: err,
   };
 };
+
+export const showPopUp = ()=>{
+  return {
+    type: SHOW_POPUP
+  }
+}
+export const exitPopUp = ()=>{
+  return {
+    type: EXIT_POPUP
+  }
+}
 
 export const sendResume = (payload) => (dispatch) => {
     console.log('payload',payload)

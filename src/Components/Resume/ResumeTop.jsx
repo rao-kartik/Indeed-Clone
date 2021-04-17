@@ -10,13 +10,13 @@ const Container = styled.div`
 `;
 
 const Head = styled.div`
-    width: 55%;
+    width: 50%;
     height: 100px;
     border-radius: 5px;
     background: #fff;
     position: relative;
     padding: 20px 70px;
-    margin-left: 6.5%;
+    margin-left: 45px;
     line-height: 30px;    
     box-shadow: 0 0 1.5rem 0.25rem rgb(0 0 0 / 13%);
     color: #6f6f6f;
@@ -36,6 +36,20 @@ const Image = styled.img`
     width: 100%;
     height: 100%;
     border-radius: 50px;
+`;
+
+const ProfileBar = styled.div`
+    width: 100%;
+    height: 40px;
+    display: flex;
+    margin-top: 20px;
+    padding-left: 45px;
+    font-size: 18px;
+`;
+
+const BarCont = styled.div`
+    margin: 5px 20px 0 0;
+    border-bottom: 2px solid #085ff7;
 `;
 
 export const ResumeTop = () => {
@@ -85,6 +99,10 @@ export const ResumeTop = () => {
                     )
                 }
             </Head>
+            <ProfileBar>
+                <BarCont>Resume</BarCont>
+                <BarCont style={{border:'none'}} >About me</BarCont>
+            </ProfileBar>
         </Container>
     )
 }

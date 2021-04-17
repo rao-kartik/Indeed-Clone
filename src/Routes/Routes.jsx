@@ -37,7 +37,7 @@ export const Routes = () => {
                 <Route path='/' exact>
                     <FindJobsPage />
                 </Route>
-                <Route path='/form/questions/1' exact>
+                <Route path='/form/questions/:id' exact>
                     <ApplyJobForm/>
                 </Route>
                 <Route path='/companies' exact>

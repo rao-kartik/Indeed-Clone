@@ -12,6 +12,8 @@ import { findCompanyReducer } from "./Redux/FindCompanyId/findCompanyReducer";
 import { AdminReducer } from './Redux/Admin/adminReducer';
 import { AppReducer } from './Redux/App/appReducer';
 import { jobsByIdReducer } from "./Redux/FindJobById/reducer";
+import { findResumeReducer } from "./Redux/FindResume/reducer";
+import { applyJobReducer } from "./Redux/ApplyJob/applyJobReducer";
 import { resumeReducer } from "./Redux/Resume/reducer";
 
 const rootReducer = combineReducers({
@@ -26,6 +28,9 @@ const rootReducer = combineReducers({
   ReviewSearchReducer: ReviewSearchReducer,
   findCompanyReducer:findCompanyReducer,
   adminReducer: AdminReducer,
+  jobsByIdReducer: jobsByIdReducer,
+  findResumeReducer:findResumeReducer,
+  applyJobReducer:applyJobReducer,
   appReducer: AppReducer,
   jobsByIdReducer: jobsByIdReducer,
   resume:resumeReducer

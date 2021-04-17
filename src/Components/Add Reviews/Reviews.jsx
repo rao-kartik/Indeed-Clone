@@ -24,6 +24,9 @@ export const Reviews=()=>{
     (state) => state.company,
     shallowEqual
   );
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const history = useHistory();
   const handleContinue=()=>{
     history.push(`/companies/review/survey/${compname.id}`)

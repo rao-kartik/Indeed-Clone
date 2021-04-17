@@ -112,7 +112,7 @@ export const Navbar = () => {
                             ) : (
                                 <>
                                     {
-                                        rightLinksAfterSignin.map(link=> <NavContents><Link to={link.to} >{link.title}</Link></NavContents>)
+                                        rightLinksAfterSignin.map(link=> <NavContents><Link style={{textDecoration:'none', color:'#000'}} to={link.to} >{link.title}</Link></NavContents>)
                                     }
                                     <NavContents onClick={handleUserDisp} ><span class="material-icons">person</span></NavContents>
                                     {

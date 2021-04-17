@@ -84,23 +84,19 @@ export const Routes = () => {
                     <AdminLogin />
                 </Route>
 
-                <AdminPrivateRoute path='/account/admin' exact>
-                    <Admin />
-                </AdminPrivateRoute>
-
-                <AdminPrivateRoute path='/account/admin/recruiter'>
+                <AdminPrivateRoute path='/account/admin/recruiter' redirectPath='/account/admin/login'>
                     <AdminRecruiters />
                 </AdminPrivateRoute>
 
-                <AdminPrivateRoute path='/account/admin/jobs'>
+                <AdminPrivateRoute path='/account/admin/jobs' redirectPath='/account/admin/login'>
                     <AdminJobs />
                 </AdminPrivateRoute>
 
-                <AdminPrivateRoute path='/account/admin/addJobs'>
+                <AdminPrivateRoute path='/account/admin/addJobs' redirectPath='/account/admin/login'>
                     <AdminPostJob />
                 </AdminPrivateRoute>
 
-                <AdminPrivateRoute path='/account/admin/addrecruiter' >
+                <AdminPrivateRoute path='/account/admin/addrecruiter' redirectPath='/account/admin/login'>
                     <AdminPostRecruiter />
                 </AdminPrivateRoute>
 

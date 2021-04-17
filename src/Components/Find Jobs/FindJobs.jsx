@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { SearchResultById } from '../../Custom UI/KCustomUI';
 import { getSearchData } from '../../Redux/FindJobs/action';
+import { ApplyJobs } from './ApplyJobs';
 import { BottomPart } from './BottomPart';
 import { FindJobsInput } from './FindJobsInput';
 import { PopularSearches } from './PopularSearches';
@@ -43,6 +45,7 @@ export const FindJobs = () => {
 
     const filterCondtion = ({location, job_type, publication_date})=>{
         if(filterCond.datePosted){
+            console.log(filterCond);
             data = data.filter(item=> {
                 const month = publication_date[5] + publication_date[6]
 
@@ -63,17 +66,30 @@ export const FindJobs = () => {
         }
         return location === filterCond.location && job_type === filterCond.jobType
     }
-    
+    const [jobId,setJobId] = useState('');
+    const [isJobView,setIsJobView] = useState(false);
+    const handleChangeById=(id)=>{
+        setIsJobView(true);
+        setJobId(id);
+    }
     return (
         <Container>
             <FindJobsInput page={page} handleFilterChange={handleFilterChange} />
 
             <Results>
+                <div style={{float:'left'}}>
                 {
-                    data.map(item=> <SearchResults key={item.id} {...item} />)
+                    data.map(item=> <SearchResults key={item.id} {...item} handleChangeById={handleChangeById}/>)
                 }
+                </div>
+                {
+                    isJobView&&<div style={{float:'right'}}>
+                    <ApplyJobs jobId={jobId} />
+                    </div>
+                }
+                
             </Results>
-
+            <div style={{clear:'both'}}></div>
             {data.length > 1 && <div>
                 <button disabled={page===1} onClick={()=>setPage(prev=> prev-1)} >Prev</button>
                 <button disabled={page===Math.ceil(data/10)} onClick={()=>setPage(prev=> prev+1)} >Next</button>

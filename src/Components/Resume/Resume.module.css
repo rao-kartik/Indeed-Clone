@@ -1,19 +1,53 @@
 .resumePage {
   width: 100%;
-  /* border: 1px solid red; */
   background-color: #f6f6f6;
   height: auto;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .resumeContainer {
-  width: 50%;
-  margin-top: 40px;
-  height: 100%;
+  width: 700px;
+  margin: 55px 10px;
+  border-radius: 15px;
+  height: auto;
   background-color: white;
-  margin-left: 10%;
   padding: 20px;
-    box-shadow: 0px 0px 8px 1px black;
+  box-shadow: 0px 0px 8px 1px black;
 
+}
+.resumeFeatures {
+  width: 500px;
+  margin: 55px 10px;
+  height: auto;
+  padding: 20px;
+}
+.resumeFeatures div p {
+  color: rgb(0, 68, 255);
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.resumeFeatures p {
+  margin: 40px 0px;
+}
+.resumeFeatures input {
+  margin-right: 15px;
+}
+.resumeFeatures label+div {
+  margin-top: 10px;
+  color: grey;
+}
+
+.resumeFeatures button {
+  background-color: white;
+  padding: 12px 70px;
+  outline: none;
+  color: rgb(0, 68, 255);
+  border:3px solid rgb(0, 68, 255);
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 20px;
 }
 
 .resumeContainer h1 {

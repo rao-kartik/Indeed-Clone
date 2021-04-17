@@ -31,7 +31,7 @@ export const ApplyFormResume=()=>{
             const requestAction = applyJobRequest();
             dispatch(requestAction);
             axios
-              .post("http://localhost:3004/applyjobs", {
+              .post("https://json-server-mocker-ajmal.herokuapp.com/applyjobs", {
                   email:data.email,
                   jobid:jobID.id
               })

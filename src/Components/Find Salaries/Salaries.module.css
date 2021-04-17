@@ -87,7 +87,6 @@
 }
 
 .companyInfo p {
-  margin-top: 1vh;
   font-size: 0.8rem;
   color: rgb(112, 112, 112);
 }
@@ -142,12 +141,12 @@
   width: 100%;
 }
 
-
-.companyInfo div:nth-child(3) {
+.companyInfo > div:nth-child(3) {
   flex-grow: 1;
   text-align: right;
 }
-.companyInfo div:nth-child(2) {
+
+.companyInfo > div:nth-child(2) {
   flex-grow: 2;
   margin: 1vw;
 }
@@ -260,4 +259,14 @@
 }
 .faq p {
   margin-bottom: 3vh;
+}
+
+.rating {
+  display:flex;
+  margin-top:10px;
+}
+
+.rating > div {
+  font-weight: bold;
+  margin: 0px 5px 0px 4px;
 }

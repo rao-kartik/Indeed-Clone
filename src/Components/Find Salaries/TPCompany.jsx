@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { CompContainer } from "../../Custom UI/RCustomUI";
 import { getTopPayingComp } from "../../Redux/TopPayingCompanies/action";
+import StarRatings from 'react-star-ratings';
+
 function TPCompany() {
   const isLoading = useSelector((state) => state.topPayingComp.isLoading)
   const tpComp = useSelector((state) => state.topPayingComp.companies);
@@ -29,8 +31,17 @@ function TPCompany() {
                   <img src={item.logo} alt="" />
                 </div>
                 <div>
-                  <h3>{item.name}</h3>
-                  <p>{item.reviews}</p>
+                  <h4 style={{marginTop:'15px'}}>{item.name}</h4>
+                  <div style={{display:'flex', marginTop:'10px', gap:'10px'}}>
+                  <StarRatings
+                    rating={item.stars}
+                    starRatedColor="#6F6F6F"
+                    starDimension='15px'
+                    starSpacing='0px'
+                    numberOfStars={5}
+                  />
+                  <p style={{fontSize:'12px', color:'grey'}}>{item.reviews}</p>
+                  </div>
                 </div>
               </CompContainer></Link>
             );

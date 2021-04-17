@@ -6,17 +6,19 @@ import { Faq, Follow, Logo, SearchButton } from "../../Custom UI/RCustomUI";
 import styles from "./Salaries.module.css";
 import { JobByCategory } from "../../Components/Find Salaries/JobByCategory";
 import { useState } from "react";
-import { categories } from './data';
+import { categories } from "./data";
+import StarRatings from 'react-star-ratings';
+
 
 function CompanyInfo() {
   const data = useSelector((state) => state.companyInfo.data);
-  const { name, logo, poster, reviews } = data;
+  const { name, logo, poster, reviews, stars } = data;
   const [category, setCategory] = useState("Popular Jobs");
   const jobs_data = useSelector((state) => state.categoryJobs.jobs_data);
   const [follow, setFollow] = useState(false);
   const handleFollow = () => {
-    setFollow(!follow)
-  }
+    setFollow(!follow);
+  };
   const dispatch = useDispatch();
   const { id } = useParams();
   const handleChange = (e) => {
@@ -26,7 +28,6 @@ function CompanyInfo() {
   useEffect(() => {
     dispatch(getCompanyData(id));
   }, []);
-
 
   console.log("data", jobs_data);
   return (
@@ -39,7 +40,17 @@ function CompanyInfo() {
         <div>
           <h4>{name}</h4>
           <br />
-          <p>{reviews}</p>
+          <div className={styles.rating}>
+            <div>{stars}</div>
+            <StarRatings
+              rating={stars}
+              starRatedColor="#9D2B6B"
+              starDimension="16px"
+              starSpacing="0px"
+              numberOfStars={5}
+            />
+            <p style={{ marginLeft: "10px" }}>{reviews}</p>
+          </div>
         </div>
         <div>
           {" "}
@@ -94,7 +105,7 @@ function CompanyInfo() {
           </div>
           <div>
             <Faq className={styles.faq}>
-              <h4 >Question about {name}</h4>
+              <h4>Question about {name}</h4>
               <br />
               <div>What qualifications refer to get job</div>
               <p>395 People answered</p>

@@ -87,6 +87,17 @@ export const SearchResult = styled.div`
     }
 `;
 
+export const SearchResultById = styled.div`
+    width: 370px;
+    border: 1px solid #d4d2d0;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+
+    &:hover {
+        /* cursor: pointer; */
+    }
+`;
 /* inputs */
 
 export const Input = styled.input`

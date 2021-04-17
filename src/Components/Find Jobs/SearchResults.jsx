@@ -30,7 +30,7 @@ const Time=styled.p`
     margin: 0 20px 0 0;
 `;
 
-export const SearchResults = ({title, location,  company_name, salary, category, publication_date}) => {
+export const SearchResults = ({title, location,  company_name, salary, category, publication_date,id,handleChangeById}) => {
 
     const month = publication_date[5] + publication_date[6]
 
@@ -43,9 +43,11 @@ export const SearchResults = ({title, location,  company_name, salary, category,
     days = 30
 
     const totalTime = +date + days
-    
+    const handleClick=()=>{
+        handleChangeById(id);
+    }
     return (
-            <SearchResult>
+            <SearchResult onClick={handleClick}>
                 <H2>{title}</H2>
                 <P>{company_name}</P>
                 <P>{location}</P>

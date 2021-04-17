@@ -10,6 +10,7 @@ import { reviewsReducer } from "./Redux/Reviews/reviewsReducer";
 import { ReviewSearchReducer } from "./Redux/ReviewSearch/ReviewSearchReducer";
 import { findCompanyReducer } from "./Redux/FindCompanyId/findCompanyReducer";
 import { AdminReducer } from './Redux/Admin/adminReducer';
+import { jobsByIdReducer } from "./Redux/FindJobById/reducer";
 
 const rootReducer = combineReducers({
   topPayingJobs: topPayingJobsReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   reviewsReducer: reviewsReducer,
   ReviewSearchReducer: ReviewSearchReducer,
   findCompanyReducer:findCompanyReducer,
-  adminReducer: AdminReducer
+  adminReducer: AdminReducer,
+  jobsByIdReducer: jobsByIdReducer
 });
 
 const customMiddleware = (store) => (next) => (action) => {

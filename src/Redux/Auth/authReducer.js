@@ -79,6 +79,8 @@ export const AuthReducer = (state=initState, action)=>{
             }
         }
         case REGISTER_SUCCESS: {
+            saveData("auth", true)
+            saveData("token", payload)
             return {
                 ...state,
                 isLoading: false,
@@ -95,16 +97,20 @@ export const AuthReducer = (state=initState, action)=>{
             }
         }
         case LOGOUT_SUCCESS: {
-            saveData("auth", false)
-            saveData("token",{})
+            saveData("auth", false);
+            saveData("token",{});
+            saveData("resumeData",[]);
+            saveData("recruiterData", []);
             return {
                 ...state,
                 isAuth: false
             }
         }
         case ADMIN_LOGOUT_SUCCESS: {
-            saveData("adminAuth", false)
-            saveData("token",{})
+            saveData("adminAuth", false);
+            saveData("token",{});
+            saveData("resumeData",[]);
+            saveData("recruiterData", []);
             return {
                 ...state,
                 isAdminAuth: false

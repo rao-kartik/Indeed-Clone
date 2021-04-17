@@ -30,7 +30,7 @@ const Time=styled.p`
     margin: 0 20px 0 0;
 `;
 
-export const SearchResults = ({title, location,  company_name, salary, category, publication_date,id,handleChangeById}) => {
+export const SearchResults = ({title, location, job_type,  company_name, salary, category, publication_date,id,handleChangeById}) => {
 
     const month = publication_date[5] + publication_date[6]
 
@@ -52,6 +52,9 @@ export const SearchResults = ({title, location,  company_name, salary, category,
                 <P>{company_name}</P>
                 <P>{location}</P>
                 <h5>₹{salary} a month</h5>
+                <P>Type of Job: {job_type === "full_time" ? "Full Time" : 
+                                job_type === "part_time" ? "Part Time" : 
+                                job_type === "contract" ? "Contract" : "Fresher"}</P>
                 <P><span style={{color:'#1c56ac', fontSize:'16px', position:'Relative', top:'3px'}} class="material-icons">send</span> Apply Securely with Indeed Resume</P>
                 <Hiring>
                     <P><span style={{color:'#1c56ac', fontSize:'18px', position:'Relative', top:'3px'}} class="material-icons">bolt</span> Responsive employer</P>

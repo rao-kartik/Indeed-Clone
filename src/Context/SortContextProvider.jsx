@@ -10,24 +10,43 @@ export const SortContextProvider = ({ children }) => {
 
     const [ sortByLoc, setSortByLoc ] = useState(null);
     const [ sortByJobType, setSortByJobType ] = useState(null);
+    const [ sortByDays, setSortByDays ] = useState(null);
 
     const handleFilterChange = (e)=>{
         const { value } = e.target;
         setSortByLoc(value);
+        setSortByJobType(value);
+        setSortByDays(value);
     }
     
-    const filterCondition = (item)=>{
+    const filterConditionLoc = (item)=>{
         if(sortByLoc === null){
             return item;
         }
-        else if( item.location === sortByLoc ){
+        if( item.location === sortByLoc ){
+            return item;
+        }
+        if(setSortByJobType === null ){
+            return item;
+        }
+        if (item.job_type === sortByJobType){
             return item;
         }
     }
 
+    const filterConditionJobType = (item)=>{
+        
+    }
+
+    const filterConditionDays = (item)=>{
+
+    }
+
     const value = {
         handleFilterChange,
-        filterCondition
+        filterConditionLoc,
+        filterConditionJobType,
+        filterConditionDays
     }
     
     return (

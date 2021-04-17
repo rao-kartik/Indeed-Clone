@@ -27,7 +27,6 @@ export const AdminReducer = (state=initState, action)=>{
             }
         }
         case GET_JOBS_SUCCESS: {
-            // saveData("jobsData", payload)
             return {
                 ...state,
                 isLoading: false,

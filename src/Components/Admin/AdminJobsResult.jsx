@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
@@ -65,7 +65,6 @@ export const AdminJobsResult = ({id, title, location,  company_name, salary, cat
 
     const handleDelete = (id)=>{
         dispatch(deleteJobs(id));
-        dispatch(getJobs())
         history.push('/account/admin/jobs')
     }
     

@@ -19,20 +19,27 @@ const Results = styled.div`
     margin: auto;
 `;
 
-const initCond = {
-    datePosted: '',
-    jobType: '',
-    location: ''
-}
+const BtnDiv = styled.div`
+    display: flex;
+    justify-content: center;
+`;
 
+const Btn = styled.button`
+    width: 60px;
+    height: 25px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+`;
 export const FindJobs = () => {
 
     var data = useSelector(state=> state.findReducer.data)
     // console.log(data)
-    const { filterCondition } = useContext(SortContext);
+    const { filterConditionLoc, filterConditionJobType, filterConditionDays } = useContext(SortContext);
 
     const [ page, setPage ] = useState(1);
-    console.log(page);
+    // console.log(page);
 
     const [jobId,setJobId] = useState('');
     const [isJobView,setIsJobView] = useState(false);
@@ -47,8 +54,12 @@ export const FindJobs = () => {
             <Results>
                 <div style={{float:'left'}}>
                     {
-                        data.filter(item=>filterCondition(item)).map(item=> <SearchResults key={item.id} {...item} handleChangeById={handleChangeById}/>)
+                        data.filter(item=>filterConditionLoc(item)).map(item=> <SearchResults key={item.id} {...item} handleChangeById={handleChangeById}/>)
                     }
+                    {data.length > 1 && <BtnDiv>
+                        <Btn disabled={page===1} onClick={()=>setPage(prev=> prev-1)} >Prev</Btn>
+                        <Btn disabled={page===Math.ceil(data.length/10)} onClick={()=>setPage(prev=> prev+1)} >Next</Btn>
+                    </BtnDiv>}
                 </div>
                 {
                     isJobView&&<div style={{float:'right'}}>
@@ -58,10 +69,6 @@ export const FindJobs = () => {
                 
             </Results>
             <div style={{clear:'both'}}></div>
-            {data.length > 1 && <div>
-                <button disabled={page===1} onClick={()=>setPage(prev=> prev-1)} >Prev</button>
-                <button disabled={page===Math.ceil(data/10)} onClick={()=>setPage(prev=> prev+1)} >Next</button>
-            </div>}
 
             <PopularSearches />
             

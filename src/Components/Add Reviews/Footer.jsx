@@ -21,12 +21,6 @@ const P = styled.p`
     }
 `;
 
-const Resume = styled.div`
-    text-align: center;
-    width: 100%;
-    background: #f3f2f1;
-    padding: 30px 0;
-`;
 
 export const Footer = () => {
     return (

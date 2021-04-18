@@ -125,6 +125,8 @@ export const AdminPostJob = () => {
             publication_date: date
         }
         dispatch(addJobs(updated))
+        setDispPopup(true);
+        setjobInp(initData);
     }
 
     const handelExitPopUp = ()=>{

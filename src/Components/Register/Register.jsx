@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { RoundBtn } from '../../Custom UI/KCustomUI';
 import { BottomPart } from './BottomPart';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, Redirect, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../Redux/Auth/action';
 
 const MainBox = styled.div`
@@ -137,6 +137,8 @@ const initData = {
 export const Register = () => {
 
     const [ regInp, setReginp ] = useState(initData);
+    const [ registerSuccess, setRegisterSuccess ] = useState(false); 
+    const isAuth = useSelector(state=> state.authReducer.isAuth);
 
     const dispatch = useDispatch();
 
@@ -155,9 +157,12 @@ export const Register = () => {
         e.preventDefault();
         dispatch(registerUser(input));
         setReginp(initData);
+        setRegisterSuccess(true);
     };
 
-    
+    if(registerSuccess && isAuth){
+        history.push('/p/hh78545')
+    }
     
     return (
         <>

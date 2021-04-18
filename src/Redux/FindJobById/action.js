@@ -27,7 +27,7 @@ export const jobsByIdSearch = (params) => (dispatch) => {
   console.log(params);
   dispatch(jobsByIdRequest());
   const config = {
-    url: `/jobs/${params}`,
+    url: `/newJobs/${params}`,
     method: "get",
   };
   axios(config)

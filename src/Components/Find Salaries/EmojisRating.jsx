@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Salaries.module.css";
 import { active, inactive } from "./data";
+import { postFeedback } from "../../Redux/SalaryPageFeedback/action";
 
 function EmojisRating() {
+  const dispatch = useDispatch();
   const [emoji, setEmoji] = useState(false);
+  const [rate, setRate] = useState()
+  const [review, setReview] = useState()
   const handleDisplay = (e) => {
     if (!emoji) {
       const { id } = e.target;
@@ -21,7 +25,17 @@ function EmojisRating() {
     setEmoji(true);
     const { id } = e.target;
     e.target.src = active[id - 1];
+    setRate(id)
   };
+
+  const handleSubmit = () => {
+    let payload = {
+      page: "Salary Page",
+      rating: rate,
+      review: review,
+    }
+    dispatch(postFeedback(payload))
+  }
   return (
     <>
       <div className={styles.findEarning}>
@@ -77,12 +91,12 @@ function EmojisRating() {
         </div>
         {emoji ? (
           <>
-            <textarea
+            <textarea onChange={(e) => setReview(e.target.value)}
               className={styles.feedback}
               placeholder="Please tell us more what you'd like to see on career pages..."
             />
             <br />
-            <button className={styles.feedbackSubmit}>Submit Feedback</button>
+            <button onClick={handleSubmit} className={styles.feedbackSubmit}>Submit Feedback</button>
           </>
         ) : null}
       </div>

@@ -1,28 +1,31 @@
-import React from 'react'
-import { Route, Switch } from 'react-router'
-import { CompanyInfo } from '../Components/Find Salaries/CompanyInfo'
-import { CompanyReviewsPage } from './CompanyReviewsPage'
-import { FindJobsPage } from './FindJobsPage'
-import { FindSalariesPage } from './FindSalariesPage'
-import { HiringPage } from './HiringPage'
-import { Navbar } from './Navbar'
-import { PostResumePage } from './PostResumePage'
-import { RegisterPage } from './RegisterPage'
-import { SignInPage } from './SignInPage'
-import {AddReview} from './AddReview'
-import { AddSurvey } from './AddSurvey'
-import { CompanySearch } from './CompanySearch'
-import { AdminPage } from './AdminPage'
-import { AdminLogin } from '../Components/Admin/AdminLogin'
-import { Admin } from '../Components/Admin/Admin'
-import { AdminJobs } from '../Components/Admin/AdminJobs'
-import { AdminRecruiters } from '../Components/Admin/AdminRecruiters'
-import { AdminPostJob } from '../Components/Admin/AdminPostJob'
-import { AdminPostRecruiter } from '../Components/Admin/AdminPostRecruiter'
-import { AdminPrivateRoute } from './AdminPrivateRoute'
-import { useSelector } from 'react-redux'
-import { AdminNavbar } from '../Components/Admin/AdminNavbar'
-import { ApplyJobForm } from './ApplyJobForm'
+import React from 'react';
+import { Route, Switch } from 'react-router';
+import { CompanyInfo } from '../Components/Find Salaries/CompanyInfo';
+import { CompanyReviewsPage } from './CompanyReviewsPage';
+import { FindJobsPage } from './FindJobsPage';
+import { FindSalariesPage } from './FindSalariesPage';
+import { HiringPage } from './HiringPage';
+import { Navbar } from './Navbar';
+import { PostResumePage } from './PostResumePage';
+import { RegisterPage } from './RegisterPage';
+import { SignInPage } from './SignInPage';
+import { AddReview } from './AddReview';
+import { AddSurvey } from './AddSurvey';
+import { CompanySearch } from './CompanySearch';
+import { AdminLogin } from '../Components/Admin/AdminLogin';
+import { Admin } from '../Components/Admin/Admin';
+import { AdminJobs } from '../Components/Admin/AdminJobs';
+import { AdminRecruiters } from '../Components/Admin/AdminRecruiters';
+import { AdminPostJob } from '../Components/Admin/AdminPostJob';
+import { AdminPostRecruiter } from '../Components/Admin/AdminPostRecruiter';
+import { AdminPrivateRoute } from './AdminPrivateRoute';
+import { useSelector } from 'react-redux';
+import { AdminNavbar } from '../Components/Admin/AdminNavbar';
+import { ApplyJobForm } from './ApplyJobForm';
+import { PrivateRoute } from './PrivateRoute';
+import { AdminReviewPage } from '../Components/Admin/AdminReviewPage';
+import { AppliedJobs } from '../Components/Applied Jobs/AppliedJobs';
+import { MyReviews } from '../Components/My Reviews/MyReviews';
 
 export const Routes = () => {
 
@@ -64,9 +67,9 @@ export const Routes = () => {
                     <CompanyInfo />
                 </Route>
 
-                <Route path='/p/hh78545' exact>
+                <PrivateRoute path='/p/hh78545' exact>
                     <PostResumePage />
-                </Route>
+                </PrivateRoute>
 
                 <Route path='/account/login' exact>
                     <SignInPage />
@@ -80,26 +83,38 @@ export const Routes = () => {
                     <RegisterPage />
                 </Route>
 
+                <Route path='/appliedjobs'>
+                    <AppliedJobs/>
+                </Route>
+
+                <Route path='/myreviews'>
+                    <MyReviews/>
+                </Route>
+
                 <Route path='/account/admin/login' exact>
                     <AdminLogin />
                 </Route>
 
-                <AdminPrivateRoute path='/account/admin/recruiter' redirectPath='/account/admin/login'>
+                <AdminPrivateRoute path='/account/admin/recruiter'>
                     <AdminRecruiters />
                 </AdminPrivateRoute>
 
-                <AdminPrivateRoute path='/account/admin/jobs' redirectPath='/account/admin/login'>
+                <AdminPrivateRoute path='/account/admin/jobs'>
                     <AdminJobs />
                 </AdminPrivateRoute>
 
-                <AdminPrivateRoute path='/account/admin/addJobs' redirectPath='/account/admin/login'>
+                <AdminPrivateRoute path='/account/admin/addJobs'>
                     <AdminPostJob />
                 </AdminPrivateRoute>
 
-                <AdminPrivateRoute path='/account/admin/addrecruiter' redirectPath='/account/admin/login'>
+                <AdminPrivateRoute path='/account/admin/addrecruiter'>
                     <AdminPostRecruiter />
                 </AdminPrivateRoute>
 
+                <AdminPrivateRoute path='/account/admin/pageReviews'>
+                    <AdminReviewPage />
+                </AdminPrivateRoute>
+                
                 <Route>
                     Error 404: Page Not Found!
                 </Route>

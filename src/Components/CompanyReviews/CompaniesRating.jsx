@@ -5,6 +5,7 @@ import {Popup} from './popup';
 import styled from 'styled-components';
 import styles from './popup.module.css';
 import { Redirect, useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 
 const H1 = styled.h1`
     font-size:20px;
@@ -17,22 +18,20 @@ const Div = styled.div`
     padding:5px;
 `;
 const StarButton = styled.button`
-background-color: transparent;
+    background-color: transparent;
     border: none;
     outline: none;
     cursor: pointer;
 `;
+
 export const CompanyRating=()=>{
-    const [isOpen, setIsOpen] = useState(false);
-    const togglePopup = () => {
-        setIsOpen(!isOpen);
-    }
-    const [rating, setRating] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const togglePopup = () => { setIsOpen(!isOpen);}
+  const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [companyName,setCompanyName] = useState("");
   const history = useHistory();
   const handleNext=()=>{
-    console.log(companyName);
     history.push(`/companies/review/${companyName}`)
   }
     return(

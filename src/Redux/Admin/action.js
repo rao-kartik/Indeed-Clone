@@ -136,7 +136,7 @@ const getJobs = ()=>dispatch=>{
     dispatch(getJobsRequest())
 
     const config = {
-        url: '/jobs',
+        url: '/newJobs',
         method: 'get'
     };
     jobAxios(config)
@@ -153,13 +153,14 @@ const addJobs = (payload)=>dispatch=>{
     dispatch(postJobsRequest())
 
     const config = {
-        url: '/jobs',
+        url: '/newJobs',
         method: 'post',
         data: payload
     };
     jobAxios(config)
     .then(res=>{
         dispatch(postJobsSuccess(res.data));
+        dispatch(getJobs());
     })
     .catch(err=>{
         dispatch(postJobsFailure(err));
@@ -171,12 +172,13 @@ const deleteJobs = (id)=>dispatch=>{
     dispatch(deleteJobsRequest())
 
     const config = {
-        url: `/jobs/${id}`,
+        url: `/newJobs/${id}`,
         method: 'delete'
     };
     jobAxios(config)
     .then(res=>{
         dispatch(deleteJobsSuccess(res.data));
+        dispatch(getJobs());
     })
     .catch(err=>{
         dispatch(deleteJobsFailure(err));

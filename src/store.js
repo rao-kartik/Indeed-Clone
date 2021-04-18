@@ -16,6 +16,7 @@ import { findResumeReducer } from "./Redux/FindResume/reducer";
 import { applyJobReducer } from "./Redux/ApplyJob/applyJobReducer";
 import { resumeReducer } from "./Redux/Resume/reducer";
 import { myReviewsReducer } from "./Redux/MyReviews/reducer";
+import { myJobReducer } from "./Redux/MyJobs/reducer";
 
 const rootReducer = combineReducers({
   topPayingJobs: topPayingJobsReducer,
@@ -35,7 +36,8 @@ const rootReducer = combineReducers({
   appReducer: AppReducer,
   jobsByIdReducer: jobsByIdReducer,
   resume:resumeReducer,
-  myReviewsReducer: myReviewsReducer
+  myReviewsReducer: myReviewsReducer,
+  myJobReducer:myJobReducer
 });
 
 const customMiddleware = (store) => (next) => (action) => {

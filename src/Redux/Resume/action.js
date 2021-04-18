@@ -123,6 +123,7 @@ export const deleteResume = (id) => (dispatch) => {
   axios(config)
     .then((res) => {
       dispatch(deleteResumeSuccess(res.data));
+      dispatch(getResume())
     })
     .catch((err) => {
                 console.log(err);

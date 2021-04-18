@@ -6,15 +6,11 @@ import { JobContainer } from "../../Custom UI/RCustomUI"
 
 function TPJobs() {
   const tpJobs = useSelector((state) => state.topPayingJobs.jobs);
-  const isLoading = useSelector((state) => state.topPayingJobs.isLoading);
-  console.log(isLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTopPayingJobs());
   }, []);
-    if (isLoading) {
-        return <h1 style={{textAlign:'center'}}>Loading ...</h1>
-    }
+
   return (
     <div className={styles.tpJobs}>
       <h1>Browse top paying jobs by industry</h1>

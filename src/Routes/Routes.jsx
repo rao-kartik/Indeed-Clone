@@ -26,6 +26,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { AdminReviewPage } from '../Components/Admin/AdminReviewPage';
 import { AppliedJobs } from '../Components/Applied Jobs/AppliedJobs';
 import { MyReviews } from '../Components/My Reviews/MyReviews';
+import { EmailPreferences } from '../Components/Email Preferences/EmailPreferences';
 
 export const Routes = () => {
 
@@ -69,6 +70,10 @@ export const Routes = () => {
 
                 <PrivateRoute path='/p/hh78545' exact>
                     <PostResumePage />
+                </PrivateRoute>
+
+                <PrivateRoute path='/preferences' exact>
+                    <EmailPreferences/>
                 </PrivateRoute>
 
                 <Route path='/account/login' exact>

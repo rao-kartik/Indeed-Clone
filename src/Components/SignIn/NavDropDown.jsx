@@ -78,9 +78,8 @@ export const NavDropdown = () => {
                 <H5>{token.email}</H5>
                 <Link style={{textDecoration:'none', color:'#000'}} to='/p/hh78545' ><Content>Profile <span style={{marginTop:'12px'}} class="material-icons-outlined">description</span></Content></Link>
                 <Link style={{textDecoration:'none', color:'#000'}} to='/appliedjobs' ><Content>My Jobs <span style={{marginTop:'10px'}} class="material-icons-outlined"><span class="material-icons-outlined">favorite_border</span></span></Content></Link>
-                
                 <Link style={{textDecoration:'none', color:'#000'}} to='/myreviews' ><Content>My Reviews <span style={{marginTop:'10px'}} class="material-icons-outlined"><span class="material-icons-outlined">rate_review</span></span></Content></Link>
-                <Content>Email Preferences <span style={{marginTop:'10px'}} class="material-icons-outlined"><span class="material-icons-outlined">email</span></span></Content>
+                <Link style={{ textDecoration: 'none', color: '#000' }} to={'/preferences'}><Content>Email Preferences <span style={{ marginTop: '10px' }} class="material-icons-outlined"><span class="material-icons-outlined">email</span></span></Content></Link>
                 <Content>Search Preferences <span style={{marginTop:'10px'}} class="material-icons-outlined"><span class="material-icons-outlined">search</span></span></Content>
                 <Content>Account <span style={{marginTop:'10px'}} class="material-icons-outlined"><span class="material-icons-outlined">settings_input_component</span></span></Content>
             </div>

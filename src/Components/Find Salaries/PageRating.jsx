@@ -4,7 +4,8 @@ import { EmojisRating } from "./EmojisRating";
 import styles from "./Salaries.module.css";
 
 function PageRating() {
-  return (
+  const isLoading = useSelector((state) => state.topPayingComp.isLoading)
+  return !isLoading && (
     <>
       <div className={styles.estimatedPay}>
         <div>

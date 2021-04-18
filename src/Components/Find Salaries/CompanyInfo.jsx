@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { Redirect } from 'react-router-dom'
 import { getCompanyData } from "../../Redux/CompanyInfo/action";
 import { Faq, Follow, Logo, SearchButton } from "../../Custom UI/RCustomUI";
 import styles from "./Salaries.module.css";
@@ -8,17 +9,35 @@ import { JobByCategory } from "../../Components/Find Salaries/JobByCategory";
 import { useState } from "react";
 import { categories } from "./data";
 import StarRatings from 'react-star-ratings';
+import { loadData, saveData } from "../../Utils/localStorage";
+import { Loading } from "../Loading/Loading";
 
 
 function CompanyInfo() {
+  const isLoading = useSelector((state) => state.companyInfo.isLoading)
   const data = useSelector((state) => state.companyInfo.data);
   const { name, logo, poster, reviews, stars } = data;
   const [category, setCategory] = useState("Popular Jobs");
   const jobs_data = useSelector((state) => state.categoryJobs.jobs_data);
   const [follow, setFollow] = useState(false);
   const handleFollow = () => {
-    setFollow(!follow);
-  };
+    const isauth = loadData('auth')
+    if (isauth == undefined || isauth == false) {
+      return <Redirect to={'/'} />
+    }
+    else {
+      if (!follow) {
+        if (loadData('following') == undefined) {
+          saveData('following', [name])
+        } else {
+          var data = loadData('following')
+          saveData('following', [...data, name])
+        }
+      }
+      setFollow(!follow);
+      // checkStatus()
+    }
+  }
   const dispatch = useDispatch();
   const { id } = useParams();
   const handleChange = (e) => {
@@ -29,8 +48,7 @@ function CompanyInfo() {
     dispatch(getCompanyData(id));
   }, []);
 
-  console.log("data", jobs_data);
-  return (
+  return isLoading ? <Loading /> : (
     <div className={styles.poster}>
       <img src={poster} alt="poster" />
       <div className={styles.companyInfo}>

@@ -10,7 +10,9 @@ import ReactStars from "react-rating-stars-component";
 import { SurveyTopPart } from './SurveyTopPart';
 import { Footer } from './Footer'
 import { loadData } from "../../Utils/localStorage";
+import { Loading } from '../Loading/Loading';
 // import Loader from "react-loader-spinner";
+
 
 const H1 = styled.h1`
     font-size:19.95px;
@@ -155,7 +157,7 @@ export const Survey =()=>{
             </div>
             <Footer/>
         </div>
-    ):<Redirect to='/companies'/>):(<div style={{width:'10%',height:'20vh',margin:'auto',marginTop:'15%'}}>
-    <p>Loading</p>
+    ):<Redirect to='/companies'/>):(<div style={{height:'20vh',marginTop:'15%'}}>
+    <Loading/>
     </div>)):(<Redirect to='/account/login'/>)
 }

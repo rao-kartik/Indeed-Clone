@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
+import { Loading } from "../Loading/Loading";
 import { CompaniesListItem } from "./CompaniesListItem";
 // import Loader from "react-loader-spinner";
 
@@ -29,8 +30,8 @@ export const CompanyList=({type})=>{
   },[])
   
   return isLoading?
-  (<div style={{width:'10%',height:'20vh',margin:'auto',marginTop:'15%'}}>
-    <p>LOADING...</p>
+  (<div style={{height:'20vh',marginTop:'15%'}}>
+    <Loading/>
     </div>):(
       <div style={{width:'70%',margin:'auto',marginTop:'20px',backgroundColor:'#fff'}}>
         <div style={{display:"flex"}}>

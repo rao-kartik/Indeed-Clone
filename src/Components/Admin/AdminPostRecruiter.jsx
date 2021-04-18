@@ -65,6 +65,8 @@ const initData = {
 
 export const AdminPostRecruiter = () => {
 
+    document.title = 'Admin | Add Recruiter | Indeed Accounts'
+
     const [ addRecInp, setAddRecInp ] = useState(initData);
 
     const [ dispPopUp, setDispPopup ] = useState(false)

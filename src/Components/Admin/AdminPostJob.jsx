@@ -83,6 +83,8 @@ const initData = {
 
 export const AdminPostJob = () => {
 
+    document.title = 'Admin | Add Job | Indeed Accounts'
+
     const [ jobInp, setjobInp ] = useState(initData);
     const dispatch = useDispatch();
 

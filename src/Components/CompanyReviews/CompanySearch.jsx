@@ -9,9 +9,6 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
 
 export const CompanySearch=()=>{
-  useEffect(()=>{
-    document.title = 'Find the Best Companies Hiring Now | Indeed.com';
-  });
   const dispatch = useDispatch();
   const { isLoading, isError,companies } = useSelector((state) => state.company,shallowEqual);
 

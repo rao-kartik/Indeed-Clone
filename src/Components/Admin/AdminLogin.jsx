@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { adminSignInWithEmail } from '../../Redux/Auth/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { BottomPart } from '../SignIn/BottomPart'
+import { Loading } from '../Loading/Loading';
 
 const MainBox = styled.div`
     width: 100%;
@@ -67,12 +68,20 @@ const Lost =styled.p`
     }
 `;
 
+const Load = styled.div`
+    position: relative;
+    right: 510px;
+`;
+
 const initInp = {
     email: '',
     password: ''
 };
 
 export const AdminLogin = () => {
+
+    document.title = 'Admin | Sign In | Indeed Accounts';
+    
     const [ signInp, setSignInp ] = useState(initInp);
 
     const dispatch = useDispatch();
@@ -80,6 +89,7 @@ export const AdminLogin = () => {
     const history = useHistory();
 
     const isAdminAuth = useSelector(state=> state.authReducer.isAdminAuth);
+    const isLoading = useSelector(state=> state.authReducer.isLoading);
 
     const handleInput = (e)=>{
         const { name, value } = e.target;
@@ -128,7 +138,9 @@ export const AdminLogin = () => {
 
                             </Label><br/>
 
-                            <RoundBtn style={{border:'none', margin:'10px 0', background:'#085ff7', color:'#fff'}} >Sign In</RoundBtn>
+                            {
+                                isLoading ? <Load><Loading /></Load> : <RoundBtn style={{border:'none', margin:'10px 0', background:'#085ff7', color:'#fff'}} >Sign In</RoundBtn>
+                            }
 
                         </form>
 

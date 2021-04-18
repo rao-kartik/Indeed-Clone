@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { SortContext } from '../../Context/SortContextProvider';
 import { SearchResultById } from '../../Custom UI/KCustomUI';
 import { getSearchData } from '../../Redux/FindJobs/action';
+import { Loading } from '../Loading/Loading';
 import { ApplyJobs } from './ApplyJobs';
 import { BottomPart } from './BottomPart';
 import { FindJobsInput } from './FindJobsInput';
@@ -36,7 +37,9 @@ export const FindJobs = () => {
 
     var data = useSelector(state=> state.findReducer.data)
     // console.log(data)
-    const { filterConditionLoc, filterConditionJobType, filterConditionDays } = useContext(SortContext);
+    const { filterConditionLoc} = useContext(SortContext);
+
+    const isLoading = useSelector(state=> state.findReducer.isLoading);
 
     const [ page, setPage ] = useState(1);
     // console.log(page);
@@ -51,23 +54,26 @@ export const FindJobs = () => {
         <Container>
             <FindJobsInput page={page} />
 
-            <Results>
-                <div style={{float:'left'}}>
-                    {
-                        data.filter(item=>filterConditionLoc(item)).map(item=> <SearchResults key={item.id} {...item} handleChangeById={handleChangeById}/>)
-                    }
-                    {data.length > 1 && <BtnDiv>
-                        <Btn disabled={page===1} onClick={()=>setPage(prev=> prev-1)} >Prev</Btn>
-                        <Btn disabled={page===Math.ceil(data.length/10)} onClick={()=>setPage(prev=> prev+1)} >Next</Btn>
-                    </BtnDiv>}
-                </div>
-                {
-                    isJobView&&<div style={{float:'right'}}>
-                    <ApplyJobs jobId={jobId} />
+            {
+                isLoading ? <Loading /> : 
+                <Results>
+                    <div style={{float:'left'}}>
+                        {
+                            data.filter(item=>filterConditionLoc(item)).map(item=> <SearchResults key={item.id} {...item} handleChangeById={handleChangeById}/>)
+                        }
+                        {data.length > 1 && <BtnDiv>
+                            <Btn disabled={page===1} onClick={()=>setPage(prev=> prev-1)} >Prev</Btn>
+                            <Btn disabled={page===Math.ceil(data.length/10)} onClick={()=>setPage(prev=> prev+1)} >Next</Btn>
+                        </BtnDiv>}
                     </div>
-                }
-                
-            </Results>
+                    {
+                        isJobView&&<div style={{float:'right'}}>
+                        <ApplyJobs jobId={jobId} />
+                        </div>
+                    }
+                    
+                </Results>
+            }
             <div style={{clear:'both'}}></div>
 
             <PopularSearches />

@@ -145,6 +145,8 @@ export const FindJobsInput = ({ page }) => {
         dispatch(getSearchData(input));
         setCatDisp(false);
         setCityDisp(false);
+        setCatInp('');
+        setCityInp('');
     }
 
     const setCategory = value => {
@@ -183,7 +185,7 @@ export const FindJobsInput = ({ page }) => {
 
                     {
                         catDisp && (
-                            <AutoSuggestions onClick={()=>setCatDisp(false)} >
+                            <AutoSuggestions onMouseLeave={()=>setCatDisp(false)} >
                                 {
                                     category.filter(( {category} )=>category.indexOf(catInp) > -1 ).map(cat => <Opt onClick={()=> setCategory(cat.category)} >{cat.category}</Opt>)
                                 }
@@ -201,7 +203,7 @@ export const FindJobsInput = ({ page }) => {
 
                     {
                         cityDisp && (
-                            <AutoSuggestions onClick={()=>setCityDisp(false)} >
+                            <AutoSuggestions onMouseLeave={()=>setCityDisp(false)} >
                                 {
                                     city.filter(( {city} )=>city.indexOf(cityInp) > -1 ).map(loc => <Opt onClick={()=> setCity(loc.city)} >{loc.city}</Opt>)
                                 }

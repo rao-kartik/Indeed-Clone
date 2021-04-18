@@ -24,6 +24,8 @@ import { AdminNavbar } from '../Components/Admin/AdminNavbar';
 import { ApplyJobForm } from './ApplyJobForm';
 import { PrivateRoute } from './PrivateRoute';
 import { AdminReviewPage } from '../Components/Admin/AdminReviewPage';
+import { AppliedJobs } from '../Components/Applied Jobs/AppliedJobs';
+import { MyReviews } from '../Components/My Reviews/MyReviews';
 
 export const Routes = () => {
 
@@ -79,6 +81,14 @@ export const Routes = () => {
 
                 <Route path='/account/register' exact>
                     <RegisterPage />
+                </Route>
+
+                <Route path='/appliedjobs'>
+                    <AppliedJobs/>
+                </Route>
+
+                <Route path='/myreviews'>
+                    <MyReviews/>
                 </Route>
 
                 <Route path='/account/admin/login' exact>

@@ -1,12 +1,12 @@
 import React, { useState,useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { Redirect, useHistory, useParams } from 'react-router';
 import { Popup } from '../CompanyReviews/popup';
 import style from './Reviews.module.css'
 import styled from 'styled-components';
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
-import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
+import { OptionButtonLeft,OptionButtonRight, SelectButton, Button } from '../../Custom UI/ACustomUI';
 import { ReviewsRateTop } from './ReviewsRateTop';
 import { ReviewsRateBottom } from './ReviewsRateBottom';
 import { Footer } from './Footer';
@@ -20,7 +20,7 @@ export const Reviews=()=>{
     
     const compname = useParams();
     const dispatch = useDispatch();
-  const { isLoading, isError,companies } = useSelector(
+  const { companies } = useSelector(
     (state) => state.company,
     shallowEqual
   );
@@ -85,7 +85,9 @@ export const Reviews=()=>{
         }
         console.log(cult);
      }
-    return(
+     
+  const isAuth = useSelector(state=> state.authReducer.isAuth);
+    return isAuth?(
         <div style={{backgroundColor:'#f5f5f5'}}>
             <div className={style.container}>
             <div style={{display:'flex'}}>
@@ -103,18 +105,18 @@ export const Reviews=()=>{
             </div>
             <div>
                 <H1>Would you recommend working at {compname.id} to a friend?</H1>
-                <OptionButtonLeft value={1} style={recoColor==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>Yes</OptionButtonLeft>
-                <OptionButtonRight value={2} style={recoColor==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={recoColor===1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={recoColor===2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>No</OptionButtonRight>
             </div>
             <div>
                 <H1>Do you think you are paid fairly at {compname.id}?</H1>
-                <OptionButtonLeft value={1} style={fair==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>Yes</OptionButtonLeft>
-                <OptionButtonRight value={2} style={fair==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={fair===1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={fair===2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>No</OptionButtonRight>
             </div>
             <div>
                 <H1>Do you feel like your salary at {compname.id} is enough for the cost of living in your area?</H1>
-                <OptionButtonLeft value={1} style={salary==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>Yes</OptionButtonLeft>
-                <OptionButtonRight value={2} style={salary==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={salary===1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={salary===2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>No</OptionButtonRight>
             </div>
             <div style={{height:'200px'}}>
                 <H1>How would you describe the work culture at {compname.id}?</H1>
@@ -135,5 +137,5 @@ export const Reviews=()=>{
             </div>
             <Footer/>
         </div>
-    )
+    ):(<Redirect to='/account/login'/>)
 }

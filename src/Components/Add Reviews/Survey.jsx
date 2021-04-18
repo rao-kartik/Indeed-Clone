@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
-import { useHistory, useParams,Redirect } from 'react-router';
-// import { Popup } from '../CompanyReviews/popup';
+import { useParams,Redirect } from 'react-router';
 import style from './Reviews.module.css'
 import styled from 'styled-components';
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { postReviewRequest,postReviewSuccess,postReviewFailure } from "../../Redux/Reviews/action";
-import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
+import { Input, Button } from '../../Custom UI/ACustomUI';
 import ReactStars from "react-rating-stars-component";
 import { SurveyTopPart } from './SurveyTopPart';
 import { Footer } from './Footer'
+import { loadData } from "../../Utils/localStorage";
+// import Loader from "react-loader-spinner";
+
 const H1 = styled.h1`
     font-size:19.95px;
     margin:0px 0px 15px;
@@ -17,6 +19,7 @@ const H1 = styled.h1`
 `;
 
 export const Survey =()=>{
+    const token = loadData("token") || {};
     const compname = useParams();
     const dispatch = useDispatch();
     const reviewsData = {
@@ -26,37 +29,36 @@ export const Survey =()=>{
         language: "en",
         reviewer: "",
         location: "",
-        datetime: "",
+        datetime: new Date(),
         reviewer_employee_type: "",
         job_work_and_life_balance_rating: "",
         compensation_and_benefits_rating: "",
         job_security_and_advancement_rating: "",
         management_rating: "",
         job_culture_rating: "",
-        company:compname.id
+        company:compname.id,
+        email:token.email
     }
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
     const [reviewData, setReviewData] = React.useState(reviewsData);
-    const {title,text,rating,reviewer,location,datetime,job_work_and_life_balance_rating,compensation_and_benefits_rating,job_security_and_advancement_rating,management_rating,job_culture_rating} = reviewData;
+    const {title,text,reviewer,location} = reviewData;
     const[isSubmited,setIsSubmited] = React.useState(false);
     const ratingChanged = (newRating) => {
-        // let {name,type} = e.target;
-        // setReviewData((prev)=>({...prev,[name]:newRating}))
+        setReviewData((prev)=>({...prev,rating:newRating}))
     };
     const handleChange=(e)=>{
-        let {name,value,type} = e.target;
+        let {name,value} = e.target;
         setReviewData((prev)=>({...prev,[name]:value}))
     }
-    const history = useHistory();
-  const { isLoading, isError } = useSelector(
+  const { isLoading } = useSelector(
     (state) => state.reviewsReducer,
     shallowEqual
   );
     const [isFalse,setIsFalse] = React.useState(true);
     const handleFinish=()=>{
-        if(title.length==0 || text.length ==0 || reviewer.length == 0 || location.length==0){
+        if(title.length===0 || text.length ===0 || reviewer.length === 0 || location.length===0){
             setIsFalse(false);
         }
         else{
@@ -72,14 +74,14 @@ export const Survey =()=>{
                 setIsSubmited(true)
               })
               .catch((err) => {
-                // const failureAction = postReviewFailure(err.message);
-                // dispatch(failureAction);
-                // console.log(err);
+                const failureAction = postReviewFailure(err.message);
+                dispatch(failureAction);
               });
         }
         
     }
-    return !isSubmited?(
+    const isAuth = useSelector(state=> state.authReducer.isAuth);
+    return isAuth?(!isLoading?(!isSubmited?(
         <div style={{backgroundColor:'#f5f5f5'}}>
             <div className={style.container}>
             
@@ -91,23 +93,23 @@ export const Survey =()=>{
                 <table>
                     <tr>
                         <td>Overall rating</td>
-                        <td><ReactStars count={5} name='overall' onChange={ratingChanged} size={24} activeColor="#ffd700"/></td>
+                        <td><ReactStars count={5} name='rating' onChange={ratingChanged} size={24} activeColor="#ffd700"/></td>
                     </tr>
                     <tr>
                         <td>Job Work/Life Balance</td>
-                        <td><ReactStars count={5} name='jobwork'  onChange={ratingChanged} size={24} activeColor="#ffd700"/></td>
+                        <td><ReactStars count={5} name='jobwork' size={24} activeColor="#ffd700"/></td>
                     </tr>
                     <tr>
                         <td>Salary/Benefits</td>
-                        <td><ReactStars count={5} name='salary' onChange={ratingChanged} size={24} activeColor="#ffd700"/></td>
+                        <td><ReactStars count={5} name='salary' size={24} activeColor="#ffd700"/></td>
                     </tr>
                     <tr>
                         <td>Job Security/Advancement</td>
-                        <td><ReactStars count={5} name='jobsecurity' onChange={ratingChanged} size={24} activeColor="#ffd700"/></td>
+                        <td><ReactStars count={5} name='jobsecurity' size={24} activeColor="#ffd700"/></td>
                     </tr>
                     <tr>
                         <td>Management</td>
-                        <td><ReactStars count={5} name='management' onChange={ratingChanged} size={24} activeColor="#ffd700"/></td>
+                        <td><ReactStars count={5} name='management' size={24} activeColor="#ffd700"/></td>
                     </tr>
                 </table>
             </div>
@@ -153,5 +155,7 @@ export const Survey =()=>{
             </div>
             <Footer/>
         </div>
-    ):<Redirect to='/companies'/>
+    ):<Redirect to='/companies'/>):(<div style={{width:'10%',height:'20vh',margin:'auto',marginTop:'15%'}}>
+    <p>Loading</p>
+    </div>)):(<Redirect to='/account/login'/>)
 }

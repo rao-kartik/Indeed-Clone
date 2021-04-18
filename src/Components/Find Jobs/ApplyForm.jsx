@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Input } from '../../Custom UI/ACustomUI';
 import { Button } from '../../Custom UI/KCustomUI';
@@ -24,7 +25,6 @@ const Container = styled.div`
 export const ApplyForm=()=>{
     const history = useHistory();
     const handleReturn=()=>{
-        console.log('aaa');
         history.push('/')
     }
     const[isContinue,setIsContinue] = useState(false);
@@ -57,7 +57,8 @@ export const ApplyForm=()=>{
             setIsContinue(true)
         }
     }
-    return !isContinue?(
+    const isAuth = useSelector(state=> state.authReducer.isAuth);
+    return isAuth?(!isContinue?(
         <Container>
             <H1>Questions from CommerceIQ</H1>
             <H2>How many years of business analyst experience do you have?</H2>
@@ -80,5 +81,5 @@ export const ApplyForm=()=>{
         </Container>
     ):<Container>
         <ApplyFormResume/>
-    </Container>
+    </Container>):(<Redirect to='/account/login'/>)
 }

@@ -10,9 +10,11 @@ import { useState } from "react";
 import { categories } from "./data";
 import StarRatings from 'react-star-ratings';
 import { loadData, saveData } from "../../Utils/localStorage";
+import { Loading } from "../Loading/Loading";
 
 
 function CompanyInfo() {
+  const isLoading = useSelector((state) => state.companyInfo.isLoading)
   const data = useSelector((state) => state.companyInfo.data);
   const { name, logo, poster, reviews, stars } = data;
   const [category, setCategory] = useState("Popular Jobs");
@@ -46,7 +48,7 @@ function CompanyInfo() {
     dispatch(getCompanyData(id));
   }, []);
 
-  return (
+  return isLoading ? <Loading /> : (
     <div className={styles.poster}>
       <img src={poster} alt="poster" />
       <div className={styles.companyInfo}>

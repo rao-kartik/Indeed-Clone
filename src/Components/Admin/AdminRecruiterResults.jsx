@@ -46,6 +46,8 @@ const Delete = styled.div`
 
 export const AdminRecruiterResults = ({ id, company_name, company_logo, rating, total_reviews}) => {
 
+    document.title = 'Admin | Recruiters | Indeed Accounts'
+
     const dispatch = useDispatch();
 
     const history = useHistory();

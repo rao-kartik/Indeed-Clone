@@ -48,6 +48,8 @@ const Delete = styled.div`
 
 export const AdminJobsResult = ({id, title, location,  company_name, salary, category, publication_date}) => {
 
+    document.title = 'Admin | Jobs | | Indeed Accounts'
+
     const dispatch = useDispatch();
     const history = useHistory();
 

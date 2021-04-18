@@ -16,7 +16,10 @@ const H1 = styled.h1`
     margin:0px 0px 15px;
     padding:24px 0px 0px;
 `;
+
 export const Reviews=()=>{
+
+    document.title = 'Please help answer these questions about HP | Indeed.com'
     
     const compname = useParams();
     const dispatch = useDispatch();

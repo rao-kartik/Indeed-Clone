@@ -20,10 +20,13 @@ const H1 = styled.h1`
     padding:24px 0px 0px;
 `;
 
-export const Survey =()=>{
+export const Survey =()=>{  
     const token = loadData("token") || {};
-    const compname = useParams();
+    const compname = useParams();   
     const dispatch = useDispatch();
+
+    document.title = `Write your review for ${compname.id}`
+
     const reviewsData = {
         title: "",
         text: "",

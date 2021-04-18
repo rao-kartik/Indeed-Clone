@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import styles from "../Email Preferences/Preferences.module.css";
 import { loadData } from "../../Utils/localStorage";
 const EmailPreferences = () => {
+
+    document.title = 'Email preferences | Indeed India';
+  
     let data = loadData('following')
   useEffect(() => {
       display();

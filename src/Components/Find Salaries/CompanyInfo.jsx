@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Redirect } from 'react-router-dom'
 import { getCompanyData } from "../../Redux/CompanyInfo/action";
 import { Faq, Follow, Logo, SearchButton } from "../../Custom UI/RCustomUI";
@@ -20,18 +20,25 @@ function CompanyInfo() {
   const [category, setCategory] = useState("Popular Jobs");
   const jobs_data = useSelector((state) => state.categoryJobs.jobs_data);
   const [follow, setFollow] = useState(false);
+
+  const history = useHistory();
+
+  const loadedData = loadData("following");
+
+  document.title = `${name} Salaries in India | Indeed.com`
+  
   const handleFollow = () => {
     const isauth = loadData('auth')
     if (isauth == undefined || isauth == false) {
-      return <Redirect to={'/'} />
+      history.push("/account/login")
     }
     else {
       if (!follow) {
-        if (loadData('following') == undefined) {
+        if (loadedData !== null && loadedData.indexOf(name) === -1) {
+          saveData('following', [...loadedData, name])
+        }
+        else {
           saveData('following', [name])
-        } else {
-          var data = loadData('following')
-          saveData('following', [...data, name])
         }
       }
       setFollow(!follow);

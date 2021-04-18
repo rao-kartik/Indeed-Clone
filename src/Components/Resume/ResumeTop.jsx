@@ -94,7 +94,7 @@ export const ResumeTop = () => {
                     ) : (
                         <div>
                             <h1>Name</h1>
-                            <p><span style={{position:'relative', top:'2px', fontSize:'16px'}} class="material-icons-outlined">room</span>   Locatioon </p>
+                            <p><span style={{position:'relative', top:'2px', fontSize:'16px'}} class="material-icons-outlined">room</span>   Location </p>
                         </div>
                     )
                 }

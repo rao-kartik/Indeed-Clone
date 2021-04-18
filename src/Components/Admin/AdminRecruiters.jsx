@@ -10,8 +10,15 @@ const Container = styled.div`
     justify-content: center;
 `;
 
+const Load = styled.div`
+    position: absolute;
+    right: 50%;
+    top: 40%;
+`;
+
 export const AdminRecruiters = () => {
     const recruiterData = useSelector(state=>state.adminReducer.recruiterData);
+    const isLoading = useSelector(state=>state.adminReducer.isLoading);
 
     const dispatch = useDispatch();
 

@@ -15,8 +15,8 @@ export const Image = styled.img`
 `
 
 export const SearchBar = styled.div`
-  width:58vw;
-  height: 22vh;
+  width:55vw;
+  height: 18.5vh;
   margin-top:3vh;
   z-index:100;
   border-radius: 10px;
@@ -28,7 +28,7 @@ export const SearchBar = styled.div`
 
 export const Input = styled.input`
   width:21vw;
-  height:7vh;
+  height:5.5vh;
   margin:0.5rem;
   outline:none;
   padding:1.2rem;
@@ -39,7 +39,7 @@ export const Input = styled.input`
 `;
 
 export const SearchButton = styled.button`
-  height:7vh;
+  height:6vh;
   margin:0.5rem;
   width: 10vw;
   border-radius: 10px;

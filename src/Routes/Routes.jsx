@@ -24,6 +24,7 @@ import { AdminNavbar } from '../Components/Admin/AdminNavbar';
 import { ApplyJobForm } from './ApplyJobForm';
 import { PrivateRoute } from './PrivateRoute';
 import { AdminReviewPage } from '../Components/Admin/AdminReviewPage';
+import { EmailPreferences } from './EmailPreferences';
 
 export const Routes = () => {
 
@@ -67,6 +68,10 @@ export const Routes = () => {
 
                 <PrivateRoute path='/p/hh78545' exact>
                     <PostResumePage />
+                </PrivateRoute>
+
+                <PrivateRoute path='/preferences' exact>
+                    <EmailPreferences />
                 </PrivateRoute>
 
                 <Route path='/account/login' exact>

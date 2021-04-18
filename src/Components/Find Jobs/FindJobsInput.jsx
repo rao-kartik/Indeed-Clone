@@ -220,10 +220,10 @@ export const FindJobsInput = ({ page }) => {
                 <Cont>
                     <Select name="datePosted" onChange={handleFilterChange} >
                         <SelOpt value="null">Date Posted</SelOpt>
-                        <SelOpt value="5">Last 5 days</SelOpt>
-                        <SelOpt value="10">Last 10 days</SelOpt>
-                        <SelOpt value="15">Last 15 days</SelOpt>
-                        <SelOpt value="20">Last 20 days</SelOpt>
+                        <SelOpt value="1">Last 24 hrs</SelOpt>
+                        <SelOpt value="10">Last 3 days</SelOpt>
+                        <SelOpt value="15">Last 7 days</SelOpt>
+                        <SelOpt value="20">Last 14 days</SelOpt>
                     </Select>
                     <Select name="jobType" onChange={handleFilterChange} >
                         <SelOpt value="">Job Type</SelOpt>

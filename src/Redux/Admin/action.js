@@ -1,7 +1,8 @@
 import { GET_JOBS_FAILURE, GET_JOBS_REQUEST, GET_JOBS_SUCCESS, GET_RECRUITERS_REQUEST, GET_RECRUITERS_SUCCESS, GET_RECRUITERS_FAILURE,
     POST_JOBS_REQUEST, POST_JOBS_SUCCESS, POST_JOBS_FAILURE, POST_RECRUITERS_REQUEST, POST_RECRUITERS_SUCCESS, POST_RECRUITERS_FAILURE, 
     SHOW_ADMIN_DETAILS,
-    DELETE_JOBS_REQUEST, DELETE_JOBS_SUCCESS, DELETE_JOBS_FAILURE, DELETE_RECRUITERS_REQUEST, DELETE_RECRUITERS_SUCCESS, DELETE_RECRUITERS_FAILURE } from "./actionType";
+    DELETE_JOBS_REQUEST, DELETE_JOBS_SUCCESS, DELETE_JOBS_FAILURE, DELETE_RECRUITERS_REQUEST, DELETE_RECRUITERS_SUCCESS, DELETE_RECRUITERS_FAILURE,
+    PAGE_REVIEWS_REQUEST, PAGE_REVIEWS_SUCCESS, PAGE_REVIEWS_FAILURE } from "./actionType";
 import Axios from 'axios';
 
 const jobAxios = Axios.create({
@@ -9,7 +10,11 @@ const jobAxios = Axios.create({
 });
 
 const recruitersAxios = Axios.create ({
-    baseURL: 'https://json-server-mocker-ajmal.herokuapp.com'
+    baseURL: 'https://json-server-mocker-ajmal.herokuapp.com/'
+})
+
+const pageReviewAxios = Axios.create({
+    baseURL: 'https://json-server-mocker-robin.herokuapp.com/'
 })
 
 const getJobsRequest = ()=>{
@@ -131,6 +136,26 @@ const showAdminDetails = ()=>{
     }
 }
 
+const pageReviewsRequest = ()=>{
+    return {
+        type: PAGE_REVIEWS_REQUEST
+    }
+}
+
+const pageReviewsSuccess = (payload)=>{
+    return {
+        type: PAGE_REVIEWS_SUCCESS,
+        payload
+    }
+}
+
+const pageReviewsFailure = (payload)=>{
+    return {
+        type: PAGE_REVIEWS_FAILURE,
+        payload
+    }
+}
+
 const getJobs = ()=>dispatch=>{
 
     dispatch(getJobsRequest())
@@ -235,4 +260,20 @@ const deleteRecruiters = (id)=>dispatch=>{
     })
 }
 
-export { getJobs, getRecruiters, addJobs, addRecruiters, showAdminDetails, deleteRecruiters, deleteJobs };
+const getPageReviews = ()=>dispatch=>{
+    dispatch(pageReviewsRequest());
+
+    const config = {
+        method: 'get',
+        url: '/pageFeedback'
+    }
+    pageReviewAxios(config)
+    .then(res=>{
+        dispatch(pageReviewsSuccess(res.data));
+    })
+    .catch(err=>{
+        dispatch(pageReviewsFailure(err))
+    })
+}
+
+export { getJobs, getRecruiters, addJobs, addRecruiters, showAdminDetails, deleteRecruiters, deleteJobs, getPageReviews };

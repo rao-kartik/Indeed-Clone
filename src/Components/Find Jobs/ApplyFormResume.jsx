@@ -23,9 +23,11 @@ export const ApplyFormResume=()=>{
         shallowEqual
       );
     const dispatch = useDispatch();
+    const token = useSelector(state=>state.authReducer.token);
     useEffect(()=>{
             dispatch(searchResumeByEmail())
     },[]);
+    console.log(token.email);
     const jobID = useParams();
     const[isSubmited,setIsSubmited] = React.useState(false);
     const handleApply=()=>{
@@ -33,13 +35,13 @@ export const ApplyFormResume=()=>{
             dispatch(requestAction);
             axios
               .post("https://json-server-mocker-ajmal.herokuapp.com/applyjobs", {
-                  email:data.email,
+                  email:token.email,
                   jobid:jobID.id
               })
               .then((res) => {
                 const successAction = applyJobSuccess(res.message);
                 dispatch(successAction);
-                // alert('Applied Job Successfully');
+                alert('Applied Job Successfully');
                 setIsSubmited(true)
               })
               .catch((err) => {

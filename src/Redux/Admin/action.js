@@ -238,6 +238,7 @@ const addRecruiters = (payload)=>dispatch=>{
     recruitersAxios(config)
     .then(res=>{
         dispatch(postRecruitersSuccess(res.data))
+        dispatch(getRecruiters())
     })
     .catch(err=>{
         dispatch(postRecruitersFailure(err))
@@ -254,6 +255,7 @@ const deleteRecruiters = (id)=>dispatch=>{
     recruitersAxios(config)
     .then(res=>{
         dispatch(deleteRecruitersSuccess(res.data))
+        dispatch(getRecruiters());
     })
     .catch(err=>{
         dispatch(deleteRecruitersFailure(err))

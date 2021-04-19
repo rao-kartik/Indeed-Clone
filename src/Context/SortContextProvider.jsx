@@ -34,19 +34,9 @@ export const SortContextProvider = ({ children }) => {
         }
     }
 
-    const filterConditionJobType = (item)=>{
-        
-    }
-
-    const filterConditionDays = (item)=>{
-
-    }
-
     const value = {
         handleFilterChange,
-        filterConditionLoc,
-        filterConditionJobType,
-        filterConditionDays
+        filterConditionLoc
     }
     
     return (

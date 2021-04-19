@@ -7,6 +7,7 @@ import { applyJobRequest,applyJobSuccess,applyJobFailure  } from '../../Redux/Ap
 import axios from 'axios';
 import { Redirect, useParams } from 'react-router';
 import { Loading } from '../Loading/Loading';
+import { Link } from 'react-router-dom';
 
 const Div = styled.div`
     border:1px solid #085ff7;
@@ -16,6 +17,13 @@ const Div = styled.div`
     display:flex;
     margin-top:10px;
 `;
+
+const Load = styled.div`
+    position: absolute;
+    top: 40%;
+    right: 50%;
+`;
+
 export const ApplyFormResume=()=>{
     var data = useSelector(state=> state.findResumeReducer.data)
     const { isLoading, isError } = useSelector(
@@ -55,7 +63,7 @@ export const ApplyFormResume=()=>{
     return !isLoading?(!isSubmited?(data===undefined?(
       <div>
           <h1>You're not uploaded the Resume yet, Please Upload to Continue</h1>
-          <Button>Build Resume</Button>
+          <Link style={{textDecoration:'none', color:'#fff'}} to='/p/hh78545'><Button>Build Resume</Button></Link>
       </div>
   ):(<>
   <h1>Apply using these Resume</h1>
@@ -71,5 +79,5 @@ export const ApplyFormResume=()=>{
       </div>
   </Div>
   </>)):(<Redirect to='/'/>)):
-  (<Loading/>)
+  (<Load><Loading/></Load>)
 }

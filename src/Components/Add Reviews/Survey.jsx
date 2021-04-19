@@ -31,7 +31,7 @@ export const Survey =()=>{
         title: "",
         text: "",
         rating: "",
-        language: "en",
+        language: token.email,
         reviewer: "",
         location: "",
         datetime: new Date(),

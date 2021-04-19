@@ -49,7 +49,7 @@ export const myReviewsSearch = () => (dispatch) => {
     url: `/reviews`,
     method: "get",
     params: {
-      email:token.email
+      language:token.email
     }
   };
   axios(config)

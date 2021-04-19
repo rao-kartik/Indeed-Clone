@@ -108,18 +108,18 @@ export const Reviews=()=>{
             </div>
             <div>
                 <H1>Would you recommend working at {compname.id} to a friend?</H1>
-                <OptionButtonLeft value={1} style={recoColor===1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>Yes</OptionButtonLeft>
-                <OptionButtonRight value={2} style={recoColor===2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={recoColor==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={recoColor==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeReco}>No</OptionButtonRight>
             </div>
             <div>
                 <H1>Do you think you are paid fairly at {compname.id}?</H1>
-                <OptionButtonLeft value={1} style={fair===1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>Yes</OptionButtonLeft>
-                <OptionButtonRight value={2} style={fair===2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={fair==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={fair==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeFair}>No</OptionButtonRight>
             </div>
             <div>
                 <H1>Do you feel like your salary at {compname.id} is enough for the cost of living in your area?</H1>
-                <OptionButtonLeft value={1} style={salary===1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>Yes</OptionButtonLeft>
-                <OptionButtonRight value={2} style={salary===2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>No</OptionButtonRight>
+                <OptionButtonLeft value={1} style={salary==1?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>Yes</OptionButtonLeft>
+                <OptionButtonRight value={2} style={salary==2?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChangeSalary}>No</OptionButtonRight>
             </div>
             <div style={{height:'200px'}}>
                 <H1>How would you describe the work culture at {compname.id}?</H1>

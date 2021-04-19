@@ -31,6 +31,7 @@ export const AppliedJobListItem=({email, jobid,id,handleDelete})=>{
     useEffect(()=>{
         dispatch(jobsByIdSearch(jobid))
     },[])
+    console.log(jobsdata);
     return(
         <Div>
             <h1>{jobsdata.title}</h1>

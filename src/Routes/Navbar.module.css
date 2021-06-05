@@ -1,0 +1,13 @@
+.active {
+    height: 40px;
+    border-bottom: 2px solid blue;
+}
+
+.navContents {
+    width: auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+}

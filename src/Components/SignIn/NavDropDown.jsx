@@ -55,7 +55,6 @@ export const NavDropdown = () => {
 
     const dispatch = useDispatch();
 
-    const isAuth = useSelector(state=> state.authReducer.isAuth);
     const token = useSelector(state=> state.authReducer.token);
 
     const history = useHistory();

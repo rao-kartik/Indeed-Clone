@@ -27,6 +27,7 @@ import { AdminReviewPage } from '../Components/Admin/AdminReviewPage';
 import { AppliedJobs } from '../Components/Applied Jobs/AppliedJobs';
 import { MyReviews } from '../Components/My Reviews/MyReviews';
 import { EmailPreferences } from '../Components/Email Preferences/EmailPreferences';
+import { PageNotFound } from './PageNotFound';
 
 export const Routes = () => {
 
@@ -121,7 +122,7 @@ export const Routes = () => {
                 </AdminPrivateRoute>
                 
                 <Route>
-                    Error 404: Page Not Found!
+                    <PageNotFound />
                 </Route>
             </Switch>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RatingButton } from '../../Custom UI/ACustomUI';
 import styled from 'styled-components'
 
@@ -35,6 +35,6 @@ export const ReviewsRateTop=({compname})=>{
             <H1>Please rate your overall interview experience at {compname}.</H1>
             {button_Data.map((item) => (
             <RatingButton 
-            value={item.value} style={color==item.value?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChange} >{item.value}</RatingButton>))}</div>
+            value={item.value} style={color===item.value?{background:'#085ff7',color:'white'}:{background:'transparent',color:'#085ff7'}} onClick={onChange} >{item.value}</RatingButton>))}</div>
     )
 }

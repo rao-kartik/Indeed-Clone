@@ -5,6 +5,7 @@ import { BottomPart } from './BottomPart';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { signInWithEmail } from '../../Redux/Auth/action';
 import { useDispatch, useSelector } from 'react-redux';
+import { Loading } from '../Loading/Loading';
 
 const MainBox = styled.div`
     width: 100%;
@@ -137,6 +138,11 @@ const Admin = styled.div`
     }
 `;
 
+const Load = styled.div`
+    position: relative;
+    right: 116%;
+`;
+
 const initInp = {
     email: '',
     password: ''
@@ -151,6 +157,7 @@ export const SignIn = () => {
     const history = useHistory();
 
     const isAuth = useSelector(state=> state.authReducer.isAuth);
+    const isLoading = useSelector(state=> state.authReducer.isLoading);
 
     const handleInput = (e)=>{
         const { name, value } = e.target;
@@ -189,18 +196,20 @@ export const SignIn = () => {
                             <Label>
                                 Email Address {<br/>}
 
-                                <Input type="text" name="email" value={signInp.email} onChange={handleInput} />
+                                <Input type="email" name="email" value={signInp.email} onChange={handleInput} />
 
                             </Label><br/>
                            
                             <Label>
                                 Password {<br/>}
 
-                                <Input type="passowrd" name="password" value={signInp.password} onChange={handleInput} />
+                                <Input type="password" name="password" value={signInp.password} onChange={handleInput} />
 
                             </Label><br/>
 
-                            <RoundBtn style={{border:'none', margin:'10px 0', background:'#085ff7', color:'#fff'}} >Sign In</RoundBtn>
+                            {
+                                isLoading ? <Load><Loading /></Load> : <RoundBtn style={{border:'none', margin:'10px 0', background:'#085ff7', color:'#fff'}} >Sign In</RoundBtn>
+                            }
 
                         </form>
                         

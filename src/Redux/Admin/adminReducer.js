@@ -2,7 +2,8 @@ import { loadData, saveData } from "../../Utils/localStorage";
 import { GET_JOBS_FAILURE, GET_JOBS_REQUEST, GET_JOBS_SUCCESS, GET_RECRUITERS_REQUEST, GET_RECRUITERS_SUCCESS, GET_RECRUITERS_FAILURE,
     POST_JOBS_REQUEST, POST_JOBS_SUCCESS, POST_JOBS_FAILURE, POST_RECRUITERS_REQUEST, POST_RECRUITERS_SUCCESS, POST_RECRUITERS_FAILURE,
     SHOW_ADMIN_DETAILS,
-    DELETE_JOBS_REQUEST, DELETE_JOBS_SUCCESS, DELETE_JOBS_FAILURE, DELETE_RECRUITERS_REQUEST, DELETE_RECRUITERS_SUCCESS, DELETE_RECRUITERS_FAILURE } from "./actionType";
+    DELETE_JOBS_REQUEST, DELETE_JOBS_SUCCESS, DELETE_JOBS_FAILURE, DELETE_RECRUITERS_REQUEST, DELETE_RECRUITERS_SUCCESS, DELETE_RECRUITERS_FAILURE,
+    PAGE_REVIEWS_REQUEST, PAGE_REVIEWS_SUCCESS, PAGE_REVIEWS_FAILURE } from "./actionType";
 
     const jobsData = loadData("jobsData") || [];
 
@@ -13,7 +14,8 @@ const initState = {
     recruiterData: recruiterData,
     isLoading: false,
     isError: false,
-    dispAdmDetails: false
+    dispAdmDetails: false,
+    pageReviews: []
 }
 
 export const AdminReducer = (state=initState, action)=>{
@@ -27,7 +29,6 @@ export const AdminReducer = (state=initState, action)=>{
             }
         }
         case GET_JOBS_SUCCESS: {
-            // saveData("jobsData", payload)
             return {
                 ...state,
                 isLoading: false,
@@ -155,6 +156,28 @@ export const AdminReducer = (state=initState, action)=>{
             return {
                 ...state,
                 dispAdmDetails: !state.dispAdmDetails
+            }
+        }
+        case PAGE_REVIEWS_REQUEST: {
+            return  {
+                ...state,
+                isLoading: true,
+                isError: false
+            }
+        }
+        case PAGE_REVIEWS_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+                isError: false,
+                pageReviews: payload
+            }
+        }
+        case PAGE_REVIEWS_FAILURE: {
+            return {
+                ...state,
+                isLoading: false,
+                isError: true
             }
         }
         default:

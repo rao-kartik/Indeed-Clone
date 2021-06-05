@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { SortContext } from '../../Context/SortContextProvider';
+import { SearchResultById } from '../../Custom UI/KCustomUI';
 import { getSearchData } from '../../Redux/FindJobs/action';
+import { Loading } from '../Loading/Loading';
+import { ApplyJobs } from './ApplyJobs';
 import { BottomPart } from './BottomPart';
 import { FindJobsInput } from './FindJobsInput';
 import { PopularSearches } from './PopularSearches';
@@ -16,68 +20,61 @@ const Results = styled.div`
     margin: auto;
 `;
 
-const initCond = {
-    datePosted: '',
-    jobType: '',
-    location: ''
-}
+const BtnDiv = styled.div`
+    display: flex;
+    justify-content: center;
+`;
 
+const Btn = styled.button`
+    width: 60px;
+    height: 25px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+`;
 export const FindJobs = () => {
 
     var data = useSelector(state=> state.findReducer.data)
     // console.log(data)
+    const { filterConditionLoc} = useContext(SortContext);
 
-    const [ filterCond, setFilterCond ] = useState(initCond)
+    const isLoading = useSelector(state=> state.findReducer.isLoading);
 
     const [ page, setPage ] = useState(1);
-    console.log(page);
+    // console.log(page);
 
-    const handleFilterChange = (e)=>{
-        const { name, value } = e.target;
-        const updated = {
-            ...filterCond,
-            [ name ]: value
-        };
-        setFilterCond(updated);
+    const [jobId,setJobId] = useState('');
+    const [isJobView,setIsJobView] = useState(false);
+    const handleChangeById=(id)=>{
+        setIsJobView(true);
+        setJobId(id);
     }
-
-    const filterCondtion = ({location, job_type, publication_date})=>{
-        if(filterCond.datePosted){
-            data = data.filter(item=> {
-                const month = publication_date[5] + publication_date[6]
-
-                const date = publication_date[8] + publication_date[9]
-
-                let days;
-
-                month == '02' ? days = 28 : 
-                month == '01' || month == '03' || month == '05' || month == '07' || month == '08' || month == '10' || month == '12' ? days= 31 : 
-                days = 30;
-
-                const totalTime = +date + days;
-
-                if(totalTime < filterCondtion.datePosted){
-                    return item;
-                }
-            })
-        }
-        return location === filterCond.location && job_type === filterCond.jobType
-    }
-    
     return (
         <Container>
-            <FindJobsInput page={page} handleFilterChange={handleFilterChange} />
+            <FindJobsInput page={page} />
 
-            <Results>
-                {
-                    data.map(item=> <SearchResults key={item.id} {...item} />)
-                }
-            </Results>
-
-            {data.length > 1 && <div>
-                <button disabled={page===1} onClick={()=>setPage(prev=> prev-1)} >Prev</button>
-                <button disabled={page===Math.ceil(data/10)} onClick={()=>setPage(prev=> prev+1)} >Next</button>
-            </div>}
+            {
+                isLoading ? <Loading /> : 
+                <Results>
+                    <div style={{float:'left'}}>
+                        {
+                            data.filter(item=>filterConditionLoc(item)).map(item=> <SearchResults key={item.id} {...item} handleChangeById={handleChangeById}/>)
+                        }
+                        {data.length > 1 && <BtnDiv>
+                            <Btn disabled={page===1} onClick={()=>setPage(prev=> prev-1)} >Prev</Btn>
+                            <Btn disabled={page===Math.ceil(data.length/10)} onClick={()=>setPage(prev=> prev+1)} >Next</Btn>
+                        </BtnDiv>}
+                    </div>
+                    {
+                        isJobView&&<div style={{float:'right'}}>
+                        <ApplyJobs jobId={jobId} />
+                        </div>
+                    }
+                    
+                </Results>
+            }
+            <div style={{clear:'both'}}></div>
 
             <PopularSearches />
             

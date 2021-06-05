@@ -5,12 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { SortContextProvider } from './Context/SortContextProvider.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <SortContextProvider>
+          <App />
+        </SortContextProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

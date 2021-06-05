@@ -59,6 +59,10 @@ const links = [
     {
         to:'/account/admin/addRecruiter',
         title:'Add Recruiter'
+    },
+    {
+        to:'/account/admin/pageReviews',
+        title: 'Page Reviews'
     }
 ]
 
@@ -71,7 +75,6 @@ export const AdminNavbar = () => {
     const handleAdmDisp = ()=>{
         dispatch(showAdminDetails())
     }
-    
     return (
         <Container>
             <Left>

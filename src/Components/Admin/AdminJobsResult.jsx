@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
@@ -48,6 +48,8 @@ const Delete = styled.div`
 
 export const AdminJobsResult = ({id, title, location,  company_name, salary, category, publication_date}) => {
 
+    document.title = 'Admin | Jobs | | Indeed Accounts'
+
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -65,7 +67,6 @@ export const AdminJobsResult = ({id, title, location,  company_name, salary, cat
 
     const handleDelete = (id)=>{
         dispatch(deleteJobs(id));
-        dispatch(getJobs())
         history.push('/account/admin/jobs')
     }
     

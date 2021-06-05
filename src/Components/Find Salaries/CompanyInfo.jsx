@@ -1,21 +1,49 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
+import { Redirect } from 'react-router-dom'
 import { getCompanyData } from "../../Redux/CompanyInfo/action";
 import { Faq, Follow, Logo, SearchButton } from "../../Custom UI/RCustomUI";
 import styles from "./Salaries.module.css";
 import { JobByCategory } from "../../Components/Find Salaries/JobByCategory";
 import { useState } from "react";
-import { categories } from './data';
+import { categories } from "./data";
+import StarRatings from 'react-star-ratings';
+import { loadData, saveData } from "../../Utils/localStorage";
+import { Loading } from "../Loading/Loading";
+
 
 function CompanyInfo() {
+  const isLoading = useSelector((state) => state.companyInfo.isLoading)
   const data = useSelector((state) => state.companyInfo.data);
-  const { name, logo, poster, reviews } = data;
+  const { name, logo, poster, reviews, stars } = data;
   const [category, setCategory] = useState("Popular Jobs");
   const jobs_data = useSelector((state) => state.categoryJobs.jobs_data);
   const [follow, setFollow] = useState(false);
+
+  const history = useHistory();
+
+  const loadedData = loadData("following");
+
+  document.title = `${name} Salaries in India | Indeed.com`
+  
   const handleFollow = () => {
-    setFollow(!follow)
+    const isauth = loadData('auth')
+    if (isauth == undefined || isauth == false) {
+      history.push("/account/login")
+    }
+    else {
+      if (!follow) {
+        if (loadedData !== null && loadedData.indexOf(name) === -1) {
+          saveData('following', [...loadedData, name])
+        }
+        else {
+          saveData('following', [name])
+        }
+      }
+      setFollow(!follow);
+      // checkStatus()
+    }
   }
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -27,9 +55,7 @@ function CompanyInfo() {
     dispatch(getCompanyData(id));
   }, []);
 
-
-  console.log("data", jobs_data);
-  return (
+  return isLoading ? <Loading /> : (
     <div className={styles.poster}>
       <img src={poster} alt="poster" />
       <div className={styles.companyInfo}>
@@ -39,7 +65,17 @@ function CompanyInfo() {
         <div>
           <h4>{name}</h4>
           <br />
-          <p>{reviews}</p>
+          <div className={styles.rating}>
+            <div>{stars}</div>
+            <StarRatings
+              rating={stars}
+              starRatedColor="#9D2B6B"
+              starDimension="16px"
+              starSpacing="0px"
+              numberOfStars={5}
+            />
+            <p style={{ marginLeft: "10px" }}>{reviews}</p>
+          </div>
         </div>
         <div>
           {" "}
@@ -94,7 +130,7 @@ function CompanyInfo() {
           </div>
           <div>
             <Faq className={styles.faq}>
-              <h4 >Question about {name}</h4>
+              <h4>Question about {name}</h4>
               <br />
               <div>What qualifications refer to get job</div>
               <p>395 People answered</p>

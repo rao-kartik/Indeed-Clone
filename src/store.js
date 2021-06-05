@@ -11,6 +11,13 @@ import { ReviewSearchReducer } from "./Redux/ReviewSearch/ReviewSearchReducer";
 import { findCompanyReducer } from "./Redux/FindCompanyId/findCompanyReducer";
 import { AdminReducer } from './Redux/Admin/adminReducer';
 import { AppReducer } from './Redux/App/appReducer';
+import { jobsByIdReducer } from "./Redux/FindJobById/reducer";
+import { findResumeReducer } from "./Redux/FindResume/reducer";
+import { applyJobReducer } from "./Redux/ApplyJob/applyJobReducer";
+import { resumeReducer } from "./Redux/Resume/reducer";
+import { myReviewsReducer } from "./Redux/MyReviews/reducer";
+import { myJobReducer } from "./Redux/MyJobs/reducer";
+import { salaryFeedbackReducer } from "./Redux/SalaryPageFeedback/reducer";
 
 const rootReducer = combineReducers({
   topPayingJobs: topPayingJobsReducer,
@@ -24,7 +31,15 @@ const rootReducer = combineReducers({
   ReviewSearchReducer: ReviewSearchReducer,
   findCompanyReducer:findCompanyReducer,
   adminReducer: AdminReducer,
-  appReducer: AppReducer
+  jobsByIdReducer: jobsByIdReducer,
+  findResumeReducer:findResumeReducer,
+  applyJobReducer:applyJobReducer,
+  appReducer: AppReducer,
+  jobsByIdReducer: jobsByIdReducer,
+  resume:resumeReducer,
+  myReviewsReducer: myReviewsReducer,
+  myJobReducer:myJobReducer,
+  feedbackReducer:salaryFeedbackReducer,
 });
 
 const customMiddleware = (store) => (next) => (action) => {

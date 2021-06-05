@@ -15,14 +15,13 @@ const CompHeader = styled.h1`
 `;
 
 export const CompaniesListItem=({item})=>{
-    const{id,company_name,company_logo,total_reviews,rating} = item;
+    const{company_name,company_logo} = item;
     return(
         <div style={{border:'1px solid#f5f5f5',padding:'24px'}}>
             <div style={{display:"flex"}}>
-                <img src={company_logo} style={{width:'50px',height:'50px'}}/>
+                <img src={company_logo} style={{width:'50px',height:'50px'}} alt='logo'/>
                 <CompHeader>{company_name}</CompHeader>
             </div>
-            
             <LinkStyled to={`companies/${item.id}/salaries`}>Salaries</LinkStyled>
             <LinkStyled to={`companies/${item.id}/faq`}>Q&A</LinkStyled>
             <LinkStyled to={`companies/${item.id}/jobs`}>Open Jobs</LinkStyled>

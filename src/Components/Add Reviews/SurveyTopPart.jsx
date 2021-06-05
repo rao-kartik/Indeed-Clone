@@ -1,17 +1,15 @@
 import React, { useState,useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { Popup } from '../CompanyReviews/popup';
-import style from './Reviews.module.css'
-import styled from 'styled-components';
+import style from './Reviews.module.css';
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
-import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
 
 export const SurveyTopPart =()=>{
     const compname = useParams();
     const dispatch = useDispatch();
-  const { isLoading, isError,companies } = useSelector(
+  const { companies } = useSelector(
     (state) => state.company,
     shallowEqual
   );

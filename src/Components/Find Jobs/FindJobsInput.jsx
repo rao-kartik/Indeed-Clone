@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { InputDiv, Input, Button } from '../../Custom UI/KCustomUI';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchData } from '../../Redux/FindJobs/action';
 import { category, city, jobType } from './Data';
+import { SortContext } from '../../Context/SortContextProvider';
 
 const Container = styled.div`
     display:flex;
@@ -91,9 +92,11 @@ const Select = styled.select`
     }
 `;
 
-export const FindJobsInput = ({ page, handleFilterChange }) => {
+export const FindJobsInput = ({ page }) => {
 
-    const data = useSelector(state=> state.findReducer.data)
+    const data = useSelector(state=> state.findReducer.data);
+
+    const { handleFilterChange } = useContext(SortContext);
     
     const [ catInp, setCatInp ] = useState('');
     const [ catDisp, setCatDisp ] = useState(false);
@@ -142,6 +145,8 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
         dispatch(getSearchData(input));
         setCatDisp(false);
         setCityDisp(false);
+        setCatInp('');
+        setCityInp('');
     }
 
     const setCategory = value => {
@@ -165,7 +170,7 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
     }
 
     useEffect(()=>{
-        if (inpParams.location !== '' && inpParams.category !== ''){
+        if (inpParams.location !== '' || inpParams.category !== ''){
             dispatch(getSearchData(params))
         }
     },[page])
@@ -180,7 +185,7 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
 
                     {
                         catDisp && (
-                            <AutoSuggestions onClick={()=>setCatDisp(false)} >
+                            <AutoSuggestions onMouseLeave={()=>setCatDisp(false)} >
                                 {
                                     category.filter(( {category} )=>category.indexOf(catInp) > -1 ).map(cat => <Opt onClick={()=> setCategory(cat.category)} >{cat.category}</Opt>)
                                 }
@@ -198,7 +203,7 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
 
                     {
                         cityDisp && (
-                            <AutoSuggestions onClick={()=>setCityDisp(false)} >
+                            <AutoSuggestions onMouseLeave={()=>setCityDisp(false)} >
                                 {
                                     city.filter(( {city} )=>city.indexOf(cityInp) > -1 ).map(loc => <Opt onClick={()=> setCity(loc.city)} >{loc.city}</Opt>)
                                 }
@@ -216,11 +221,11 @@ export const FindJobsInput = ({ page, handleFilterChange }) => {
                 data.length > 0 &&
                 <Cont>
                     <Select name="datePosted" onChange={handleFilterChange} >
-                        <SelOpt value="">Date Posted</SelOpt>
-                        <SelOpt value="5">Last 5 days</SelOpt>
-                        <SelOpt value="10">Last 10 days</SelOpt>
-                        <SelOpt value="15">Last 15 days</SelOpt>
-                        <SelOpt value="20">Last 20 days</SelOpt>
+                        <SelOpt value="null">Date Posted</SelOpt>
+                        <SelOpt value="1">Last 24 hrs</SelOpt>
+                        <SelOpt value="10">Last 3 days</SelOpt>
+                        <SelOpt value="15">Last 7 days</SelOpt>
+                        <SelOpt value="20">Last 14 days</SelOpt>
                     </Select>
                     <Select name="jobType" onChange={handleFilterChange} >
                         <SelOpt value="">Job Type</SelOpt>

@@ -1,12 +1,12 @@
 import React, { useState,useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { Redirect, useHistory, useParams } from 'react-router';
 import { Popup } from '../CompanyReviews/popup';
 import style from './Reviews.module.css'
 import styled from 'styled-components';
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redux/company/action";
-import { OptionButtonLeft,OptionButtonRight, SelectButton,RatingButton, Input, Button } from '../../Custom UI/ACustomUI';
+import { OptionButtonLeft,OptionButtonRight, SelectButton, Button } from '../../Custom UI/ACustomUI';
 import { ReviewsRateTop } from './ReviewsRateTop';
 import { ReviewsRateBottom } from './ReviewsRateBottom';
 import { Footer } from './Footer';
@@ -16,14 +16,20 @@ const H1 = styled.h1`
     margin:0px 0px 15px;
     padding:24px 0px 0px;
 `;
+
 export const Reviews=()=>{
+
+    document.title = 'Please help answer these questions about HP | Indeed.com'
     
     const compname = useParams();
     const dispatch = useDispatch();
-  const { isLoading, isError,companies } = useSelector(
+  const { companies } = useSelector(
     (state) => state.company,
     shallowEqual
   );
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const history = useHistory();
   const handleContinue=()=>{
     history.push(`/companies/review/survey/${compname.id}`)
@@ -82,7 +88,9 @@ export const Reviews=()=>{
         }
         console.log(cult);
      }
-    return(
+     
+  const isAuth = useSelector(state=> state.authReducer.isAuth);
+    return isAuth?(
         <div style={{backgroundColor:'#f5f5f5'}}>
             <div className={style.container}>
             <div style={{display:'flex'}}>
@@ -132,5 +140,5 @@ export const Reviews=()=>{
             </div>
             <Footer/>
         </div>
-    )
+    ):(<Redirect to='/account/login'/>)
 }

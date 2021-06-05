@@ -7,18 +7,17 @@ import { companiesRequest, companiesSuccess, companiesFailure } from "../../Redu
 import {searchRequest, searchSuccess, searchFailure } from '../../Redux/FindCompanyId/action'
 import { CompanyRating } from './CompaniesRating';
 import style from '../Add Reviews/Reviews.module.css'
+
 const Div = styled.div`
     &:hover{
         border:2px solid #949494;
     }
 `;
+
 export const CompanySearchPage=()=>{
     const compname = useParams();
-    const { isLoading, isError,companies } = useSelector(
-        (state) => state.company,
-        shallowEqual
-      );
-      const dispatch=useDispatch();
+    const { isLoading, isError,companies } = useSelector((state) => state.company,shallowEqual);
+    const dispatch=useDispatch();
     const getData = () => {
         const requestAction = companiesRequest();
         dispatch(requestAction);
@@ -30,7 +29,7 @@ export const CompanySearchPage=()=>{
           })
           .then((res) => {
             const successAction = companiesSuccess(res.data[0]);
-            console.log(res.data[0].company_logo);
+            console.log(res.data);
             dispatch(successAction);
           })
           .catch((err) => {

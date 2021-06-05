@@ -60,14 +60,11 @@ export const AuthNavDropdown = () => {
 
     const handleLogout = ()=>{
         dispatch(adminlogoutSuccess())
+        history.push('/account/login')
     }
 
     const handleAdmDisp = ()=>{
         dispatch(showAdminDetails())
-    }
-
-    if( !isAdminAuth ){
-        history.push('/')
     }
     
     return (

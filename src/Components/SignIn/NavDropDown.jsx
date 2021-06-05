@@ -62,14 +62,11 @@ export const NavDropdown = () => {
 
     const handleLogout = ()=>{
         dispatch(logoutSuccess())
+        history.push('/account/login')
     }
 
     const handleUserDisp = ()=>{
         dispatch(showUserDropdownDisp())
-    }
-
-    if( !isAuth ){
-        history.push('/')
     }
     
     return (

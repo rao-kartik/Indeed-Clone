@@ -21,7 +21,7 @@ const EndLine = styled.div`
     background: #dfe6e9;
 `;
 
-const Seaparation = styled.div`
+const Separation = styled.div`
     width: 1.5px;
     height: 25px;
     margin-top: 3px;
@@ -37,12 +37,16 @@ const NavContents = styled.div`
     margin: 0 10px;
     cursor: pointer;
 
-    &:hover {
+    &:hover {  
         border-bottom: 2px solid blue;
     }
 `;
 
 const leftLinks = [
+    {
+        to: '/',
+        title: 'FindJobs'
+    },
     {
         to: '/companies',
         title: 'Company reviews'
@@ -122,7 +126,7 @@ export const Navbar = () => {
                             )
                         }
                     
-                    <Seaparation></Seaparation>
+                    <Separation></Separation>
                     
                     <NavContents><Link style={{textDecoration:'none', color:'#2d2d2d'}} to='/hire' >Employers/Post Job</Link></NavContents>
 

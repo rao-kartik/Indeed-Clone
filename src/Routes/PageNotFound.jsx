@@ -28,7 +28,7 @@ const P = styled.p`
 export const PageNotFound = () => {
     return (
         <Container>
-            <Smily>
+            <Smily> 
                 <span style={{fontSize:'200px'}} class="material-icons-sharp">sentiment_dissatisfied</span>
                 <Head>404</Head>
                 <P>Page Not Found</P>

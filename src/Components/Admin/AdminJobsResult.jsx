@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { deleteJobs, getJobs } from '../../Redux/Admin/action';
+import { deleteJobs } from '../../Redux/Admin/action';
 
 const Container = styled.div`
     width: 430px;
@@ -59,8 +59,8 @@ export const AdminJobsResult = ({id, title, location,  company_name, salary, cat
 
     let days;
 
-    month == '02' ? days = 28 : 
-    month == '01' || month == '03' || month == '05' || month == '07' || month == '08' || month == '10' || month == '12' ? days= 31 : 
+    month === '02' ? days = 28 : 
+    month === '01' || month === '03' || month === '05' || month === '07' || month === '08' || month === '10' || month === '12' ? days= 31 : 
     days = 30
 
     const totalTime = +date + days

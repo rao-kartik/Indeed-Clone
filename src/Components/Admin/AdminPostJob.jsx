@@ -111,6 +111,7 @@ export const AdminPostJob = () => {
     }
 
     let day;
+    let date;
             if(today.getDate()===1 || today.getDate()===2 || today.getDate()===3 || today.getDate()=== 4 || today.getDate()===5 || today.getDate()===6 || today.getDate()===7 || today.getDate()===8 || today.getDate()===9){
                 date = `0${day}`
             }
@@ -118,7 +119,7 @@ export const AdminPostJob = () => {
                 day = today.getDate()
             }
 
-    let date = `${today.getFullYear()}-${month}-${day}`
+    date = `${today.getFullYear()}-${month}-${day}`
 
     const handleSubmit = (e)=>{
         e.preventDefault();

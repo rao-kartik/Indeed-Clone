@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { deleteRecruiters, getRecruiters } from '../../Redux/Admin/action';
 
@@ -49,8 +48,6 @@ export const AdminRecruiterResults = ({ id, company_name, company_logo, rating, 
     document.title = 'Admin | Recruiters | Indeed Accounts'
 
     const dispatch = useDispatch();
-
-    const history = useHistory();
     
     const handleDelete = (id)=>{
         dispatch(deleteRecruiters(id));

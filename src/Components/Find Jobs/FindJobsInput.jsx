@@ -138,7 +138,6 @@ export const FindJobsInput = ({ page }) => {
     else {
         params = inpParams;
     }
-    console.log(params)
 
     const handleSearch = (e, input)=>{
         e.preventDefault();

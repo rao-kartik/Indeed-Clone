@@ -1,4 +1,4 @@
-import { fire } from "../../Config/fire";
+import { fire } from "../../Config/fire.js";
 import { SIGN_IN_FAILURE, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, 
     ADMIN_SIGN_IN_REQUEST, ADMIN_SIGN_IN_SUCCESS, ADMIN_SIGN_IN_FAILURE, 
     REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE,

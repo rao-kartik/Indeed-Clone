@@ -13,7 +13,6 @@ import { AddReview } from './AddReview';
 import { AddSurvey } from './AddSurvey';
 import { CompanySearch } from './CompanySearch';
 import { AdminLogin } from '../Components/Admin/AdminLogin';
-import { Admin } from '../Components/Admin/Admin';
 import { AdminJobs } from '../Components/Admin/AdminJobs';
 import { AdminRecruiters } from '../Components/Admin/AdminRecruiters';
 import { AdminPostJob } from '../Components/Admin/AdminPostJob';

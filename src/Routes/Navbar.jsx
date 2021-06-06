@@ -84,8 +84,6 @@ const rightLinksAfterSignin = [
 
 export const Navbar = () => {
 
-    const [active, setActive] = React.useState(false);
-
     const isAuth = useSelector(state=>state.authReducer.isAuth);
     
     const userDropDownDisp = useSelector(state=> state.appReducer.userDropDownDisp);
@@ -94,10 +92,6 @@ export const Navbar = () => {
 
     const handleUserDisp = ()=>{
         dispatch(showUserDropdownDisp())
-    }
-
-    const handleActive = (e)=>{
-        setActive(e.traget.innerHtml);
     }
     
     return (

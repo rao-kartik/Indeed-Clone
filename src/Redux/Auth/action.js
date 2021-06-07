@@ -81,7 +81,6 @@ const signInWithEmail = (input)=>dispatch=>{
     fire.auth().signInWithEmailAndPassword(email, password)
     .then(userCredential=>{
         var user = userCredential.user
-        // console.log(user)
         dispatch(signInSuccess(user))
     })
     .catch(err=>{
@@ -97,7 +96,6 @@ const adminSignInWithEmail = (input)=>dispatch=>{
     fire.auth().signInWithEmailAndPassword(email, password)
     .then(userCredential=>{
         var user = userCredential.user
-        // console.log(user)
         dispatch(adminSignInSuccess(user))
     })
     .catch(err=>{

@@ -13,6 +13,12 @@ const Pops = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     margin: 20px auto;
+
+    @media(max-width: 840px) {
+        width: 100%;
+        padding: 40px 0;
+        border: 1px solid transparent;
+    }
 `;
 
 const Span = styled.div`

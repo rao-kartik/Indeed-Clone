@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { InputDiv, Input, Button } from '../../Custom UI/KCustomUI';
+import { Button } from '../../Custom UI/KCustomUI';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchData } from '../../Redux/FindJobs/action';
@@ -13,16 +13,57 @@ const Container = styled.div`
     align-items: center;
     border-bottom: 1px solid #d6d6d6;
     padding: 40px 0 30px;
+
+    @media(max-width: 840px) {
+        padding: 10px 0 10px 20px;
+    }
 `;
 
 const Search = styled.form`
     display: flex;
     justify-content: center;
+
+    @media(max-width: 840px) {
+        flex-direction: column;
+        width: 100%;
+    }
 `;
 
 const Others = styled.div`
     font-size: 14px;
     text-align: center;
+`;
+
+const InputDiv = styled.div`
+    width: 20rem;
+    overflow: hidden;
+    height: 2.568rem;
+    border: 0.0625rem solid #949494;
+    border-radius: .5rem;
+    background-color: #fff;
+    color: #2d2d2d;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    margin: 10px;
+
+    @media(max-width: 840px) {
+        width: 95%;
+    }
+`;
+
+const Input = styled.input`
+    width: 15rem;
+    height: 2rem;
+    margin: 0 0.8rem;
+    outline: none;
+    border: none;
+
+    @media(max-width: 840px){
+        width: 100%;
+    }
 `;
 
 const Span = styled.span`

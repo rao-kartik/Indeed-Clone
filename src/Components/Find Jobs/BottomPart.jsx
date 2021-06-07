@@ -11,6 +11,9 @@ const Content = styled.div`
     color: #2d2d2d;
     margin: 15px;
     font-size: .85rem;
+    flex-wrap: wrap;
+
+    @media
 `;
 
 const P = styled.p`

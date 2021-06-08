@@ -26,6 +26,10 @@ const EndLine = styled.div`
     width: 100%;
     height: 1px;
     background: #dfe6e9;
+
+    @media(max-width: 840px){
+        display: none;
+    }
 `;
 
 const Separation = styled.div`
@@ -33,6 +37,10 @@ const Separation = styled.div`
     height: 25px;
     margin-top: 3px;
     background: #e4e2e0;
+
+    @media(max-width: 840px) {
+        display: none;
+    }
 `;
 
 const NavContents = styled.div`

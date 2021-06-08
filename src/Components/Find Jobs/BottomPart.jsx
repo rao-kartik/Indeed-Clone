@@ -29,6 +29,10 @@ const Resume = styled.div`
     width: 100%;
     background: #f3f2f1;
     padding: 30px 0;
+
+    @media(max-width: 840px) {
+        display: none;
+    }
 `;
 
 export const BottomPart = () => {

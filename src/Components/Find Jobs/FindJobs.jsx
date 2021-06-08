@@ -12,7 +12,7 @@ import { PopularSearches } from './PopularSearches';
 import { SearchResults } from './SearchResults';
 
 const Container = styled.div`
-
+    
 `;
 
 const Results = styled.div`

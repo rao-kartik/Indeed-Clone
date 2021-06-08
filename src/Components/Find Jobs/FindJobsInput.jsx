@@ -16,6 +16,11 @@ const Container = styled.div`
 
     @media(max-width: 840px) {
         padding: 10px 0 10px 20px;
+        background: #fff;
+    }
+
+    @media(max-width: 400px){
+        padding-right: 20px;
     }
 `;
 

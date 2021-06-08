@@ -29,8 +29,6 @@ export const companyInfoFailure = (err) => {
 };
 
 export const getCompanyData = (id) => (dispatch) => {
-    console.log('working')
-    console.log('id', id)
   dispatch(companyInfoRequest());
 
 const config = {

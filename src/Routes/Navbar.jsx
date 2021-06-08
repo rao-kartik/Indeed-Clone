@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { NavDropdown } from '../Components/SignIn/NavDropDown';
 import { showUserDropdownDisp } from '../Redux/App/action';
 import styles from './Navbar.module.css';
+import { NavbarResponsive } from './NavbarResponsive';
 
 const Container = styled.div`
     position: relative;
@@ -15,12 +16,20 @@ const Container = styled.div`
     padding: 10px 15px 0;
     font-size: 13px;
     align-items: center;
+
+    @media(max-width: 840px){
+        display: none;
+    }
 `;
 
 const EndLine = styled.div`
     width: 100%;
     height: 1px;
     background: #dfe6e9;
+
+    @media(max-width: 840px){
+        display: none;
+    }
 `;
 
 const Separation = styled.div`
@@ -28,6 +37,10 @@ const Separation = styled.div`
     height: 25px;
     margin-top: 3px;
     background: #e4e2e0;
+
+    @media(max-width: 840px) {
+        display: none;
+    }
 `;
 
 const NavContents = styled.div`
@@ -136,7 +149,7 @@ export const Navbar = () => {
 
                 </div>
             </Container>
-
+            <NavbarResponsive />
             <EndLine></EndLine>
         </>
     )

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SearchResult } from '../../Custom UI/KCustomUI';
+import { SearchResult } from '../../Custom UI/stylesHome';
 
 const Container = styled.div`
 

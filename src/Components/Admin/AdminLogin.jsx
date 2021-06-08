@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { RoundBtn } from '../../Custom UI/KCustomUI';
 import { Link, useHistory } from 'react-router-dom';
-import { adminSignInWithEmail } from '../../Redux/Auth/action';
 import { useDispatch, useSelector } from 'react-redux';
+import { RoundBtn } from '../../Custom UI/stylesHome';
+import { adminSignInWithEmail } from '../../Redux/Auth/action';
 import { BottomPart } from '../SignIn/BottomPart'
 import { Loading } from '../Loading/Loading';
 

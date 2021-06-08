@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { Button } from '../../Custom UI/KCustomUI';
-import { searchResumeByEmail } from '../../Redux/FindResume/action';
 import styled from 'styled-components';
-import { applyJobRequest,applyJobSuccess,applyJobFailure  } from '../../Redux/ApplyJob/action'
 import axios from 'axios';
 import { Redirect, useParams } from 'react-router';
-import { Loading } from '../Loading/Loading';
 import { Link } from 'react-router-dom';
+import { Loading } from '../Loading/Loading';
+import { Button } from '../../Custom UI/stylesHome';
+import { searchResumeByEmail } from '../../Redux/FindResume/action';
+import { applyJobRequest,applyJobSuccess,applyJobFailure  } from '../../Redux/ApplyJob/action'
 
 const Div = styled.div`
     border:1px solid #085ff7;

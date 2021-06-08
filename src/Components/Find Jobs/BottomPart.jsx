@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../../Custom UI/KCustomUI';
+import { Button } from '../../Custom UI/stylesHome';
 
 const Container = styled.div`
     margin-top:6rem;

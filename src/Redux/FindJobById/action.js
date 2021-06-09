@@ -24,7 +24,6 @@ const jobsByIdFailure = (err) => {
 };
 
 export const jobsByIdSearch = (params) => (dispatch) => {
-  console.log(params);
   dispatch(jobsByIdRequest());
   const config = {
     url: `/newJobs/${params}`,
@@ -32,11 +31,9 @@ export const jobsByIdSearch = (params) => (dispatch) => {
   };
   axios(config)
     .then((res) => {
-        console.log(res.data)
       dispatch(jobsByIdSuccess(res.data));
     })
     .catch((err) => {
-        console.log(err);
       dispatch(jobsByIdFailure(err));
     });
 };

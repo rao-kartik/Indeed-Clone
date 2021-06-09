@@ -25,7 +25,6 @@ const Div = styled.div`
     display:flex;
     `;
 export const ApplyJobs=({jobId})=>{
-    console.log('apply jobs' + jobId);
     var data = useSelector(state=> state.jobsByIdReducer.jobs_data)
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -52,5 +51,3 @@ export const ApplyJobs=({jobId})=>{
         </SearchResultById>
     ):<Redirect to={`/form/questions/${jobId}`}/>
 }
-
-/* style={isFavourite?{backgroundImage:"url(" + "https://cdn2.iconfinder.com/data/icons/4web-3/139/favourite-512.png" + ")"}:{backgroundImage:"url(" + "https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_favorite_48px-512.png" + ")"}} */

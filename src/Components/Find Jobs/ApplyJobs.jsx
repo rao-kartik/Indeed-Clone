@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, SearchResultById } from '../../Custom UI/KCustomUI';
-import { jobsByIdSearch } from '../../Redux/FindJobById/action';
 import styled from 'styled-components';
 import { Redirect } from 'react-router';
+import { Button, SearchResultById } from '../../Custom UI/stylesHome';
+import { jobsByIdSearch } from '../../Redux/FindJobById/action';
 
 const FavouriteButton = styled.button`
     width:44px;

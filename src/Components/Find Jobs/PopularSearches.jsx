@@ -1,6 +1,6 @@
 import React from 'react';
-import { PopSearchBtn } from '../../Custom UI/KCustomUI';
 import styled from 'styled-components';
+import { PopSearchBtn } from '../../Custom UI/stylesHome';
 
 const Container = styled.div`
     text-align: center;

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { RoundBtn } from '../../Custom UI/KCustomUI';
-import { BottomPart } from './BottomPart';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { RoundBtn } from '../../Custom UI/stylesHome';
+import { BottomPart } from './BottomPart';
 import { registerUser } from '../../Redux/Auth/action';
 
 const MainBox = styled.div`

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 import { addRecruiters } from '../../Redux/Admin/action';
-import { RoundBtn } from '../../Custom UI/KCustomUI';
+import { RoundBtn } from '../../Custom UI/stylesHome';
 
 const Container = styled.div`
     width: 100%;

@@ -35,7 +35,6 @@ const rootReducer = combineReducers({
   findResumeReducer:findResumeReducer,
   applyJobReducer:applyJobReducer,
   appReducer: AppReducer,
-  jobsByIdReducer: jobsByIdReducer,
   resume:resumeReducer,
   myReviewsReducer: myReviewsReducer,
   myJobReducer:myJobReducer,

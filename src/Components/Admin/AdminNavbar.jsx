@@ -79,7 +79,7 @@ export const AdminNavbar = () => {
         <Container>
             <Left>
                 {
-                    links.map(item=><Link style={{textDecoration:'none', color:'#fff'}} to={item.to} ><NavContents>{item.title}</NavContents></Link>)
+                    links.map(item=><Link key={item.to}git  style={{textDecoration:'none', color:'#fff'}} to={item.to} ><NavContents>{item.title}</NavContents></Link>)
                 }
             </Left>
             <Right>

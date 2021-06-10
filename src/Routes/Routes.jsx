@@ -28,6 +28,7 @@ import { EmailPreferences } from '../Components/Email Preferences/EmailPreferenc
 import { PageNotFound } from './PageNotFound';
 import { Salaries } from '../Components/Find Salaries/Salaries';
 
+
 export const Routes = () => {
 
     const isAdminAuth = useSelector(state => state.authReducer.isAdminAuth);

@@ -45,26 +45,3 @@ export const SortContextProvider = ({ children }) => {
         </SortContext.Provider>
     )
 }
-
-
-
-// if(filterCond.datePosted){
-//     console.log(filterCond.datePosted)
-//     data = data.filter(item=> {
-//         const month = publication_date[5] + publication_date[6]
-
-//         const date = publication_date[8] + publication_date[9]
-
-//         let days;
-
-//         month == '02' ? days = 28 : 
-//         month == '01' || month == '03' || month == '05' || month == '07' || month == '08' || month == '10' || month == '12' ? days= 31 : 
-//         days = 30;
-
-//         const totalTime = +date + days;
-
-//         if(totalTime < filterCond.datePosted){
-//             return item;
-//         }
-//     })
-// } 

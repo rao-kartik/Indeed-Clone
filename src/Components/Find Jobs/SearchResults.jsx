@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SearchResult } from '../../Custom UI/KCustomUI';
+import { SearchResult } from '../../Custom UI/stylesHome';
 
 const Container = styled.div`
 
@@ -30,7 +30,6 @@ const Time=styled.p`
 `;
 
 export const SearchResults = ({title, location, job_type,  company_name, salary, category, publication_date, id, handleChangeById}) => {
-    console.log(publication_date)
 
     let pubMonth = `${publication_date[5]}${publication_date[6]}`;
 
@@ -70,7 +69,6 @@ export const SearchResults = ({title, location, job_type,  company_name, salary,
         }
         curDays += pDay;
     }
-    console.log(curDays)
 
     let curTotDays = day + curDays;
 

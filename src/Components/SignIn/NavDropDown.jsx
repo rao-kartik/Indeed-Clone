@@ -55,21 +55,17 @@ export const NavDropdown = () => {
 
     const dispatch = useDispatch();
 
-    const isAuth = useSelector(state=> state.authReducer.isAuth);
     const token = useSelector(state=> state.authReducer.token);
 
     const history = useHistory();
 
     const handleLogout = ()=>{
         dispatch(logoutSuccess())
+        history.push('/account/login')
     }
 
     const handleUserDisp = ()=>{
         dispatch(showUserDropdownDisp())
-    }
-
-    if( !isAuth ){
-        history.push('/')
     }
     
     return (

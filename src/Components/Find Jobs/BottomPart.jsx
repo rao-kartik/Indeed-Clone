@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../../Custom UI/KCustomUI';
+import { Button } from '../../Custom UI/stylesHome';
 
 const Container = styled.div`
     margin-top:6rem;
@@ -11,6 +11,9 @@ const Content = styled.div`
     color: #2d2d2d;
     margin: 15px;
     font-size: .85rem;
+    flex-wrap: wrap;
+
+    @media
 `;
 
 const P = styled.p`
@@ -26,6 +29,10 @@ const Resume = styled.div`
     width: 100%;
     background: #f3f2f1;
     padding: 30px 0;
+
+    @media(max-width: 840px) {
+        display: none;
+    }
 `;
 
 export const BottomPart = () => {

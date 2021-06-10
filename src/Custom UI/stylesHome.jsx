@@ -19,9 +19,14 @@ export const Button = styled.button`
     margin: 10px;
     display: flex;
     align-items: center;
+    justify-content: center;
 
     &:hover {
         background: #164081;
+    }
+
+    @media(max-width: 840px){
+        width: 95%;
     }
 `;
 

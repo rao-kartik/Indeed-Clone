@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { AdminLogin } from './AdminLogin';
 import styled from 'styled-components';
-import { AdminNavbar } from './AdminNavbar';
 
 export const Container = styled.div`
     width: 100%;

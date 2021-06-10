@@ -53,21 +53,17 @@ export const AuthNavDropdown = () => {
 
     const dispatch = useDispatch();
 
-    const isAdminAuth = useSelector(state=> state.authReducer.isAdminAuth);
     const token = useSelector(state=> state.authReducer.token);
 
     const history = useHistory();
 
     const handleLogout = ()=>{
         dispatch(adminlogoutSuccess())
+        history.push('/account/login')
     }
 
     const handleAdmDisp = ()=>{
         dispatch(showAdminDetails())
-    }
-
-    if( !isAdminAuth ){
-        history.push('/')
     }
     
     return (

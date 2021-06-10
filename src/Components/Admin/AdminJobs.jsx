@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getJobs } from '../../Redux/Admin/action';
-import { SearchResult } from '../../Custom UI/KCustomUI';
 import { AdminJobsResult } from './AdminJobsResult';
 import { Loading } from '../Loading/Loading';
 

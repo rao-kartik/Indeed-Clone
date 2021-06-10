@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { getRecruiters } from '../../Redux/Admin/action';
 import { useDispatch, useSelector } from 'react-redux';
-import { AdminRecruiterResults } from './AdminRecruiterResults';
 import styled from 'styled-components';
+import { getRecruiters } from '../../Redux/Admin/action';
+import { AdminRecruiterResults } from './AdminRecruiterResults';
 
 const Container = styled.div`
     display: flex;
@@ -10,15 +10,8 @@ const Container = styled.div`
     justify-content: center;
 `;
 
-const Load = styled.div`
-    position: absolute;
-    right: 50%;
-    top: 40%;
-`;
-
 export const AdminRecruiters = () => {
     const recruiterData = useSelector(state=>state.adminReducer.recruiterData);
-    const isLoading = useSelector(state=>state.adminReducer.isLoading);
 
     const dispatch = useDispatch();
 

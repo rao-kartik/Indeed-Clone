@@ -55,7 +55,6 @@ export const myJobSearch = () => (dispatch) => {
   axios(config)
     .then((res) => {
       dispatch(myJobSuccess(res.data));
-      console.log(res.data);
     })
     .catch((err) => {
       dispatch(myJobFailure(err));

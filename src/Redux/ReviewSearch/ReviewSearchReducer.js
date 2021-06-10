@@ -1,4 +1,3 @@
-import React from 'react'
 import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE } from './actionTypes';
 
 const initState = {

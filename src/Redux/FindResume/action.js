@@ -25,23 +25,19 @@ const findResumeFailure = (err) => {
 };
 
 export const searchResumeByEmail = () => (dispatch) => {
-    console.log(token.email);
   dispatch(findResumeRequest());
   const config = {
     url: `/resumes/`,
     method: "get",
     params:{
       email:token.email
-      // email:""
     }
   };
   axios(config)
     .then((res) => {
-        console.log(res.data[0])
       dispatch(findResumeSuccess(res.data[0]));
     })
     .catch((err) => {
-        console.log(err);
       dispatch(findResumeFailure(err));
     });
 };

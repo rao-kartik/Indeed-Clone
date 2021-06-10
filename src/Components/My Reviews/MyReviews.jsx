@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import styled from "styled-components";
-import { H1, P } from "../../Custom UI/ACustomUI";
+import { useDispatch, useSelector } from "react-redux";
 import { myReviewsSearch } from "../../Redux/MyReviews/action";
+import { H1, P } from "../../Custom UI/ReviewsUI";
 import { MyReviewsList } from "./MyReviewsList";
 
 const Container = styled.div`
   background-color: #f5f5f5;
-  /* height:70vh; */
   padding: 20px;
 `;
 const HeadContainer = styled.div`
   height: 10vh;
+`;
+const Div = styled.div`
+  width: 50%;
+  margin: auto;
 `;
 
 export const MyReviews = () => {
@@ -34,13 +37,13 @@ export const MyReviews = () => {
         </H1>
       </HeadContainer>
       <Container>
-        <div style={{ width: "50%", margin: "auto" }}>
+        <Div>
           {!reviewsData.length > 0 ? (
             <P>No company reviews</P>
           ) : (
             <MyReviewsList reviewsData={reviewsData} />
           )}
-        </div>
+        </Div>
       </Container>
     </div>
   ) : (

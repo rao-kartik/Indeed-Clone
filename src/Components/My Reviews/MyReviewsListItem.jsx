@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -23,6 +22,9 @@ const Delete = styled.div`
   right: 20px;
   bottom: 10px;
 `;
+const H1 = styled.h1`
+  font-style: italic;
+`;
 export const MyReviewsListItem = ({
   title,
   text,
@@ -38,7 +40,7 @@ export const MyReviewsListItem = ({
   return (
     <Div>
       <h1>{company}</h1>
-      <h1 style={{ fontStyle: "italic" }}>{title}</h1>
+      <H1>{title}</H1>
       <Container>
         <p>Rating : {rating}</p>
         <p>{datetime}</p>

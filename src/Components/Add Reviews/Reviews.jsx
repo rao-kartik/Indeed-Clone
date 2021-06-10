@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, useHistory, useParams } from "react-router";
 import styled from "styled-components";
-import axios from "axios";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import {
-  companiesRequest,
-  companiesSuccess,
-  companiesFailure,
-} from "../../Redux/company/action";
+import { useDispatch, useSelector } from "react-redux";
+import { getCompanyLogo } from "../../Redux/company/action";
 import {
   OptionButtonLeft,
   OptionButtonRight,
   SelectButton,
   Button,
-} from "../../Custom UI/ACustomUI";
+} from "../../Custom UI/ReviewsUI";
 import style from "./Reviews.module.css";
 import { Popup } from "../CompanyReviews/popup";
 import { ReviewsRateTop } from "./ReviewsRateTop";
-import { ReviewsRateBottom } from "./ReviewsRateBottom";
 import { Footer } from "./Footer";
 
 const H1 = styled.h1`
@@ -36,73 +30,70 @@ const TopDiv = styled.div`
 `;
 const FlexContainer = styled.div`
   display: flex;
+  background-color: white;
+  height: 138px;
+  padding: 0px 24px 24px;
+  margin: 5px;
+  @media (max-width: 720px) {
+    height: 178px;
+  }
+  @media (max-width: 630px) {
+    height: 228px;
+  }
 `;
 const MainContainer = styled.div`
   background-color: #f5f5f5;
+  margin-top: 50px;
+`;
+const SpanLarge = styled.span`
+  font-size: 22px;
+`;
+const SpanSmall = styled.span`
+  font-size: 14px;
+`;
+const ContainerWorkCulture = styled.div`
+  height: 200px;
+  background-color: white;
+  padding: 0px 24px 24px;
+  margin: 5px;
+  @media (max-width: 1000px) {
+    height: 280px;
+  }
+  @media (max-width: 770px) {
+    height: 325px;
+  }
+  @media (max-width: 600px) {
+    height: 350px;
+  }
+`;
+const BottomContainer = styled.div`
+  text-align: center;
+  height: 100px;
+`;
+const Container = styled.div`
+  width: 70%;
+  margin: auto;
+`;
+const PanelDiv = styled.div`
+  background-color: white;
+  height: 138px;
+  padding: 0px 24px 24px;
+  margin: 5px;
+  @media (max-width: 600px) {
+    height: 178px;
+  }
 `;
 export const Reviews = () => {
   document.title = "Please help answer these questions about HP | Indeed.com";
   const compname = useParams();
   const dispatch = useDispatch();
-  const { companies } = useSelector((state) => state.company, shallowEqual);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   const history = useHistory();
-  const handleContinue = () => {
-    history.push(`/companies/review/survey/${compname.id}`);
-  };
-
-  const getData = () => {
-    const requestAction = companiesRequest();
-    dispatch(requestAction);
-    axios
-      .get("https://json-server-mocker-ajmal.herokuapp.com/companies", {
-        params: {
-          company_name: compname.id,
-        },
-      })
-      .then((res) => {
-        const successAction = companiesSuccess(res.data[0].company_logo);
-        dispatch(successAction);
-      })
-      .catch((err) => {
-        const failureAction = companiesFailure(err);
-        dispatch(failureAction);
-      });
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+  const company_logo = useSelector((state) => state.company.company_logo);
   const [isOpen, setIsOpen] = useState(false);
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  };
   const [recoColor, setRecoColor] = React.useState();
-  const onChangeReco = (e) => {
-    const { value } = e.target;
-    setRecoColor(Number(value));
-  };
   const [fair, setFair] = React.useState();
-  const onChangeFair = (e) => {
-    const { value } = e.target;
-    setFair(Number(value));
-  };
   const [salary, setSalary] = React.useState();
-  const onChangeSalary = (e) => {
-    const { value } = e.target;
-    setSalary(Number(value));
-  };
   const [cult, setCult] = React.useState([]);
-  const onChangeCult = (e) => {
-    const { value } = e.target;
-    if (cult.includes(Number(value))) {
-      setCult(cult.filter((item) => item !== Number(value)));
-    } else {
-      setCult([...cult, Number(value)]);
-    }
-  };
-
   const isAuth = useSelector((state) => state.authReducer.isAuth);
   const work_culture = [
     { id: 1, title: "Relaxed" },
@@ -113,21 +104,59 @@ export const Reviews = () => {
     { id: 6, title: "Slow-paced" },
     { id: 7, title: "Not sure" },
   ];
+
+  const handleContinue = () => {
+    history.push(`/companies/review/survey/${compname.id}`);
+  };
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const onChangeReco = (e) => {
+    const { value } = e.target;
+    setRecoColor(Number(value));
+  };
+
+  const onChangeFair = (e) => {
+    const { value } = e.target;
+    setFair(Number(value));
+  };
+
+  const onChangeSalary = (e) => {
+    const { value } = e.target;
+    setSalary(Number(value));
+  };
+
+  const onChangeCult = (e) => {
+    const { value } = e.target;
+    if (cult.includes(Number(value))) {
+      setCult(cult.filter((item) => item !== Number(value)));
+    } else {
+      setCult([...cult, Number(value)]);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(getCompanyLogo(compname.id));
+    window.scrollTo(0, 0);
+  }, []);
+
   return isAuth ? (
     <MainContainer>
-      <div className={style.container}>
+      <Container>
         <FlexContainer>
-          <div>
-            <LogoImg src={companies} alt="company_logo" />
-          </div>
+          <PanelDiv>
+            <LogoImg src={company_logo} alt="company_logo" />
+          </PanelDiv>
           <TopDiv>
-            <span style={{ fontSize: "22px" }}>
+            <SpanLarge>
               Please help answer these questions about {compname.id}
-            </span>
+            </SpanLarge>
             <br />
-            <span style={{ fontSize: "14px" }}>
+            <SpanSmall>
               Your honest responses help other job seekers and it’s anonymous{" "}
-            </span>
+            </SpanSmall>
             <button onClick={togglePopup} className={style.icon}></button>
           </TopDiv>
           {isOpen && (
@@ -146,7 +175,7 @@ export const Reviews = () => {
             />
           )}
         </FlexContainer>
-        <div>
+        <PanelDiv>
           <H1>Would you recommend working at {compname.id} to a friend?</H1>
           <OptionButtonLeft
             value={1}
@@ -170,8 +199,8 @@ export const Reviews = () => {
           >
             No
           </OptionButtonRight>
-        </div>
-        <div>
+        </PanelDiv>
+        <PanelDiv>
           <H1>Do you think you are paid fairly at {compname.id}?</H1>
           <OptionButtonLeft
             value={1}
@@ -195,8 +224,8 @@ export const Reviews = () => {
           >
             No
           </OptionButtonRight>
-        </div>
-        <div>
+        </PanelDiv>
+        <PanelDiv>
           <H1>
             Do you feel like your salary at {compname.id} is enough for the cost
             of living in your area?
@@ -223,8 +252,8 @@ export const Reviews = () => {
           >
             No
           </OptionButtonRight>
-        </div>
-        <div style={{ height: "200px" }}>
+        </PanelDiv>
+        <ContainerWorkCulture>
           <H1>How would you describe the work culture at {compname.id}?</H1>
           <p>Choose all that are applicable:</p>
           {work_culture.map((item) => (
@@ -240,18 +269,18 @@ export const Reviews = () => {
               {item.title}
             </SelectButton>
           ))}
-        </div>
-        <ReviewsRateTop compname={compname.id} />
-        <ReviewsRateBottom compname={compname.id} />
-        <div style={{ textAlign: "center", height: "100px" }}>
+        </ContainerWorkCulture>
+        <ReviewsRateTop compname={compname.id} type={"top"} />
+        <ReviewsRateTop compname={compname.id} type={"bottom"} />
+        <BottomContainer>
           <Button
             style={{ width: "300px", marginTop: "20px" }}
             onClick={handleContinue}
           >
             Continue
           </Button>
-        </div>
-      </div>
+        </BottomContainer>
+      </Container>
       <Footer />
     </MainContainer>
   ) : (

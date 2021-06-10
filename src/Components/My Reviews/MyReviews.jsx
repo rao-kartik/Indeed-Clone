@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { myReviewsSearch } from "../../Redux/MyReviews/action";
 import { H1, P } from "../../Custom UI/ReviewsUI";
+import styles from "./MyReviews.module.css";
 import { MyReviewsList } from "./MyReviewsList";
 
 const Container = styled.div`
@@ -30,11 +31,7 @@ export const MyReviews = () => {
   return isAuth ? (
     <div>
       <HeadContainer>
-        <H1
-          style={{ fontSize: "32px", marginTop: "20px", textAlign: "center" }}
-        >
-          My reviews and contributions
-        </H1>
+        <H1 className={styles.textCenter}>My reviews and contributions</H1>
       </HeadContainer>
       <Container>
         <Div>

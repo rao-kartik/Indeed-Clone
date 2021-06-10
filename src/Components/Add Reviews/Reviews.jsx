@@ -9,7 +9,7 @@ import {
   SelectButton,
   Button,
 } from "../../Custom UI/ReviewsUI";
-import style from "./Reviews.module.css";
+import styles from "./Reviews.module.css";
 import { Popup } from "../CompanyReviews/popup";
 import { ReviewsRateTop } from "./ReviewsRateTop";
 import { Footer } from "./Footer";
@@ -136,7 +136,30 @@ export const Reviews = () => {
       setCult([...cult, Number(value)]);
     }
   };
-
+  const recoFirend = [
+    { component: OptionButtonLeft, number: 1, text: "Yes" },
+    { component: OptionButtonRight, number: 2, text: "No" },
+  ];
+  const panels = [
+    {
+      id: 1,
+      text: `Would you recommend working at here to a friend?`,
+      style_condition: recoColor,
+      onclick_text: onChangeReco,
+    },
+    {
+      id: 2,
+      text: "Do you think you are paid fairly?",
+      style_condition: fair,
+      onclick_text: onChangeFair,
+    },
+    {
+      id: 3,
+      text: "Do you feel like your salary is enough for the cost of living in your area?",
+      style_condition: salary,
+      onclick_text: onChangeSalary,
+    },
+  ];
   useEffect(() => {
     dispatch(getCompanyLogo(compname.id));
     window.scrollTo(0, 0);
@@ -157,7 +180,7 @@ export const Reviews = () => {
             <SpanSmall>
               Your honest responses help other job seekers and it’s anonymous{" "}
             </SpanSmall>
-            <button onClick={togglePopup} className={style.icon}></button>
+            <button onClick={togglePopup} className={styles.icon}></button>
           </TopDiv>
           {isOpen && (
             <Popup
@@ -175,90 +198,32 @@ export const Reviews = () => {
             />
           )}
         </FlexContainer>
-        <PanelDiv>
-          <H1>Would you recommend working at {compname.id} to a friend?</H1>
-          <OptionButtonLeft
-            value={1}
-            style={
-              recoColor === 1
-                ? { background: "#085ff7", color: "white" }
-                : { background: "transparent", color: "#085ff7" }
-            }
-            onClick={onChangeReco}
-          >
-            Yes
-          </OptionButtonLeft>
-          <OptionButtonRight
-            value={2}
-            style={
-              recoColor === 2
-                ? { background: "#085ff7", color: "white" }
-                : { background: "transparent", color: "#085ff7" }
-            }
-            onClick={onChangeReco}
-          >
-            No
-          </OptionButtonRight>
-        </PanelDiv>
-        <PanelDiv>
-          <H1>Do you think you are paid fairly at {compname.id}?</H1>
-          <OptionButtonLeft
-            value={1}
-            style={
-              fair === 1
-                ? { background: "#085ff7", color: "white" }
-                : { background: "transparent", color: "#085ff7" }
-            }
-            onClick={onChangeFair}
-          >
-            Yes
-          </OptionButtonLeft>
-          <OptionButtonRight
-            value={2}
-            style={
-              fair === 2
-                ? { background: "#085ff7", color: "white" }
-                : { background: "transparent", color: "#085ff7" }
-            }
-            onClick={onChangeFair}
-          >
-            No
-          </OptionButtonRight>
-        </PanelDiv>
-        <PanelDiv>
-          <H1>
-            Do you feel like your salary at {compname.id} is enough for the cost
-            of living in your area?
-          </H1>
-          <OptionButtonLeft
-            value={1}
-            style={
-              salary === 1
-                ? { background: "#085ff7", color: "white" }
-                : { background: "transparent", color: "#085ff7" }
-            }
-            onClick={onChangeSalary}
-          >
-            Yes
-          </OptionButtonLeft>
-          <OptionButtonRight
-            value={2}
-            style={
-              salary === 2
-                ? { background: "#085ff7", color: "white" }
-                : { background: "transparent", color: "#085ff7" }
-            }
-            onClick={onChangeSalary}
-          >
-            No
-          </OptionButtonRight>
-        </PanelDiv>
+        {panels.map((panelitem) => (
+          <PanelDiv key={panelitem.id}>
+            <H1>{panelitem.text}</H1>
+            {recoFirend.map((item) => (
+              <item.component
+                value={item.number}
+                key={item.number}
+                style={
+                  panelitem.style_condition === item.number
+                    ? { background: "#085ff7", color: "white" }
+                    : { background: "transparent", color: "#085ff7" }
+                }
+                onClick={panelitem.onclick_text}
+              >
+                {item.text}
+              </item.component>
+            ))}
+          </PanelDiv>
+        ))}
         <ContainerWorkCulture>
           <H1>How would you describe the work culture at {compname.id}?</H1>
           <p>Choose all that are applicable:</p>
           {work_culture.map((item) => (
             <SelectButton
               value={item.id}
+              key={item.id}
               style={
                 cult.includes(item.id)
                   ? { background: "#085ff7", color: "white" }
@@ -273,10 +238,7 @@ export const Reviews = () => {
         <ReviewsRateTop compname={compname.id} type={"top"} />
         <ReviewsRateTop compname={compname.id} type={"bottom"} />
         <BottomContainer>
-          <Button
-            style={{ width: "300px", marginTop: "20px" }}
-            onClick={handleContinue}
-          >
+          <Button className={styles.buttonReview} onClick={handleContinue}>
             Continue
           </Button>
         </BottomContainer>

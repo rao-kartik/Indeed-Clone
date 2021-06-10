@@ -6,6 +6,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { postReview } from "../../Redux/Reviews/action";
 import { loadData } from "../../Utils/localStorage";
 import { Button } from "../../Custom UI/ReviewsUI";
+import styles from "./Reviews.module.css";
 import { SurveyTopPart } from "./SurveyTopPart";
 import { Footer } from "./Footer";
 import { Loading } from "../Loading/Loading";
@@ -77,6 +78,9 @@ const TextArea = styled.textarea`
     width: 90%;
   }
 `;
+const RedP = styled.p`
+  color: red;
+`;
 export const Survey = () => {
   const token = loadData("token") || {};
   const compname = useParams();
@@ -128,7 +132,25 @@ export const Survey = () => {
       dispatch(postReview(reviewData));
     }
   };
+  const dummyChnaged = () => {};
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const starsArray = [
+    { id: 1, text: "Overall rating", name: "rating", onchange: ratingChanged },
+    {
+      id: 2,
+      text: "Job Work/Life Balance",
+      name: "jobwork",
+      onchange: dummyChnaged,
+    },
+    { id: 3, text: "Salary/Benefits", name: "salary", onchange: dummyChnaged },
+    {
+      id: 4,
+      text: "Job Security/Advancement",
+      name: "jobsecurity",
+      onchange: dummyChnaged,
+    },
+    { id: 5, text: "Management", name: "management", onchange: dummyChnaged },
+  ];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -139,68 +161,26 @@ export const Survey = () => {
           <Container>
             <SurveyTopPart />
             <RateCompanyDiv>
-              <H1 style={{ float: "left" }}>Rate this company</H1>
-              <p style={{ color: "red", float: "right", margin: "3%" }}>
-                *required
-              </p>
-              <div style={{ clear: "both" }}></div>
+              <H1 className={styles.flotLeft}>Rate this company</H1>
+              <p className={styles.pRequired}>*required</p>
+              <div className={styles.clearBoth}></div>
               <table>
-                <tr>
-                  <td>Overall rating</td>
-                  <td>
-                    <ReactStars
-                      count={5}
-                      name="rating"
-                      onChange={ratingChanged}
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Job Work/Life Balance</td>
-                  <td>
-                    <ReactStars
-                      count={5}
-                      name="jobwork"
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Salary/Benefits</td>
-                  <td>
-                    <ReactStars
-                      count={5}
-                      name="salary"
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Job Security/Advancement</td>
-                  <td>
-                    <ReactStars
-                      count={5}
-                      name="jobsecurity"
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Management</td>
-                  <td>
-                    <ReactStars
-                      count={5}
-                      name="management"
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                  </td>
-                </tr>
+                <tbody>
+                  {starsArray.map((item) => (
+                    <tr key={item.id}>
+                      <td>{item.text}</td>
+                      <td>
+                        <ReactStars
+                          count={5}
+                          name={item.name}
+                          onChange={item.onchange}
+                          size={24}
+                          activeColor="#ffd700"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </RateCompanyDiv>
             <ReviewContainer>
@@ -215,7 +195,7 @@ export const Survey = () => {
                 placeholder="Example: Productive and fun workplace"
               />
               <div>
-                <div style={{ float: "left" }}>
+                <div className={styles.flotLeft}>
                   <p>Your Review</p>
                   <TextArea
                     value={text}
@@ -224,7 +204,7 @@ export const Survey = () => {
                     placeholder="Example: Productive and fun workplace"
                   />
                 </div>
-                <div style={{ widht: "300px", padding: "10px" }}>
+                <div className={styles.divWidth}>
                   <p>Give us your opinion about</p>
                   <li>a typical day at work</li>
                   <li>what you learned</li>
@@ -240,7 +220,7 @@ export const Survey = () => {
                     Indeed.
                   </p>
                 </div>
-                <div style={{ clear: "both" }}></div>
+                <div className={styles.clearBoth}></div>
               </div>
               <p>Pros</p>
               <Input type="text" placeholder="Example: Free lunches" />
@@ -264,16 +244,11 @@ export const Survey = () => {
                 onChange={handleChange}
               />
             </AboutContainer>
-            <div style={{ textAlign: "center", height: "100px" }}>
-              <Button
-                style={{ width: "300px", marginTop: "20px" }}
-                onClick={handleFinish}
-              >
+            <div className={styles.alignCenter}>
+              <Button className={styles.buttonReview} onClick={handleFinish}>
                 Finish
               </Button>
-              {isFalse && (
-                <p style={{ color: "red" }}>Please Fill Required Fields</p>
-              )}
+              {isFalse && <RedP>Please Fill Required Fields</RedP>}
             </div>
           </Container>
           <Footer />

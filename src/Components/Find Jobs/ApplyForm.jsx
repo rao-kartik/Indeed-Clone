@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Input } from "../../Custom UI/ReviewsUI";
-import { Button } from '../../Custom UI/stylesHome';
+import { Button } from "../../Custom UI/stylesHome";
+import styles from "../Add Reviews/Reviews.module.css";
 import { Popup } from "../CompanyReviews/popup";
 import { ApplyFormResume } from "./ApplyFormResume";
 
@@ -80,7 +81,7 @@ export const ApplyForm = () => {
           value={years}
           name="years"
           onChange={handleChange}
-          style={{ width: "100%" }}
+          className={styles.widthFull}
         />
         <H2>What is the highest level of education you have completed?</H2>
         <Input
@@ -88,7 +89,7 @@ export const ApplyForm = () => {
           value={education}
           name="education"
           onChange={handleChange}
-          style={{ width: "100%" }}
+          className={styles.widthFull}
         />
         <H2>What is your expected CTC?(optional)</H2>
         <Input
@@ -96,7 +97,7 @@ export const ApplyForm = () => {
           value={ctc}
           name="ctc"
           onChange={handleChange}
-          style={{ width: "100%" }}
+          className={styles.widthFull}
         />
         <H2>
           This question was written by the employer. You can report
@@ -107,10 +108,7 @@ export const ApplyForm = () => {
         </H2>
         <TextArea value={question} name="question" onChange={handleChange} />
         <FlexContainer>
-          <Button
-            style={{ background: "transparent", color: "blue" }}
-            onClick={togglePopup}
-          >
+          <Button className={styles.buttonTransparent} onClick={togglePopup}>
             Return to Job Search
           </Button>
           <Button onClick={handleContinue}>Continue</Button>
@@ -124,22 +122,10 @@ export const ApplyForm = () => {
                   saved.
                 </b>
                 <br />
-                <Button
-                  style={{ width: "120px", margin: "auto", marginTop: "20px" }}
-                  onClick={handleReturn}
-                >
+                <Button className={styles.buttonMargin} onClick={handleReturn}>
                   Exit
                 </Button>
-                <Button
-                  style={{
-                    width: "120px",
-                    margin: "auto",
-                    marginTop: "10px",
-                    backgroundColor: "white",
-                    color: "blue",
-                  }}
-                  onClick={togglePopup}
-                >
+                <Button className={styles.buttonWhite} onClick={togglePopup}>
                   Cancel
                 </Button>
               </>

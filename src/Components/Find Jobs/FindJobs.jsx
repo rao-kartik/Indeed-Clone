@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useContext, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { SortContext } from '../../Context/SortContextProvider';
 import { Loading } from '../Loading/Loading';

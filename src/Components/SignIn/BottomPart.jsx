@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../../Custom UI/stylesHome';
 
 const Container = styled.div`
     position: relative;
@@ -20,13 +19,6 @@ const P = styled.p`
         cursor: pointer;
         text-decoration: underline;
     }
-`;
-
-const Resume = styled.div`
-    text-align: center;
-    width: 100%;
-    background: #f3f2f1;
-    padding: 30px 0;
 `;
 
 export const BottomPart = () => {

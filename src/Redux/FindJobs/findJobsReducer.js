@@ -1,5 +1,4 @@
-import React from 'react'
-import { GET_SEARCH_FAILURE, GET_SEARCH_REQUEST, GET_SEARCH_SUCCESS, NEXT_PAGE, PREV_PAGE } from './actiontype';
+import { GET_SEARCH_FAILURE, GET_SEARCH_REQUEST, GET_SEARCH_SUCCESS } from './actiontype';
 
 const initState = {
     isLoading: false,

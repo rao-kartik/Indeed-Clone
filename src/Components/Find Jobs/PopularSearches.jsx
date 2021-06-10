@@ -34,70 +34,70 @@ export const PopularSearches = () => {
             <Pops>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Government</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Online Typing</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Work from Home</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Bank</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Delivery Executive</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Halthcare</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Online Tutoring</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Police</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>Nursing</span>
 
                 </PopSearchBtn>
                 <PopSearchBtn>
 
-                    <Span><span style={{fontSize:'18px', color:'#767676'}} class="material-icons-round">search</span></Span>
+                    <Span><span style={{fontSize:'18px', color:'#767676'}} className="material-icons-round">search</span></Span>
 
                     <span style={{marginLeft:'8px'}}>NGO</span>
                 </PopSearchBtn>

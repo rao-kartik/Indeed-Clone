@@ -15,7 +15,7 @@ export const Button = styled.button`
 `;
 export const Input = styled.input`
   background-color: #ffffff;
-  width: 500px;
+  /* width: 500px; */
   height: 54px;
   padding: 2px 18px 0px 27px;
   border: 2px solid #949494;
@@ -28,6 +28,10 @@ export const Input = styled.input`
   margin-top: 2%;
   &:focus {
     border-color: #085ff7;
+  };
+  width:${(props)=>props.width=== 'comapany_rating'?'400px':'500px'};
+  @media (max-width:800px){
+    width:${(props)=>props.width=== 'comapany_rating'?'200px':'500px'};
   }
 `;
 export const H1 = styled.h1`

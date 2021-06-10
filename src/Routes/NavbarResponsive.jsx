@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, CssBaseline} from '@material-ui/core';
+import {makeStyles, Drawer, AppBar, Toolbar, List, Divider, IconButton, ListItem, ListItemIcon, ListItemText, CssBaseline} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -123,7 +122,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const NavbarResponsive = () => {
     const classes = useStyles();
-    const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {

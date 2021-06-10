@@ -5,7 +5,6 @@ const initState = {
 }
 
 export const AppReducer = (state=initState, action)=>{
-    const { payload } = action;
 
     switch (action?.type) {
         case SHOW_USER_DROPDOWN_DISP: {

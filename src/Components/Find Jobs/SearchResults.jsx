@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { SearchResult } from '../../Custom UI/stylesHome';
 
-const Container = styled.div`
-
-`;
-
 const P = styled.p`
     margin: 4px 0;
     font-size: 14px;

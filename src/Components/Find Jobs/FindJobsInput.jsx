@@ -238,7 +238,7 @@ export const FindJobsInput = ({ page }) => {
                         )
                     }
 
-                    <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons-round">search</span></div>
+                    <div><span style={{fontSize:'18px', color:'#909090'}} className="material-icons-round">search</span></div>
                 </InputDiv>
 
                 <InputDiv>
@@ -256,7 +256,7 @@ export const FindJobsInput = ({ page }) => {
                         )
                     }
 
-                    <div><span style={{fontSize:'18px', color:'#909090'}} class="material-icons">place</span></div>
+                    <div><span style={{fontSize:'18px', color:'#909090'}} className="material-icons">place</span></div>
                 </InputDiv>
 
                 <Button>Find Jobs</Button>

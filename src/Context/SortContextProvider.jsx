@@ -1,22 +1,16 @@
-import React, { createContext, useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { createContext, useState } from 'react';
 
 export const SortContext = createContext();
 
 export const SortContextProvider = ({ children }) => {
 
-    var data = useSelector(state=> state.findReducer.data);
-    // console.log(data)
-
     const [ sortByLoc, setSortByLoc ] = useState(null);
     const [ sortByJobType, setSortByJobType ] = useState(null);
-    const [ sortByDays, setSortByDays ] = useState(null);
 
     const handleFilterChange = (e)=>{
         const { value } = e.target;
         setSortByLoc(value);
         setSortByJobType(value);
-        setSortByDays(value);
     }
     
     const filterConditionLoc = (item)=>{

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Input } from "../../Custom UI/ACustomUI";
+import { Input } from "../../Custom UI/ReviewsUI";
 import { Button } from "../../Custom UI/KCustomUI";
 import { Popup } from "../CompanyReviews/popup";
 import { ApplyFormResume } from "./ApplyFormResume";
@@ -22,27 +22,38 @@ const Container = styled.div`
   margin-top: 3%;
   padding: 2%;
 `;
+const TextArea = styled.textarea`
+  width: 100%;
+  height: 200px;
+  padding: 2px 18px 0px 27px;
+  border: 2px solid #949494;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: normal;
+  @media (max-width: 840px) {
+    width: 90%;
+  }
+`;
+const FlexContainer = styled.div`
+  display: flex;
+`;
 export const ApplyForm = () => {
   const history = useHistory();
-  const handleReturn = () => {
-    history.push("/");
-  };
   const [isContinue, setIsContinue] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   const inputData = {
     years: "",
     education: "",
     ctc: "",
     question: "",
   };
+  const handleReturn = () => {
+    history.push("/");
+  };
   const [inpData, setInpData] = React.useState(inputData);
-
   const { years, education, ctc, question } = inpData;
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -56,6 +67,9 @@ export const ApplyForm = () => {
     }
   };
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return isAuth ? (
     !isContinue ? (
       <Container>
@@ -91,13 +105,8 @@ export const ApplyForm = () => {
           "Looking for product based industry experience from tier 1 /tier 2
           colleges(NIT ,BIT, IIT,IIIT, BITS)"(optional)
         </H2>
-        <textarea
-          value={question}
-          name="question"
-          onChange={handleChange}
-          style={{ width: "100%", height: "200px" }}
-        />
-        <div style={{ display: "flex" }}>
+        <TextArea value={question} name="question" onChange={handleChange} />
+        <FlexContainer>
           <Button
             style={{ background: "transparent", color: "blue" }}
             onClick={togglePopup}
@@ -105,7 +114,7 @@ export const ApplyForm = () => {
             Return to Job Search
           </Button>
           <Button onClick={handleContinue}>Continue</Button>
-        </div>
+        </FlexContainer>
         {isOpen && (
           <Popup
             content={

@@ -1,13 +1,13 @@
 import React from 'react'
-import { FindSalaries } from '../Components/Find Salaries/FindSalaries'
+import Salaries from '../Components/Find Salaries/Salaries';
 
 export const FindSalariesPage = () => {
 
     document.title = 'Salaries | Indeed.com';
-    
+
     return (
         <div>
-            <FindSalaries />
+            <Salaries />
         </div>
     )
 }

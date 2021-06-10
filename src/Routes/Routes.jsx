@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router';
 import { CompanyInfo } from '../Components/Find Salaries/CompanyInfo';
 import { CompanyReviewsPage } from './CompanyReviewsPage';
 import { FindJobsPage } from './FindJobsPage';
-import { FindSalariesPage } from './FindSalariesPage';
 import { HiringPage } from './HiringPage';
 import { Navbar } from './Navbar';
 import { PostResumePage } from './PostResumePage';
@@ -13,7 +12,6 @@ import { AddReview } from './AddReview';
 import { AddSurvey } from './AddSurvey';
 import { CompanySearch } from './CompanySearch';
 import { AdminLogin } from '../Components/Admin/AdminLogin';
-import { Admin } from '../Components/Admin/Admin';
 import { AdminJobs } from '../Components/Admin/AdminJobs';
 import { AdminRecruiters } from '../Components/Admin/AdminRecruiters';
 import { AdminPostJob } from '../Components/Admin/AdminPostJob';
@@ -27,11 +25,13 @@ import { AdminReviewPage } from '../Components/Admin/AdminReviewPage';
 import { AppliedJobs } from '../Components/Applied Jobs/AppliedJobs';
 import { MyReviews } from '../Components/My Reviews/MyReviews';
 import { EmailPreferences } from '../Components/Email Preferences/EmailPreferences';
+import { PageNotFound } from './PageNotFound';
+import { Salaries } from '../Components/Find Salaries/Salaries';
 
 export const Routes = () => {
 
-    const isAdminAuth = useSelector(state=>state.authReducer.isAdminAuth);
-    
+    const isAdminAuth = useSelector(state => state.authReducer.isAdminAuth);
+
     return (
         <div>
             {
@@ -42,26 +42,26 @@ export const Routes = () => {
                     <FindJobsPage />
                 </Route>
                 <Route path='/form/questions/:id' exact>
-                    <ApplyJobForm/>
+                    <ApplyJobForm />
                 </Route>
                 <Route path='/companies' exact>
                     <CompanyReviewsPage />
                 </Route>
 
                 <Route path='/companies/review/:id' exact>
-                    <AddReview/>
+                    <AddReview />
                 </Route>
 
                 <Route path='/companies/review/survey/:id' exact>
-                    <AddSurvey/>
+                    <AddSurvey />
                 </Route>
 
                 <Route path='/companies/search/:id' exact>
-                    <CompanySearch/>
+                    <CompanySearch />
                 </Route>
 
                 <Route path='/career/salaries' exact>
-                    <FindSalariesPage />
+                    <Salaries />
                 </Route>
 
                 <Route path='/career/salaries/:id' >
@@ -73,7 +73,7 @@ export const Routes = () => {
                 </PrivateRoute>
 
                 <PrivateRoute path='/preferences' exact>
-                    <EmailPreferences/>
+                    <EmailPreferences />
                 </PrivateRoute>
 
                 <Route path='/account/login' exact>
@@ -89,11 +89,11 @@ export const Routes = () => {
                 </Route>
 
                 <Route path='/appliedjobs'>
-                    <AppliedJobs/>
+                    <AppliedJobs />
                 </Route>
 
                 <Route path='/myreviews'>
-                    <MyReviews/>
+                    <MyReviews />
                 </Route>
 
                 <Route path='/account/admin/login' exact>
@@ -119,9 +119,9 @@ export const Routes = () => {
                 <AdminPrivateRoute path='/account/admin/pageReviews'>
                     <AdminReviewPage />
                 </AdminPrivateRoute>
-                
+
                 <Route>
-                    Error 404: Page Not Found!
+                    <PageNotFound />
                 </Route>
             </Switch>
         </div>

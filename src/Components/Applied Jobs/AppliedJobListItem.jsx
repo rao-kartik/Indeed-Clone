@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import { jobsByIdSearch } from "../../Redux/FindJobById/action";
 
 const Div = styled.div`
@@ -24,6 +24,9 @@ const Delete = styled.div`
   right: 20px;
   bottom: 10px;
 `;
+const H1 = styled.h1`
+  font-style: italic;
+`;
 export const AppliedJobListItem = ({ email, jobid, id, handleDelete }) => {
   const jobsdata = useSelector((state) => state.jobsByIdReducer.jobs_data);
   const dispatch = useDispatch();
@@ -33,7 +36,7 @@ export const AppliedJobListItem = ({ email, jobid, id, handleDelete }) => {
   return (
     <Div>
       <h1>{jobsdata.title}</h1>
-      <h1 style={{ fontStyle: "italic" }}>{jobsdata.company_name}</h1>
+      <H1>{jobsdata.company_name}</H1>
       <Container>
         <p>Category : {jobsdata.category}</p>
         <p>{jobsdata.description}</p>

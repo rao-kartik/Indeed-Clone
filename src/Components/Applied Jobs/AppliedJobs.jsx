@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import styled from "styled-components";
-import { H1, P } from "../../Custom UI/ACustomUI";
+import { useDispatch, useSelector } from "react-redux";
 import { myJobSearch } from "../../Redux/MyJobs/action";
+import { P } from "../../Custom UI/ReviewsUI";
 import { AppliedJobList } from "./AppliedJobList";
 
 const Container = styled.div`
@@ -12,6 +12,17 @@ const Container = styled.div`
 `;
 const HeadContainer = styled.div`
   height: 10vh;
+`;
+const H1 = styled.h1`
+  color: black;
+  font-size: 32px;
+  margin: 0px 0px 16px;
+  margin-top: 20px;
+  text-align: center;
+`;
+const CenterContainer = styled.div`
+  width: 50%;
+  margin: auto;
 `;
 
 export const AppliedJobs = () => {
@@ -24,20 +35,16 @@ export const AppliedJobs = () => {
   return isAuth ? (
     <div>
       <HeadContainer>
-        <H1
-          style={{ fontSize: "32px", marginTop: "20px", textAlign: "center" }}
-        >
-          My Applied Jobs
-        </H1>
+        <H1>My Applied Jobs</H1>
       </HeadContainer>
       <Container>
-        <div style={{ width: "50%", margin: "auto" }}>
+        <CenterContainer>
           {!jobdata.length > 0 ? (
             <P>Not Applied Any Jobs</P>
           ) : (
             <AppliedJobList reviewsData={jobdata} />
           )}
-        </div>
+        </CenterContainer>
       </Container>
     </div>
   ) : (

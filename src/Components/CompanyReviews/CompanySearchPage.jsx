@@ -1,108 +1,64 @@
 import React, { useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import styled from "styled-components";
-import axios from "axios";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import {
-  companiesRequest,
-  companiesSuccess,
-  companiesFailure,
-} from "../../Redux/company/action";
-import {
-  searchRequest,
-  searchSuccess,
-  searchFailure,
-} from "../../Redux/FindCompanyId/action";
-import { CompanyRating } from "./CompaniesRating";
+import { useDispatch, useSelector } from "react-redux";
+import { getCompanySearch } from "../../Redux/company/action";
 import style from "../Add Reviews/Reviews.module.css";
+import { CompanyRating } from "./CompaniesRating";
 
 const Div = styled.div`
+  display: flex;
   &:hover {
     border: 2px solid #949494;
   }
 `;
+const MainContainer = styled.div`
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  height: 100vh;
+`;
+const SpanSmall = styled.span`
+  font-size: 14px;
+`;
+const SpanLarge = styled.span`
+  font-size: 22px;
+`;
+const Img = styled.img`
+  width: 100px;
+  height: 100px;
+  border: 1px solid #f5f5f5;
+`;
 
 export const CompanySearchPage = () => {
   const compname = useParams();
-  const { companies } = useSelector((state) => state.company, shallowEqual);
   const dispatch = useDispatch();
-  const getData = () => {
-    const requestAction = companiesRequest();
-    dispatch(requestAction);
-    axios
-      .get("https://json-server-mocker-ajmal.herokuapp.com/companies", {
-        params: {
-          company_name: compname.id,
-        },
-      })
-      .then((res) => {
-        const successAction = companiesSuccess(res.data[0]);
-        dispatch(successAction);
-      })
-      .catch((err) => {
-        const failureAction = companiesFailure(err);
-        dispatch(failureAction);
-      });
-  };
-  useEffect(() => {
-    getData();
-    getId();
-  }, []);
+  const company_info = useSelector((state) => state.company.company_info);
   const history = useHistory();
   const handleClick = () => {
-    history.push(`/career/salaries/${data}`);
+    history.push(`/companies/review/${company_info.company_name}`);
   };
+  useEffect(() => {
+    dispatch(getCompanySearch(compname.id));
+  }, []);
 
-  const { data } = useSelector(
-    (state) => state.findCompanyReducer,
-    shallowEqual
-  );
-  const getId = () => {
-    const requestAction = searchRequest();
-    dispatch(requestAction);
-    axios
-      .get("https://json-server-mocker-robin.herokuapp.com/tpcompanies", {
-        params: {
-          name: compname.id,
-        },
-      })
-      .then((res) => {
-        const successAction = searchSuccess(res.data[0].id);
-        dispatch(successAction);
-      })
-      .catch((err) => {
-        const failureAction = searchFailure(err);
-        dispatch(failureAction);
-      });
-  };
   return (
-    <div
-      style={{ marginTop: "20px", backgroundColor: "#f5f5f5", height: "100vh" }}
-    >
+    <MainContainer>
       <CompanyRating />
       <div className={style.container}>
-        <Div style={{ display: "flex" }} onClick={handleClick}>
+        <Div onClick={handleClick}>
           <div>
-            <img
-              src={companies.company_logo}
-              alt="company logo"
-              style={{
-                width: "100px",
-                height: "100px",
-                border: "1px solid #f5f5f5",
-              }}
-            />
+            <Img src={company_info.company_logo} alt="company logo" />
           </div>
           <div style={{ marginTop: "24px", marginLeft: "15px" }}>
-            <span style={{ fontSize: "22px" }}>{compname.id}</span>
+            <SpanLarge>{compname.id}</SpanLarge>
             <br />
-            <span style={{ fontSize: "14px" }}>
-              <b>{companies.rating} </b>based on {companies.total_reviews}{" "}
+            <SpanSmall>
+              <b>{company_info.rating} </b>based on {company_info.total_reviews}{" "}
               Reviews
-            </span>
+            </SpanSmall>
           </div>
         </Div>
       </div>
-    </div>
+    </MainContainer>
   );
 };

@@ -14,22 +14,29 @@ const CompHeader = styled.h1`
   font-size: 15px;
   margin: 3px 2px 6px;
 `;
+const LogoImg = styled.img`
+  width: 50px;
+  height: 50px;
+`;
+const Container = styled.div`
+  border: 1px solid#f5f5f5;
+  padding: 24px;
+`;
+const FlexContainer = styled.div`
+  display: flex;
+`;
 
 export const CompaniesListItem = ({ item }) => {
   const { company_name, company_logo } = item;
   return (
-    <div style={{ border: "1px solid#f5f5f5", padding: "24px" }}>
-      <div style={{ display: "flex" }}>
-        <img
-          src={company_logo}
-          style={{ width: "50px", height: "50px" }}
-          alt="logo"
-        />
+    <Container>
+      <FlexContainer>
+        <LogoImg src={company_logo} alt="logo" />
         <CompHeader>{company_name}</CompHeader>
-      </div>
+      </FlexContainer>
       <LinkStyled to={`companies/${item.id}/salaries`}>Salaries</LinkStyled>
       <LinkStyled to={`companies/${item.id}/faq`}>Q&A</LinkStyled>
       <LinkStyled to={`companies/${item.id}/jobs`}>Open Jobs</LinkStyled>
-    </div>
+    </Container>
   );
 };

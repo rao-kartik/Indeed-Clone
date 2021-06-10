@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Input } from "../../Custom UI/ReviewsUI";
-import { Button } from "../../Custom UI/KCustomUI";
+import { Button } from '../../Custom UI/stylesHome';
 import { Popup } from "../CompanyReviews/popup";
 import { ApplyFormResume } from "./ApplyFormResume";
 

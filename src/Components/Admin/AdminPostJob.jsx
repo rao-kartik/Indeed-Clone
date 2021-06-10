@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { RoundBtn } from '../../Custom UI/KCustomUI';
+import { RoundBtn } from '../../Custom UI/stylesHome';
 import { addJobs } from '../../Redux/Admin/action';
 import { category, city, jobType } from '../Find Jobs/Data';
 

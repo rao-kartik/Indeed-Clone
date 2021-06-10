@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { getRecruiters } from '../../Redux/Admin/action';
 import { useDispatch, useSelector } from 'react-redux';
-import { AdminRecruiterResults } from './AdminRecruiterResults';
 import styled from 'styled-components';
+import { getRecruiters } from '../../Redux/Admin/action';
+import { AdminRecruiterResults } from './AdminRecruiterResults';
 
 const Container = styled.div`
     display: flex;

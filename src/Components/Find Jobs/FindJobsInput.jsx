@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button } from '../../Custom UI/KCustomUI';
+import { Button } from '../../Custom UI/stylesHome';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchData } from '../../Redux/FindJobs/action';

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { searchResumeByEmail } from "../../Redux/FindResume/action";
 import { applyJob } from "../../Redux/ApplyJob/action";
-import { Button } from "../../Custom UI/KCustomUI";
+import { Button } from '../../Custom UI/stylesHome';
 import { Loading } from "../Loading/Loading";
 
 const Div = styled.div`

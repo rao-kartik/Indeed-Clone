@@ -1,41 +1,91 @@
 import React from "react";
-import { Container, Image, SearchBar, Input, SearchButton } from "../../Custom UI/RCustomUI";
-import { TPCompany } from "./TPCompany";
-import { PageRating } from "./PageRating";
-import { TPJobs } from "./TPJobs";
-import styles from "./Salaries.module.css";
-function FindSalaries() {
+import { makeStyles, Grid } from "@material-ui/core";
+import {
+  Image,
+  Input,
+  SearchButton,
+  Container,
+  SearchDiv,
+  Flex,
+} from "../../Custom UI/stylesFindSalaries";
+
+//Styling Material UI Elements
+const useStyles = makeStyles((theme) => ({
+  search: {
+    paddingTop: theme.spacing(8),
+    "& h1": {
+      marginBottom: theme.spacing(2),
+      zIndex: 1,
+      position: "relative",
+      ["@media (max-width:660px)"]: {
+        top: theme.spacing(-2),
+        fontSize: "1rem",
+      },
+    },
+
+    "& div": {
+      zIndex: 1,
+      position: "relative",
+      ["@media (max-width:660px)"]: {
+        top: theme.spacing(-3),
+        fontSize: "0.8rem",
+      },
+    },
+
+    "& h3": {
+      ["@media (max-width:660px)"]: {
+        display: "none",
+      },
+    },
+  },
+}));
+
+const FindSalaries = () => {
+  const classes = useStyles();
   return (
     <>
-      <Container style={{ display: "flex" }}>
-        <div className={styles.searchBox}>
-          <h2>Find a career you'll love</h2>
-          <p>
-            Explore which careers have the highest job satisfaction, best
-            salaries, and more
-          </p>
-          <SearchBar>
-            <div style={{ display: "flex", justifyContent: "space-between", width:'48%', marginLeft:'1rem'}}>
-              <h3>What</h3>
-              <h3>Where</h3>
+      <Container>
+        <Grid>
+
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            lg={7}
+            xl={7}
+            className={classes.search}
+          >
+            <h1>Find a career you'll love</h1>
+            <div>
+              Explore which careers have the highest job satisfaction,
+              bestsalaries, and more
             </div>
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Input type="text" placeholder="job title"  />  
-              <Input type="text" placeholder="location" />
-              <SearchButton>Search</SearchButton>
-            </div>
-          </SearchBar>
-        </div>
-        <div>
-          <Image src="https://d3hbwax96mbv6t.cloudfront.net/title-webapp/_next/static/images/salaries-8d20dc14bdeae8889387e0fb40e0d546.png" alt="Salaries Poster" />
-          <Image />
-        </div>
+            
+            <SearchDiv>
+              <Flex>
+                <h3>What</h3>
+                <h3>Where</h3>
+              </Flex>
+              <Flex>
+                <Input type="text" placeholder="job title" />
+                <Input type="text" placeholder="location" />
+                <SearchButton>Search</SearchButton>
+              </Flex>
+            </SearchDiv>
+          </Grid>
+
+          <Grid item xs={0} sm={0} md={6} lg={5} xl={5}>
+            <Image
+              src="https://d3hbwax96mbv6t.cloudfront.net/title-webapp/_next/static/images/salaries-8d20dc14bdeae8889387e0fb40e0d546.png"
+              alt="Salaries Poster"
+            />
+          </Grid>
+
+        </Grid>
       </Container>
-      <TPJobs />
-      <TPCompany />
-      <PageRating/>
     </>
   );
-}
+};
 
 export { FindSalaries };

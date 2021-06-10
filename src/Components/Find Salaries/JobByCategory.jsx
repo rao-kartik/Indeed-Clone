@@ -1,30 +1,26 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryJobsSearch } from "../../Redux/JobsByCategory/action";
 import { JobByCategoryFooter } from "./JobByCategoryFooter";
 import styles from "./Salaries.module.css";
 
 function JobByCategory({ category }) {
+  const dispatch = useDispatch();
   let params = category.replaceAll(" ", "").toLowerCase();
+  const data = useSelector((state) => state.categoryJobs.jobs_data);
+
   useEffect(() => {
     dispatch(categoryJobsSearch(params));
   }, [params]);
 
-  const data = useSelector((state) => state.categoryJobs.jobs_data);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(categoryJobsSearch(category));
-  }, []);
-  console.log(category);
   return (
     <>
-      <div className={styles.allJobs}>
-        <h2 style={{ textAlign: 'left' }}>{category}</h2>
+      <div className={styles.categoryJobs}>
+        <h2 style={{ textAlign: "left" }}>{category}</h2>
         {data &&
-          data.map((job) => {
+          data.map((job, index) => {
             return (
-              <div className={styles.jobSalary}>
+              <div key={index} className={styles.jobSalary}>
                 <div>
                   <h4>{job.name}</h4>
                 </div>
@@ -35,7 +31,7 @@ function JobByCategory({ category }) {
       </div>
       <JobByCategoryFooter />
     </>
-  )
+  );
 }
 
 export { JobByCategory };

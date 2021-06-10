@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { SortContext } from '../../Context/SortContextProvider';
-import { SearchResultById } from '../../Custom UI/KCustomUI';
-import { getSearchData } from '../../Redux/FindJobs/action';
 import { Loading } from '../Loading/Loading';
 import { ApplyJobs } from './ApplyJobs';
 import { BottomPart } from './BottomPart';
@@ -12,7 +10,7 @@ import { PopularSearches } from './PopularSearches';
 import { SearchResults } from './SearchResults';
 
 const Container = styled.div`
-
+    
 `;
 
 const Results = styled.div`

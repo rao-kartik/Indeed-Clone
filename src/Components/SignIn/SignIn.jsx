@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { RoundBtn } from '../../Custom UI/KCustomUI';
-import { BottomPart } from './BottomPart';
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import { signInWithEmail } from '../../Redux/Auth/action';
 import { useDispatch, useSelector } from 'react-redux';
+import { RoundBtn } from '../../Custom UI/stylesHome';
+import { BottomPart } from './BottomPart';
+import { signInWithEmail } from '../../Redux/Auth/action';
 import { Loading } from '../Loading/Loading';
 
 const MainBox = styled.div`

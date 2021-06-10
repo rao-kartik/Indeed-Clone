@@ -2,11 +2,13 @@ import { COMPANIES_REQUEST, COMPANIES_SUCCESS, COMPANIES_FAILURE } from "./actio
 
 const initState = {
   companies:[],
+  company_logo:'',
+  company_info:'',
   isError: false,
   isLoading: false
 };
 
-export const companyReducer = (state = initState, { type, payload }) => {
+export const companyReducer = (state = initState, { type, payload, payload_logo, payload_info }) => {
   switch (type) {
     case COMPANIES_REQUEST: {
       return {
@@ -19,6 +21,8 @@ export const companyReducer = (state = initState, { type, payload }) => {
       return {
         ...state,
         companies: payload,
+        company_logo:payload_logo,
+        company_info:payload_info,
         isLoading: false
       };
     }

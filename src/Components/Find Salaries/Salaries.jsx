@@ -14,4 +14,4 @@ const Salaries = () => {
         </>
     )
 }
-export default Salaries
+export {Salaries}

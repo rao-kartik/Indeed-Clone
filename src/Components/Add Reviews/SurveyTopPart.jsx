@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getCompanyLogo } from "../../Redux/company/action";
-import style from "./Reviews.module.css";
+import styles from "./Reviews.module.css";
 import { Popup } from "../CompanyReviews/popup";
 
 const MainContainer = styled.div`
@@ -56,13 +56,13 @@ export const SurveyTopPart = () => {
       <div>
         <Img src={company_logo} alt="company logo" />
       </div>
-      <div style={{ marginTop: "24px", marginLeft: "15px" }}>
+      <div className={styles.divMargin}>
         <SpanLarge>Take a minute to review {compname.id}.</SpanLarge>
         <br />
         <SpanSmall>
           Your anonymous feedback will help fellow jobseekers{" "}
         </SpanSmall>
-        <button onClick={togglePopup} className={style.icon}></button>
+        <button onClick={togglePopup} className={styles.icon}></button>
         <Li>
           <span>
             Company reviews are <b>NEVER</b> attached to your job applications

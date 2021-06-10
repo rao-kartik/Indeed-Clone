@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import { Input, Button } from "../../Custom UI/ReviewsUI";
+import styles from './CompanySearch.module.css'
 import { Popup } from "./popup";
 
 const H1 = styled.h1`
@@ -86,7 +87,7 @@ export const CompanyRating = () => {
               />
               <br />
               <Button
-                style={{ width: "172px", marginTop: "10px" }}
+                className={styles.buttonRating}
                 onClick={handleNext}
               >
                 Next

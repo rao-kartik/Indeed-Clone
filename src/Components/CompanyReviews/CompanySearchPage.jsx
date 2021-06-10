@@ -3,8 +3,9 @@ import { useHistory, useParams } from "react-router";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getCompanySearch } from "../../Redux/company/action";
-import style from "../Add Reviews/Reviews.module.css";
+import styles from "../Add Reviews/Reviews.module.css";
 import { CompanyRating } from "./CompaniesRating";
+import { PageNotFound } from "../../Routes/PageNotFound";
 
 const Div = styled.div`
   display: flex;
@@ -40,16 +41,17 @@ export const CompanySearchPage = () => {
   useEffect(() => {
     dispatch(getCompanySearch(compname.id));
   }, []);
-
-  return (
+  return company_info === "" ? (
+    <PageNotFound />
+  ) : (
     <MainContainer>
       <CompanyRating />
-      <div className={style.container}>
+      <div className={styles.container}>
         <Div onClick={handleClick}>
           <div>
             <Img src={company_info.company_logo} alt="company logo" />
           </div>
-          <div style={{ marginTop: "24px", marginLeft: "15px" }}>
+          <div className={styles.searchPageMargin}>
             <SpanLarge>{compname.id}</SpanLarge>
             <br />
             <SpanSmall>

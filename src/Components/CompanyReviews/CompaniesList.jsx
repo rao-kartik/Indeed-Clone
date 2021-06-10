@@ -10,7 +10,7 @@ import { CompaniesListItem } from "./CompaniesListItem";
 const GridDiv = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
-  @media (max-width: 840px) {
+  @media (max-width: 1006px) {
     grid-template-columns: auto auto;
   }
   @media (max-width: 500px) {
@@ -30,6 +30,12 @@ const MainContainer = styled.div`
   margin: auto;
   margin-top: 20px;
   background-color: #fff;
+  @media (max-width: 1006px) {
+    width: 80%;
+  }
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 const FlexContainer = styled.div`
   display: flex;

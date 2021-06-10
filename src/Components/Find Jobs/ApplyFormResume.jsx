@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { searchResumeByEmail } from "../../Redux/FindResume/action";
 import { applyJob } from "../../Redux/ApplyJob/action";
-import { Button } from '../../Custom UI/stylesHome';
+import { Button } from "../../Custom UI/stylesHome";
 import { Loading } from "../Loading/Loading";
 
 const Div = styled.div`
@@ -27,6 +27,10 @@ const Img = styled.img`
 `;
 const Container = styled.div`
   margin: 20px;
+`;
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: #fff;
 `;
 
 export const ApplyFormResume = () => {
@@ -52,12 +56,9 @@ export const ApplyFormResume = () => {
       data === undefined ? (
         <div>
           <h1>You're not uploaded the Resume yet, Please Upload to Continue</h1>
-          <Link
-            style={{ textDecoration: "none", color: "#fff" }}
-            to="/p/hh78545"
-          >
+          <LinkStyled to="/p/hh78545">
             <Button>Build Resume</Button>
-          </Link>
+          </LinkStyled>
         </div>
       ) : (
         <>

@@ -1,51 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
-import { Redirect } from 'react-router-dom'
+import { Divider, Box } from "@material-ui/core";
+import StarRatings from "react-star-ratings";
 import { getCompanyData } from "../../Redux/CompanyInfo/action";
-import { Faq, Follow, Logo, SearchButton } from "../../Custom UI/RCustomUI";
+import { loadData, saveData } from "../../Utils/localStorage";
+import { Faq, Follow } from "../../Custom UI/stylesFindSalaries";
 import styles from "./Salaries.module.css";
 import { JobByCategory } from "../../Components/Find Salaries/JobByCategory";
-import { useState } from "react";
 import { categories } from "./data";
-import StarRatings from 'react-star-ratings';
-import { loadData, saveData } from "../../Utils/localStorage";
 import { Loading } from "../Loading/Loading";
 
-
-function CompanyInfo() {
-  const isLoading = useSelector((state) => state.companyInfo.isLoading)
+const CompanyInfo = () => {
+  const [category, setCategory] = useState("Popular Jobs");
+  const [follow, setFollow] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.companyInfo.isLoading);
   const data = useSelector((state) => state.companyInfo.data);
   const { name, logo, poster, reviews, stars } = data;
-  const [category, setCategory] = useState("Popular Jobs");
-  const jobs_data = useSelector((state) => state.categoryJobs.jobs_data);
-  const [follow, setFollow] = useState(false);
-
-  const history = useHistory();
 
   const loadedData = loadData("following");
 
-  document.title = `${name} Salaries in India | Indeed.com`
-  
+  document.title = `${name} Salaries in India | Indeed.com`;
+
   const handleFollow = () => {
-    const isauth = loadData('auth')
+    const isauth = loadData("auth");
     if (isauth == undefined || isauth == false) {
-      history.push("/account/login")
-    }
-    else {
+      history.push("/account/login");
+    } else {
       if (!follow) {
         if (loadedData !== null && loadedData.indexOf(name) === -1) {
-          saveData('following', [...loadedData, name])
-        }
-        else {
-          saveData('following', [name])
+          saveData("following", [...loadedData, name]);
+        } else {
+          saveData("following", [name]);
         }
       }
       setFollow(!follow);
-      // checkStatus()
     }
-  }
-  const dispatch = useDispatch();
+  };
   const { id } = useParams();
   const handleChange = (e) => {
     const { value } = e.target;
@@ -55,7 +48,9 @@ function CompanyInfo() {
     dispatch(getCompanyData(id));
   }, []);
 
-  return isLoading ? <Loading /> : (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className={styles.poster}>
       <img src={poster} alt="poster" />
       <div className={styles.companyInfo}>
@@ -65,6 +60,7 @@ function CompanyInfo() {
         <div>
           <h4>{name}</h4>
           <br />
+
           <div className={styles.rating}>
             <div>{stars}</div>
             <StarRatings
@@ -74,17 +70,18 @@ function CompanyInfo() {
               starSpacing="0px"
               numberOfStars={5}
             />
-            <p style={{ marginLeft: "10px" }}>{reviews}</p>
+            <p>{reviews}</p>
           </div>
         </div>
         <div>
-          {" "}
           <Follow onClick={handleFollow}>
             {follow ? "Following" : "Follow"}
           </Follow>
+
           <p>Get weekly updates, new jobs, and reviews</p>
         </div>
       </div>
+
       <div className={styles.category}>
         <div>Snapshot</div>
         <div>Why Join Us</div>
@@ -95,8 +92,11 @@ function CompanyInfo() {
         <div>Questions</div>
         <div>Interviews</div>
       </div>
-      <hr style={{ height: "2px", color: "lightgray", margin: "5vh 0vh" }} />
-      <div className={styles.compInfo}>
+
+      <Box mt={5} mb={5}>
+        <Divider />
+      </Box>
+      <div className={styles.salaryInfo}>
         <div>
           <div>
             <h2>{`${name} - Salaries in India`}</h2>
@@ -120,14 +120,19 @@ function CompanyInfo() {
         <div>
           <div>
             <select onChange={handleChange}>
-              {categories.map((opt) => {
-                return <option value={opt}>{opt}</option>;
+              {categories.map((opt, index) => {
+                return (
+                  <option key={index} value={opt}>
+                    {opt}
+                  </option>
+                );
               })}
             </select>
             <select disabled={true} value="India">
               <option value="India">India</option>
             </select>
           </div>
+
           <div>
             <Faq className={styles.faq}>
               <h4>Question about {name}</h4>
@@ -145,6 +150,6 @@ function CompanyInfo() {
       <JobByCategory category={category} />
     </div>
   );
-}
+};
 
 export { CompanyInfo };

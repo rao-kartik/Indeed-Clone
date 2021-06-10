@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Salaries.module.css";
-import { active, inactive } from "./data";
+import { Grid } from "@material-ui/core";
 import { postFeedback } from "../../Redux/SalaryPageFeedback/action";
-import {Loading} from '../Loading/Loading'
+import { active, inactive } from "./data";
+import { Loading } from "../Loading/Loading";
+import styles from "./Salaries.module.css";
 
-function EmojisRating() {
-  const isLoading = useSelector((state) => state.feedbackReducer.isLoading)
-  const dispatch = useDispatch();
+const EmojisRating = () => {
   const [emoji, setEmoji] = useState(false);
-  const [rate, setRate] = useState()
-  const [review, setReview] = useState()
+  const [activeEmoji, setActiveEmoji] = useState();
+  const [rate, setRate] = useState();
+  const [review, setReview] = useState();
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.feedbackReducer.isLoading);
+
   const handleDisplay = (e) => {
     if (!emoji) {
       const { id } = e.target;
@@ -23,11 +26,17 @@ function EmojisRating() {
       e.target.src = inactive[id - 1];
     }
   };
+
   var handleRating = (e) => {
+    if (activeEmoji) {
+      const { id } = activeEmoji;
+      activeEmoji.src = inactive[id - 1];
+    }
     setEmoji(true);
     const { id } = e.target;
+    setActiveEmoji(e.target);
     e.target.src = active[id - 1];
-    setRate(id)
+    setRate(id);
   };
 
   const handleSubmit = () => {
@@ -35,78 +44,65 @@ function EmojisRating() {
       page: "Salary Page",
       rating: rate,
       review: review,
-    }
-    dispatch(postFeedback(payload))
-    setReview('')
-  }
+    };
+    dispatch(postFeedback(payload));
+    setReview("");
+  };
+
   return (
-    <>
+    <div className={styles.emojiContainer}>
       <div className={styles.findEarning}>
-        <div>
-          <h2>Was this page helpful?</h2>
-        </div>
-        <div>
-          <img
-            onMouseOver={handleDisplay}
-            onMouseOut={handleHide}
-            onClick={handleRating}
-            id="1"
-            value="false"
-            src={inactive[0]}
-            alt=""
-          />
-          <img
-            onMouseOver={handleDisplay}
-            onMouseOut={handleHide}
-            onClick={handleRating}
-            id="2"
-            value="false"
-            src={inactive[1]}
-            alt=""
-          />
-          <img
-            onMouseOver={handleDisplay}
-            onMouseOut={handleHide}
-            onClick={handleRating}
-            id="3"
-            value="false"
-            src={inactive[2]}
-            alt=""
-          />
-          <img
-            onMouseOver={handleDisplay}
-            onMouseOut={handleHide}
-            onClick={handleRating}
-            id="4"
-            value="false"
-            src={inactive[3]}
-            alt=""
-          />
-          <img
-            onMouseOver={handleDisplay}
-            onMouseOut={handleHide}
-            onClick={handleRating}
-            id="5"
-            value="false"
-            src={inactive[4]}
-            alt=""
-          />
-        </div>
+        <Grid container>
+          <Grid item xs={12} sm={12} md={8} lg={8} xl={5}>
+            <div>
+              <h2>Was this page helpful?</h2>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={12} md={4} lg={4} xl={5}>
+            <div>
+              {inactive.map((item, index) => {
+                return (
+                  <img
+                    key={index}
+                    onMouseOver={handleDisplay}
+                    onMouseOut={handleHide}
+                    onClick={handleRating}
+                    id={index + 1}
+                    src={inactive[index]}
+                    alt="rating emoji"
+                  />
+                );
+              })}
+            </div>
+          </Grid>
+        </Grid>
+
         {emoji ? (
           <>
-            <textarea value={review} onChange={(e) => setReview(e.target.value)}
+            <textarea
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
               className={styles.feedback}
               placeholder="Please tell us more what you'd like to see on career pages..."
             />
             <br />
-            {isLoading ? <Loading /> :
-            <button isLoading onClick={handleSubmit} className={styles.feedbackSubmit}>Submit Feedback</button>
-          }
+
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <button
+                isLoading
+                onClick={handleSubmit}
+                className={styles.feedbackSubmit}
+              >
+                Submit Feedback
+              </button>
+            )}
           </>
         ) : null}
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export { EmojisRating };

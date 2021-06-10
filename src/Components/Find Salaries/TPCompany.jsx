@@ -1,48 +1,86 @@
 import React, { useEffect } from "react";
-import styles from "./Salaries.module.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CompContainer } from "../../Custom UI/RCustomUI";
+import { makeStyles, Grid } from "@material-ui/core";
 import { getTopPayingComp } from "../../Redux/TopPayingCompanies/action";
-import StarRatings from 'react-star-ratings';
+import StarRatings from "react-star-ratings";
 import { Loading } from "../Loading/Loading";
+import styles from "./Salaries.module.css";
+import { CompContainer } from "../../Custom UI/stylesFindSalaries";
 
-function TPCompany() {
+//Styling Material UI Elements
+const useStyles = makeStyles(() => ({
+  grid: {
+    ["@media (max-width:1280px)"]: {
+      maxWidth: "49%",
+    },
+    ["@media (max-width:768px)"]: {
+      maxWidth: "100%",
+    },
+  },
+}));
+
+const TPCompany = () => {
+  const classes = useStyles();
   const tpComp = useSelector((state) => state.topPayingComp.companies);
-  const isLoading = useSelector((state) => state.topPayingComp.isLoading)
+  const isLoading = useSelector((state) => state.topPayingComp.isLoading);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getTopPayingComp());
-  }, []);
+  }, [dispatch]);
 
-  return isLoading ? <Loading /> : (
+  return isLoading ? (
+    <Loading />
+  ) : (
+
     <div className={styles.tpComp}>
-      <h1 style={{ marginTop: '3rem' }}>Browse top paying companies by industry</h1>
-      <select name="" id="">
-        <option value="">Choose an Industry</option>
+      <h1>Browse top paying companies by industry</h1>
+      <select>
+        <option>Choose an Industry</option>
       </select>
+
       <div className={styles.jobsContainer}>
         {tpComp &&
-          tpComp.map((item) => {
+          tpComp.map((item, index) => {
             return (
-              <Link className={styles.companyRoute} to={`/career/salaries/${item.id}`}> <CompContainer className={styles.compCard} key={item.id}>
-                <div>
-                  <img src={item.logo} alt="" />
-                </div>
-                <div>
-                  <h4 style={{ marginTop: '15px' }}>{item.name}</h4>
-                  <div style={{ display: 'flex', marginTop: '10px', gap: '10px' }}>
-                    <StarRatings
-                      rating={item.stars}
-                      starRatedColor="#6F6F6F"
-                      starDimension='15px'
-                      starSpacing='0px'
-                      numberOfStars={5}
-                    />
-                    <p style={{ fontSize: '12px', color: 'grey' }}>{item.reviews}</p>
-                  </div>
-                </div>
-              </CompContainer></Link>
+              
+              <Grid
+                key={index}
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                xl={5}
+                className={classes.grid}
+              >
+                <Link
+                  className={styles.companyRoute}
+                  to={`/career/salaries/${item.id}`}
+                >
+                  <CompContainer className={styles.compCard} key={item.id}>
+                    <div>
+                      <img src={item.logo} alt={`${item.name}'s Logo`} />
+                    </div>
+
+                    <div>
+                      <h4>{item.name}</h4>
+                      <div className={styles.starRating}>
+                        <StarRatings
+                          rating={item.stars}
+                          starRatedColor="#6F6F6F"
+                          starDimension="15px"
+                          starSpacing="0px"
+                          numberOfStars={5}
+                        />
+                        <p>{item.reviews}</p>
+                      </div>
+                    </div>
+                  </CompContainer>
+                  
+                </Link>
+              </Grid>
             );
           })}
       </div>

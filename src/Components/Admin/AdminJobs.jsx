@@ -31,7 +31,7 @@ export const AdminJobs = () => {
     return (
         <Container>
             {
-                isLoading ? <Load><Loading /></Load> : jobsData.map(jobs=> <AdminJobsResult {...jobs} /> )
+                isLoading ? <Load><Loading /></Load> : jobsData.map(jobs=> <AdminJobsResult key={jobs.id} {...jobs} /> )
             }
         </Container>
     )

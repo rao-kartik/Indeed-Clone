@@ -70,8 +70,8 @@ export const AuthNavDropdown = () => {
         <Container onMouseLeave={handleAdmDisp}>
             <div>
                 <H5>{token.email}</H5>
-                <Content>Profile <span style={{marginTop:'12px'}} class="material-icons-outlined">description</span></Content>
-                <Content>Account <span style={{marginTop:'10px'}} class="material-icons-outlined"><span class="material-icons-outlined">settings_input_component</span></span></Content>
+                <Content>Profile <span style={{marginTop:'12px'}} className="material-icons-outlined">description</span></Content>
+                <Content>Account <span style={{marginTop:'10px'}} className="material-icons-outlined"><span className="material-icons-outlined">settings_input_component</span></span></Content>
             </div>
             <Logout onClick={handleLogout}>Logout</Logout>
         </Container>

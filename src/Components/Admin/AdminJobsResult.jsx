@@ -76,9 +76,9 @@ export const AdminJobsResult = ({id, title, location,  company_name, salary, cat
                 <P>{company_name}</P>
                 <P>{location}</P>
                 <h5>₹{salary} a month</h5>
-                <P><span style={{color:'#1c56ac', fontSize:'16px', position:'Relative', top:'3px'}} class="material-icons">send</span> Apply Securely with Indeed Resume</P>
+                <P><span style={{color:'#1c56ac', fontSize:'16px', position:'Relative', top:'3px'}} className="material-icons">send</span> Apply Securely with Indeed Resume</P>
                 <Hiring>
-                    <P><span style={{color:'#1c56ac', fontSize:'18px', position:'Relative', top:'3px'}} class="material-icons">bolt</span> Responsive employer</P>
+                    <P><span style={{color:'#1c56ac', fontSize:'18px', position:'Relative', top:'3px'}} className="material-icons">bolt</span> Responsive employer</P>
                     <P style={{position: 'relative', top:'5px', left:'80px'}} >Urgently hiring</P>
                 </Hiring>
                 <P>{category}</P>
@@ -86,7 +86,7 @@ export const AdminJobsResult = ({id, title, location,  company_name, salary, cat
                     <Time>{totalTime} days ago</Time>
                     <Time style={{color:'blue', cursor:'pointer'}}>Save Job</Time>
                 </TimeCont>
-                <Delete onClick={()=>handleDelete(id)}><span class="material-icons-outlined">delete</span></Delete>
+                <Delete onClick={()=>handleDelete(id)}><span className="material-icons-outlined">delete</span></Delete>
             </Container>
     )
 }

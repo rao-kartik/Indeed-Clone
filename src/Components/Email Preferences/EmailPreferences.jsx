@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "../Email Preferences/Preferences.module.css";
 import { loadData } from "../../Utils/localStorage";
 const EmailPreferences = () => {
 
-    document.title = 'Email preferences | Indeed India';
-  
-    let data = loadData('following')
+  document.title = 'Email preferences | Indeed India';
+
+  let data = loadData('following')
   useEffect(() => {
-      display();
+    display();
   }, [data]);
 
-    const display = () => {
-        data = loadData('following')
-    }
+  const display = () => {
+    data = loadData('following')
+  }
   return (
     <>
       <div className={styles.container}>
@@ -27,8 +27,8 @@ const EmailPreferences = () => {
               become available
             </div>
             <hr style={{ margin: "20px 0px" }} />
-                      {data &&
-                          data.map((item) => {
+            {data &&
+              data.map((item) => {
                 return (
                   <>
                     <div

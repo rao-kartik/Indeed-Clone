@@ -91,7 +91,6 @@ const EmojisRating = () => {
               <Loading />
             ) : (
               <button
-                isLoading
                 onClick={handleSubmit}
                 className={styles.feedbackSubmit}
               >

@@ -26,7 +26,7 @@ const CompanyInfo = () => {
 
   const handleFollow = () => {
     const isauth = loadData("auth");
-    if (isauth == undefined || isauth == false) {
+    if (isauth === undefined || isauth === false) {
       history.push("/account/login");
     } else {
       if (!follow) {
@@ -46,7 +46,7 @@ const CompanyInfo = () => {
   };
   useEffect(() => {
     dispatch(getCompanyData(id));
-  }, []);
+  }, [dispatch]);
 
   return isLoading ? (
     <Loading />

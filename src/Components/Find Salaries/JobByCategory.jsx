@@ -11,7 +11,7 @@ function JobByCategory({ category }) {
 
   useEffect(() => {
     dispatch(categoryJobsSearch(params));
-  }, [params]);
+  }, [params, dispatch]);
 
   return (
     <>

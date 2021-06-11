@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(2),
       zIndex: 1,
       position: "relative",
-      ["@media (max-width:660px)"]: {
+      "@media (max-width:660px)": {
         top: theme.spacing(-2),
         fontSize: "1rem",
       },
@@ -26,14 +26,14 @@ const useStyles = makeStyles((theme) => ({
     "& div": {
       zIndex: 1,
       position: "relative",
-      ["@media (max-width:660px)"]: {
+      "@media (max-width:660px)": {
         top: theme.spacing(-3),
         fontSize: "0.8rem",
       },
     },
 
     "& h3": {
-      ["@media (max-width:660px)"]: {
+      "@media (max-width:660px)": {
         display: "none",
       },
     },
@@ -61,7 +61,7 @@ const FindSalaries = () => {
               Explore which careers have the highest job satisfaction,
               bestsalaries, and more
             </div>
-            
+
             <SearchDiv>
               <Flex>
                 <h3>What</h3>
@@ -75,7 +75,7 @@ const FindSalaries = () => {
             </SearchDiv>
           </Grid>
 
-          <Grid item xs={0} sm={0} md={6} lg={5} xl={5}>
+          <Grid item md={6} lg={5} xl={5}>
             <Image
               src="https://d3hbwax96mbv6t.cloudfront.net/title-webapp/_next/static/images/salaries-8d20dc14bdeae8889387e0fb40e0d546.png"
               alt="Salaries Poster"

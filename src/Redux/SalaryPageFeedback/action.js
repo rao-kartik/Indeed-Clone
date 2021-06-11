@@ -26,7 +26,6 @@ const axios = Axios.create({
 
 export const postFeedback = (payload) => (dispatch) => {
   dispatch(postFeedbackRequest(payload));
-  console.log(payload)
   const config = {
     url: "/pageFeedback",
     method: "post",

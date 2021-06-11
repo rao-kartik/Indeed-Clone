@@ -14,10 +14,10 @@ const useStyles = makeStyles(() => ({
     position: "relative",
     margin: "6px",
     borderRadius: "10px",
-    ["@media (max-width:1280px)"]: {
+    "@media (max-width:1280px)": {
       maxWidth: "48%",
     },
-    ["@media (max-width:768px)"]: {
+    "@media (max-width:768px)": {
       maxWidth: "100%",
     },
     "& h4": {
@@ -51,7 +51,7 @@ const TPJobs = () => {
         <select>
           <option>Choose an Industry</option>
         </select>
-        
+
         <div className={styles.compContainer}>
           {tpJobs &&
             tpJobs.map((item, index) => {
@@ -77,7 +77,7 @@ const TPJobs = () => {
                 </Grid>
               );
             })}
-            
+
         </div>
       </div>
     </>

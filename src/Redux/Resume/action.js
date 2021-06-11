@@ -75,7 +75,6 @@ export const exitPopUp = ()=>{
 }
 
 export const sendResume = (payload) => (dispatch) => {
-    console.log('payload',payload)
   dispatch(sendResumeRequest(payload));
 
   const config = {
@@ -89,7 +88,6 @@ export const sendResume = (payload) => (dispatch) => {
       dispatch(sendResumeSuccess());
     })
     .catch((err) => {
-                console.log(err);
       dispatch(sendResumeFailure(err));
     });
 };
@@ -107,7 +105,6 @@ export const getResume = () => (dispatch) => {
       dispatch(getResumeSuccess(res.data));
     })
     .catch((err) => {
-                console.log(err);
       dispatch(getResumeFailure(err));
     });
 };
@@ -126,7 +123,6 @@ export const deleteResume = (id) => (dispatch) => {
       dispatch(getResume())
     })
     .catch((err) => {
-                console.log(err);
       dispatch(deleteResumeFailure(err));
     });
 };

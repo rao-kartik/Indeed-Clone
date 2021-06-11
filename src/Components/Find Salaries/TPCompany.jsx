@@ -11,10 +11,10 @@ import { CompContainer } from "../../Custom UI/stylesFindSalaries";
 //Styling Material UI Elements
 const useStyles = makeStyles(() => ({
   grid: {
-    ["@media (max-width:1280px)"]: {
+    "@media (max-width:1280px)": {
       maxWidth: "49%",
     },
-    ["@media (max-width:768px)"]: {
+    "@media (max-width:768px)": {
       maxWidth: "100%",
     },
   },
@@ -44,7 +44,7 @@ const TPCompany = () => {
         {tpComp &&
           tpComp.map((item, index) => {
             return (
-              
+
               <Grid
                 key={index}
                 item
@@ -78,7 +78,7 @@ const TPCompany = () => {
                       </div>
                     </div>
                   </CompContainer>
-                  
+
                 </Link>
               </Grid>
             );

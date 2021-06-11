@@ -25,19 +25,15 @@ const categoryJobsFailure = (err) => {
 
 export const categoryJobsSearch = (params) => (dispatch) => {
   dispatch(categoryJobsRequest());
-  console.log('working... ')
-  console.log(params)
   const config = {
     url: `/${params}`,
     method: "get",
   };
   axios(config)
     .then((res) => {
-        console.log(res.data)
       dispatch(categoryJobsSuccess(res.data));
     })
     .catch((err) => {
-        console.log(err);
       dispatch(categoryJobsFailure(err));
     });
 };

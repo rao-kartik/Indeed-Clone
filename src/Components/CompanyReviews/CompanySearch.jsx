@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Input, H1, P } from "../../Custom UI/ReviewsUI";
+import { H1, P } from "../../Custom UI/ReviewsUI";
 import styles from "./CompanySearch.module.css";
 
 const LinkStyled = styled(Link)`

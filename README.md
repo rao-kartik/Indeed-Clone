@@ -4,10 +4,17 @@ This is the project we started as a three memeber team during Construct week org
 
 ## Table of Contents
 
+* [How to run the application](#how-to-run-the-application)
 * [Frameworks-Used](#frameworks-used)
 * [Libraries-Used](#libraries-used)
 * [Contributors](#contributors)
 * [Glimpase of our Work](#glimpse-of-our-work)
+
+## How to run the application
+
+* Clone the repository from "https://github.com/rao-kartik/Indeed-Clone.git"
+* npm i
+* run npm start or yarn start command in terminal to start the application.
 
 ## Frameworks Used
 

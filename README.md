@@ -5,10 +5,9 @@ This is the project we started as a three memeber team during Construct week org
 ## Table of Contents
 
 * [Frameworks-Used](#frameworks-used)
-* [Libraries Used](#libraries used)
+* [Libraries-Used](#libraries-used)
 * [Contributors](#contributors)
-* [Glimpase of our Work](#glimpse of our work)
-* [Reporting Issues](#reporting-issues)
+* [Glimpase of our Work](#glimpse-of-our-work)
 
 ## Frameworks Used
 
